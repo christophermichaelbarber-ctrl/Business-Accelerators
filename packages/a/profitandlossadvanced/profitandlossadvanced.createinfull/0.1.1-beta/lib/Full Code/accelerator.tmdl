@@ -1,0 +1,9 @@
+createOrReplace
+
+	/// =================================================================================================
+	/// Creates a basic Income Statement (or P&L) solution including the relevent tables, relationships, measures, and UDFs
+	/// Instructions: see https://www.youtube.com/@Finance_and_Fabric for TMDL instructions
+	/// Author: Based on design pattern from Chris Barber www.linkedin.com/in/christophermichaelbarber/
+	/// License: MIT Expat
+	/// =================================================================================================
+	// Code TBD
