@@ -451,7 +451,7 @@ createOrReplace
 
 			measure Plan =
 					
-					__Fn_PnL_Sum_Subtotal_and_Blanks (sum(Scenario[Credit less debit]))
+					__Fn_PnL_ShowScenario (sum(Scenario[Credit less debit]))
 				formatString: " #,##0,;(#,##0,);"
 				displayFolder: Metrics
 				lineageTag: 706d8174-5120-4e62-84a5-6c08cbefb30b
@@ -462,7 +462,7 @@ createOrReplace
 
 			measure 'Var, #' =
 					
-					[Actuals] - [Plan]
+					__Fn_PnL_HideVariances([Actuals], [Plan])
 				formatString: " +#,##0,;-#,##0,;"
 				displayFolder: Variance
 				lineageTag: 483a18d1-4e19-4363-8b3a-95ae05440228
@@ -600,6 +600,25 @@ createOrReplace
 				    result
 				```
 			lineageTag: fe42879d-813f-4e8b-af83-465c3a2a94d9
+
+		/// Creates the P&L Lines
+		function __Fn_PnL_ShowScenario =
+				(
+				    amount: EXPR
+				) =>
+				
+				IF(ISFILTERED(Ledger),BLANK(), __Fn_PnL_Sum_Subtotal_and_Blanks(amount))
+			lineageTag: 62fed188-afb7-4c8e-9111-02483ca7cf43
+
+		/// Creates the P&L Lines
+		function __Fn_PnL_HideVariances =
+				(
+				    amount: EXPR,
+					scenario: EXPR
+				) =>
+				
+				IF(ISFILTERED(Ledger),BLANK(), amount - scenario)
+			lineageTag: 4e562496-1344-4327-bdd4-49cbe13a4645
 
 		annotation __PBI_TimeIntelligenceEnabled = 1
 
