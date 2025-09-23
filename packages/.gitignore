@@ -1,0 +1,6 @@
+*
+!.gitignore
+!*/
+!**/*.daxlib
+!**/*.tmdl
+!**/*.png
