@@ -1,4 +1,11 @@
-// Profit_and_loss: Create the P&L layout with appropriate sums, subtotals, and spacing
+	/// =================================================================================================
+	/// Profit_and_loss: Create the P&L layout with appropriate sums, subtotals, and spacing
+	/// Instructions: see https://www.youtube.com/@Finance_and_Fabric for TMDL instructions
+	/// Author: Based on design pattern from Chris Barber www.linkedin.com/in/christophermichaelbarber/
+	/// License: MIT Expat
+	/// =================================================================================================
+	
+
 	function finance.profitandloss.createinfull.Sum_Subtotal_and_Blanks =
 			(
 			    amount: EXPR
