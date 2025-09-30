@@ -1,0 +1,7 @@
+DEFINE
+    MEASURE '_Measures'[Var, #] = [Actuals] - [Plan]
+
+EVALUATE
+    SUMMARIZECOLUMNS(
+        "Var, #", [Var, #]
+    )

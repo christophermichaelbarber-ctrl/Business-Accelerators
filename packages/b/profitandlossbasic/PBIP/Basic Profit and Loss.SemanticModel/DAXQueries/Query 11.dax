@@ -1,0 +1,10 @@
+
+
+DEFINE
+    /// Creates the P&L Lines
+    FUNCTION  = (
+    amount: EXPR
+) =>
+
+IF(ISFILTERED(Ledger),BLANK(), __Fn_PnL_Sum_Subtotal_and_Blanks(amount))
+

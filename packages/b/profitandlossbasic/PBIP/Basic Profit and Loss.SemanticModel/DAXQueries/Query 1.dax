@@ -1,0 +1,3 @@
+DEFINE
+    MEASURE '_Measures'[Plan] = __Fn_PnL_Sum_Subtotal_and_Blanks (calculate(sum(Scenario[Credit less debit]),Scenario[Scenario Key]=1))
+

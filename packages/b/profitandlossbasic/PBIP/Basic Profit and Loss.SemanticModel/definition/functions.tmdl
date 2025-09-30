@@ -1,0 +1,86 @@
+/// Creates the P&L Lines
+function __Fn_PnL_Sum_Subtotal_and_Blanks =
+		(
+		    amount: EXPR
+		) =>
+		VAR accountinscope = ISFILTERED( Account )
+		VAR NCLD_filter_context_calculated_table =
+		    CALCULATETABLE(
+		        Layout,
+		        REMOVEFILTERS( Layout ),
+		        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
+		        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
+		    )
+		VAR step1_lineitem = amount * MAX( Account[Account Type Indicator] )
+		VAR step2_subtotal =
+		    CALCULATE( amount * MAX( Account[Account Type Indicator] ), NCLD_filter_context_calculated_table )
+		VAR step3_addblanks = SWITCH(
+		        TRUE( ),
+		        accountinscope, BLANK( ),
+		        SELECTEDVALUE( Layout[Calculation_type] ) = "Blank", 0
+		    )
+		VAR step3_add_zero = COALESCE( step1_lineitem, step2_subtotal, step3_addblanks )
+		RETURN
+		    step3_add_zero
+	lineageTag: 26c36bef-557c-49fa-a7a3-5339f214ddef
+
+/// Creates the P&L Lines
+function __Fn_PnL_Variance_Highlights = ```
+		(
+		    amount: EXPR
+		) =>
+		
+		
+		var green = "#238823"
+		var red = "#D2222D"
+		
+		VAR NCLD_filter_context_calculated_table =
+		    CALCULATETABLE(
+		        Layout,
+		        REMOVEFILTERS( Layout ),
+		        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
+		        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
+		    )
+		VAR step1_lineitem = MAX( Account[Account Type Indicator] )
+		VAR step2_subtotal =
+		    CALCULATE( MAX( Account[Account Type Indicator] ), NCLD_filter_context_calculated_table )
+		
+		
+		VAR indicator= COALESCE( step1_lineitem, step2_subtotal )
+		
+		var result = 
+		
+		switch 
+			(
+			true(),
+			amount * indicator > 0, green,
+			amount * indicator < 0, red	
+			)
+		
+		
+		
+		
+		RETURN
+		    result
+		```
+	lineageTag: fe42879d-813f-4e8b-af83-465c3a2a94d9
+
+/// Creates the P&L Lines
+function __Fn_PnL_ShowScenario =
+		(
+		    amount: EXPR
+		) =>
+		
+		IF(ISFILTERED(Ledger),BLANK(), __Fn_PnL_Sum_Subtotal_and_Blanks(amount))
+	lineageTag: 62fed188-afb7-4c8e-9111-02483ca7cf43
+
+/// Creates the P&L Lines
+function __Fn_PnL_HideVariances =
+		(
+		    amount: EXPR,
+			scenario: EXPR
+		) =>
+		
+		IF(ISFILTERED(Ledger),BLANK(), amount - scenario)
+	lineageTag: 4e562496-1344-4327-bdd4-49cbe13a4645
+

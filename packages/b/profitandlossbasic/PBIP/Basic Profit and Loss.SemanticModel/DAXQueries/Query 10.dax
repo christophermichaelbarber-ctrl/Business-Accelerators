@@ -1,0 +1,8 @@
+DEFINE
+    /// Creates the P&L Lines
+    FUNCTION __Fn_PnL_ShowScenario = (
+    amount: EXPR
+) =>
+
+IF(ISFILTERED(Ledger),BLANK(), __Fn_PnL_Sum_Subtotal_and_Blanks(amount))
+

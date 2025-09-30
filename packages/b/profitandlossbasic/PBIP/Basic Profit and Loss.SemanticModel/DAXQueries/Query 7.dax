@@ -1,0 +1,4 @@
+EVALUATE
+    {
+        __Fn_PnL_Sum_Subtotal_and_Blanks(amount)
+    }

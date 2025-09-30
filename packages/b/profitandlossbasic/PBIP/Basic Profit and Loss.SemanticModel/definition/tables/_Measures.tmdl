@@ -1,0 +1,74 @@
+table _Measures
+	lineageTag: 5bced19d-0fbc-4db8-b710-4bd7ec18852d
+
+	measure Actuals =
+			
+			__Fn_PnL_Sum_Subtotal_and_Blanks (sum(Ledger[Credit Less Debit @Global Fx]))
+		formatString: #,##0,;(#,##0,);
+		displayFolder: Metrics
+		lineageTag: dfdd07d8-551c-435f-bd10-c40ef0ee0c23
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["INTEGER_FORMATTING"]}
+
+	measure Plan =
+			
+			__Fn_PnL_ShowScenario (sum(Scenario[Credit less debit]))
+		formatString: " #,##0,;(#,##0,);"
+		displayFolder: Metrics
+		lineageTag: 706d8174-5120-4e62-84a5-6c08cbefb30b
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["INTEGER_FORMATTING"]}
+
+	measure 'Var, #' =
+			
+			__Fn_PnL_HideVariances([Actuals], [Plan])
+		formatString: " +#,##0,;-#,##0,;"
+		displayFolder: Variance
+		lineageTag: 483a18d1-4e19-4363-8b3a-95ae05440228
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["INTEGER_FORMATTING"]}
+
+	measure 'Var, %' =
+			
+			Divide([Var, #], [actuals])
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: Variance
+		lineageTag: c1602e4c-f9f4-42b1-a61d-636669a995cf
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Var, Text Highlight' = ```
+			
+			__Fn_PnL_Variance_Highlights ([Var, #])
+			
+			```
+		formatString: 0
+		displayFolder: Variance\Highlight
+		lineageTag: 6b0185c6-3e56-424b-8866-577deef00b23
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["INTEGER_FORMATTING"]}
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+	annotation TabularEditor_TableGroup = Measures
+
+	annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["ENSURE_TABLES_HAVE_RELATIONSHIPS"]}
+

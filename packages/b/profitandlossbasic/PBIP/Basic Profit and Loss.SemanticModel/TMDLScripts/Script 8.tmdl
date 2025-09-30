@@ -1,0 +1,51 @@
+createOrReplace
+
+	table _Measures
+		lineageTag: 5bced19d-0fbc-4db8-b710-4bd7ec18852d
+
+		measure Actuals =
+				
+				__Fn_PnL_Sum_Subtotal_and_Blanks (sum(Ledger[Credit Less Debit @Global Fx]))
+			formatString: #,##0,;(#,##0,);
+			lineageTag: dfdd07d8-551c-435f-bd10-c40ef0ee0c23
+
+			annotation PBI_FormatHint = {"isCustom":true}
+
+		measure Plan =
+				
+				__Fn_PnL_Sum_Subtotal_and_Blanks (sum(Scenario[Credit less debit]))
+			formatString: " #,##0,;(#,##0,);"
+			lineageTag: 706d8174-5120-4e62-84a5-6c08cbefb30b
+
+			annotation PBI_FormatHint = {"isCustom":true}
+
+		measure 'Var, #' =
+				
+				[Actuals] - [Plan]
+			formatString: " +#,##0;-#,##0;"
+			lineageTag: 483a18d1-4e19-4363-8b3a-95ae05440228
+
+			annotation PBI_FormatHint = {"isCustom":true}
+
+		measure 'Var, %' =
+				
+				Divide([Var, #], [actuals])
+			formatString: +0.00%;-0.00%;
+			lineageTag: c1602e4c-f9f4-42b1-a61d-636669a995cf
+
+			annotation PBI_FormatHint = {"isCustom":true}
+
+		partition _Measures = m
+			mode: import
+			source =
+					let
+					    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+					    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+					    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+					in
+					    #"Removed Columns"
+
+		annotation PBI_NavigationStepName = Navigation
+
+		annotation PBI_ResultType = Table
+

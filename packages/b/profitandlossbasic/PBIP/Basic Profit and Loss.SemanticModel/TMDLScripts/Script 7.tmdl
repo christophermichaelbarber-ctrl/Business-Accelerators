@@ -1,0 +1,12 @@
+createOrReplace
+
+	ref table _Measures
+
+		measure 'Var, %' =
+				
+				Divide([Var, #], [actuals])
+			formatString: "+0.00%;-0.00%;"
+
+
+			annotation PBI_FormatHint = {"isCustom":true}
+

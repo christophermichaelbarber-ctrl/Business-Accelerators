@@ -1,0 +1,9 @@
+DEFINE
+    /// Creates the P&L Lines
+    FUNCTION __Fn_PnL_HideVariances= (
+    amount: EXPR,
+	scenario: EXPR
+) =>
+
+IF(ISFILTERED(Ledger),BLANK(), amount - scenario)
+
