@@ -1,9 +1,13 @@
 table _Measures
 	lineageTag: 5bced19d-0fbc-4db8-b710-4bd7ec18852d
 
-	measure Actuals =
+	measure Actuals = ```
 			
-			__Fn_PnL_Sum_Subtotal_and_Blanks (sum(Ledger[Credit Less Debit @Global Fx]))
+			//__Fn_PnL_Sum_Subtotal_and_Blanks (sum(Ledger[Credit Less Debit @Global Fx]))
+			
+			ChrisBarber.Finance.Profitandloss.basic(sum(Ledger[Credit Less Debit @Global Fx]), Layout, Layout[Income_Statement_Key], Layout[Calculation_type], Layout[Subtotal_From], Layout[Subtotal_To],Account, Account[Account Type Indicator])
+			
+			```
 		formatString: #,##0,;(#,##0,);
 		displayFolder: Metrics
 		lineageTag: dfdd07d8-551c-435f-bd10-c40ef0ee0c23
