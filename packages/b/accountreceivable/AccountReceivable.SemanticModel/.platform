@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "AccountReceivable"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "43cd950c-612b-4b50-8468-4f001f83a632"
+  }
+}

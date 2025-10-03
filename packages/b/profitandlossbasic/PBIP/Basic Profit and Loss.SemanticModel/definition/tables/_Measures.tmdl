@@ -3,9 +3,12 @@ table _Measures
 
 	measure Actuals = ```
 			
-			//__Fn_PnL_Sum_Subtotal_and_Blanks (sum(Ledger[Credit Less Debit @Global Fx]))
+			__Fn_PnL_Sum_Subtotal_and_Blanks (sum(Ledger[Credit Less Debit @Global Fx]))
 			
-			ChrisBarber.Finance.Profitandloss.basic(sum(Ledger[Credit Less Debit @Global Fx]), Layout, Layout[Income_Statement_Key], Layout[Calculation_type], Layout[Subtotal_From], Layout[Subtotal_To],Account, Account[Account Type Indicator])
+			
+			
+			
+			//ChrisBarber.Finance.Profitandloss.basic(sum(Ledger[Credit Less Debit @Global Fx]), Layout, Layout[Income_Statement_Key], Layout[Calculation_type], Layout[Subtotal_From], Layout[Subtotal_To],Account, Account[Account Type Indicator])
 			
 			```
 		formatString: #,##0,;(#,##0,);

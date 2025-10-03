@@ -1,0 +1,45 @@
+table 'Aging Range'
+	lineageTag: 7ccde453-f9a6-41db-92cd-b15226302792
+
+	column Min
+		dataType: int64
+		formatString: 0
+		lineageTag: 4f43ebed-8268-4434-b092-86383755bbb1
+		summarizeBy: sum
+		sourceColumn: Min
+
+		annotation SummarizationSetBy = Automatic
+
+	column Max
+		dataType: int64
+		formatString: 0
+		lineageTag: b1948ac5-4263-46d2-819f-4fc924ea32a8
+		summarizeBy: sum
+		sourceColumn: Max
+
+		annotation SummarizationSetBy = Automatic
+
+	column Range
+		dataType: string
+		lineageTag: 1d7d3945-c5eb-48dc-abf6-558289e2d046
+		summarizeBy: none
+		sourceColumn: Range
+		sortByColumn: Min
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Aging Range' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("TcnBCcAwDAPAVYLfMVgxGDxLmkehmaD00e1r95OAEELXOwlV0ixhlXKd702jdlLEZT+CbQNL8AQD+waegJbi4BiL0NIixyOisywcHw==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Min = _t, Max = _t, Range = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Min", Int64.Type}, {"Max", Int64.Type}, {"Range", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,63 @@
+/// Based on Marco Russo's Account Recievable work, this function creates aged debt based on outstanding involces || date Table ||| date Date Colum ||| ar detail Table |||
+function 'ChrisBarber.Finance.AccountRecievable' = ```
+		(
+			dateTable: anyref EXPR,		
+			date_dateColumn: anyref EXPR,	
+		
+			ardetailTable: anyref EXPR,	
+			ardetail_duedateColumn: anyref EXPR,
+			ardetail_dueamountColumn: anyref EXPR,
+			ardetail_paymentdateColumn: anyref EXPR,
+					
+			agingrangeTable: anyref EXPR,	
+			agingrange_minColumn: anyref EXPR,	
+			agingrange_maxColumn: anyref EXPR
+		
+				
+		
+		) =>
+		VAR MaxDate =
+		    max(date_dateColumn)
+		VAR Result =
+		    CALCULATE (
+		        VAR _AgeDetail =
+		            ADDCOLUMNS (
+		               ardetailTable,
+		                "@AgeMin",
+		                    VAR _Age =
+		                        CONVERT ( MaxDate - ardetail_duedateColumn, INTEGER )
+		                    VAR _AgeMin =
+		                        SELECTCOLUMNS (
+		                            FILTER (
+		                                ALLNOBLANKROW (agingrangeTable ),
+		                                agingrange_minColumn <= _age
+		                                    && (
+		                                        agingrange_maxColumn >= _age
+		                                            || ISBLANK ( agingrange_maxColumn )
+		                                    )
+		                            ),
+		                           agingrange_minColumn 
+		                        )
+		                    RETURN
+		                        _AgeMin
+		            )
+		        VAR Result =
+		            SUMX (
+		                FILTER (
+		                    _AgeDetail,
+		                    NOT ISBLANK ( [@AgeMin] )
+		                        && [@AgeMin] IN VALUES ( agingrange_minColumn  )
+		                ),
+		                ardetail_dueamountColumn
+		            )
+		        RETURN
+		            Result,
+		        ardetail_duedateColumn <= MaxDate,
+		        ardetail_paymentdateColumn > MaxDate || ISBLANK ( ardetail_paymentdateColumn),
+		        REMOVEFILTERS ( dateTable)
+		    )
+		RETURN
+		    Result
+		```
+	lineageTag: ad069611-233d-4d29-a7fe-05fcd44afddc
+

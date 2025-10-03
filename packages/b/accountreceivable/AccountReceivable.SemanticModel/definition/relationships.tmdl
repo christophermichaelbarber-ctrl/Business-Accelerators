@@ -1,0 +1,18 @@
+relationship AutoDetected_bc3937ac-48ae-44d8-a9fe-29728dfa304b
+	fromColumn: 'AR Detail'.CustomerKey
+	toColumn: Customer.CustomerKey
+
+relationship 02ba2f38-9ad2-1752-fcde-c3a125b6edc7
+	fromColumn: 'AR Detail'.'Invoice Date'
+	toColumn: Date.Date
+
+relationship 1fdb7841-265c-e032-0c22-720829be9d81
+	isActive: false
+	fromColumn: 'AR Detail'.'Due Date'
+	toColumn: Date.Date
+
+relationship 0518a115-5916-cbae-1a16-dff0f1658a83
+	isActive: false
+	fromColumn: 'AR Detail'.'Payment Date'
+	toColumn: Date.Date
+
