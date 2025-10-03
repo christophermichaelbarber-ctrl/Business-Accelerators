@@ -1,13 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
-  "name": "f21eaa32d58d9533e73d",
+  "name": "f1ef5725040b0c46572a",
   "position": {
     "x": 38.8472240862524,
     "y": 79.893347649085129,
-    "z": 1,
+    "z": 0,
     "height": 627.419317317586,
-    "width": 536.53147228559919,
-    "tabOrder": 1
+    "width": 536.53147228559919
   },
   "visual": {
     "visualType": "pivotTable",
@@ -242,76 +241,6 @@
         },
         "type": "Categorical",
         "howCreated": "User"
-      },
-      {
-        "name": "e6d08b126e4a17b0354a",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Aging Range"
-              }
-            },
-            "Property": "Range"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "399bead1d5802b610724",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "Year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "43df895c9909a1558e82",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Date"
-              }
-            },
-            "Property": "Month"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "76cf644b770e25bd0d05",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures"
-              }
-            },
-            "Property": "Open Amount Function"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "2131bee25d9b2000cd03",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "AR Detail"
-              }
-            },
-            "Property": "Document"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }
