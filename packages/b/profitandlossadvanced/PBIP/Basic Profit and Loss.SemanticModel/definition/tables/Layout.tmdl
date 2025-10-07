@@ -1,0 +1,80 @@
+table Layout
+	lineageTag: db5f803c-fc26-4c46-9da5-986b06b1a03d
+
+	column Income_Statement_Key
+		dataType: int64
+		isHidden
+		isKey
+		formatString: 0
+		lineageTag: a4e52894-7d10-46d9-b6fe-511e1a4d82f0
+		summarizeBy: none
+		sourceColumn: Income_Statement_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Line name'
+		dataType: string
+		lineageTag: c6fe9773-a93c-4e92-9650-dfba46fee563
+		summarizeBy: none
+		sourceColumn: Line name
+		sortByColumn: Income_Statement_Key
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Calculation_type
+		dataType: string
+		isHidden
+		lineageTag: ab252ae7-073e-4418-b31f-a3afa5bbfdd3
+		summarizeBy: none
+		sourceColumn: Calculation_type
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["ISAVAILABLEINMDX_FALSE_NONATTRIBUTE_COLUMNS"]}
+
+	column Subtotal_From
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5d5e9f34-dfc4-4564-a86a-7850799e4aa8
+		summarizeBy: none
+		sourceColumn: Subtotal_From
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["ISAVAILABLEINMDX_FALSE_NONATTRIBUTE_COLUMNS"]}
+
+	column Subtotal_To
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 47ba9c19-84ec-4b01-a991-91cb9561143f
+		summarizeBy: none
+		sourceColumn: Subtotal_To
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["ISAVAILABLEINMDX_FALSE_NONATTRIBUTE_COLUMNS"]}
+
+	partition Layout = m
+		mode: import
+		source =
+				let
+				    Source = Binary.FromText(
+				"SW5jb21lX1N0YXRlbWVudF9LZXkJTGluZSBuYW1lCUNhbGN1bGF0aW9uX3R5cGUJU3VidG90YWxfRnJvbQlTdWJ0b3RhbF9UbwoxCVJldmVudWU6CUJsYW5rCQkKMgnCoMKgwqBQcm9kdWN0CUxpbmUtaXRlbSByZXZlbnVlCQkKMwnCoMKgwqBTZXJ2aWNlIGFuZCBvdGhlcglMaW5lLWl0ZW0gcmV2ZW51ZQkJCjQJwqDCoMKgwqDCoFRvdGFsIHJldmVudWUJU3VidG90YWwgTkNMRAkyCTMKNQnCoAlCbGFuawkJCjYJQ29zdCBvZiByZXZlbnVlOsKgwqAJQmxhbmsJCQo3CcKgwqDCoFByb2R1Y3TCoAlMaW5lLWl0ZW0gZXhwZW5zZQkJCjgJwqDCoMKgU2VydmljZSBhbmQgb3RoZXLCoAlMaW5lLWl0ZW0gZXhwZW5zZQkJCjkJwqDCoMKgwqDCoFRvdGFsIGNvc3Qgb2YgcmV2ZW51ZcKgCVN1YnRvdGFsIE5ETEMJNwk4CjEwCcKgwqDCoMKgwqBHcm9zcyBtYXJnaW7CoAlTdWJ0b3RhbCBOQ0xECTIJOAoxMQnCoMKgCUJsYW5rCQkKMTIJUmVzZWFyY2ggYW5kIGRldmVsb3BtZW50CUxpbmUtaXRlbSBleHBlbnNlCQkKMTMJU2FsZXMgYW5kIG1hcmtldGluZwlMaW5lLWl0ZW0gZXhwZW5zZQkJCjE0CUdlbmVyYWwgYW5kIGFkbWluaXN0cmF0aXZlCUxpbmUtaXRlbSBleHBlbnNlCQkKMTUJwqDCoMKgCUJsYW5rCQkKMTYJT3BlcmF0aW5nIGluY29tZQlTdWJ0b3RhbCBOQ0xECTIJMTQKMTcJwqDCoMKgwqAJQmxhbmsJCQoxOAlPdGhlciBpbmNvbWUsIG5ldAlMaW5lLWl0ZW0gcmV2ZW51ZQkJCjE5CUluY29tZSBiZWZvcmUgaW5jb21lIHRheGVzCVN1YnRvdGFsIE5DTEQJMgkxOAoyMAnCoMKgwqDCoMKgwqAJQmxhbmsJCQoyMQlUYXggUHJvdmlzaW9uCUxpbmUtaXRlbSBleHBlbnNlCQkKMjIJwqDCoMKgwqDCoMKgCUJsYW5rCQkKMjMJTmV0IGluY29tZQlTdWJ0b3RhbCBOQ0xECTIJMjE="    , BinaryEncoding.Base64),
+				    #"Imported CSV" = Csv.Document(Source,[Delimiter="#(tab)", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Imported CSV", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Income_Statement_Key", Int64.Type}, {"Line name", type text}, {"Calculation_type", type text}, {"Subtotal_From", Int64.Type}, {"Subtotal_To", Int64.Type}})
+				
+				
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+	annotation TabularEditor_TableGroup = Dimensions
+

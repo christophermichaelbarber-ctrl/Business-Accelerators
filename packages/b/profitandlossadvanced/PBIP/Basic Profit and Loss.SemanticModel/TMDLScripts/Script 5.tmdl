@@ -1,0 +1,12 @@
+createOrReplace
+
+	ref table _Measures
+
+		measure Actuals =
+				
+				__Fn_PnL_Sum_Subtotal_and_Blanks (sum(Ledger[Credit Less Debit @Global Fx]))
+			formatString: #,##0,;(#,##0,);
+			lineageTag: dfdd07d8-551c-435f-bd10-c40ef0ee0c23
+
+			annotation PBI_FormatHint = {"isCustom":true}
+

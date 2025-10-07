@@ -1,0 +1,85 @@
+table Account
+	lineageTag: ae89694a-e279-474b-b076-e37b6bfb5c08
+
+	column 'Account Key'
+		dataType: int64
+		isHidden
+		isKey
+		formatString: 0
+		lineageTag: cc4c5de4-24bc-4979-bb35-c541693ded99
+		summarizeBy: none
+		sourceColumn: Account Key
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["ISAVAILABLEINMDX_FALSE_NONATTRIBUTE_COLUMNS"]}
+
+	column 'Account Number and Name'
+		dataType: string
+		lineageTag: ff635237-aeac-4798-ad8c-e5be13f5a405
+		summarizeBy: none
+		sourceColumn: Account Number and Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Type'
+		dataType: string
+		isHidden
+		lineageTag: 23f68320-f8bc-4f51-a6b2-99f9f73613c6
+		summarizeBy: none
+		sourceColumn: Account Type
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["ISAVAILABLEINMDX_FALSE_NONATTRIBUTE_COLUMNS","UNNECESSARY_COLUMNS"]}
+
+	column 'Account Type Indicator'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ff118003-7ef1-48f5-82f8-4a42639bc2bd
+		summarizeBy: sum
+		sourceColumn: Account Type Indicator
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["ISAVAILABLEINMDX_FALSE_NONATTRIBUTE_COLUMNS"]}
+
+	column Income_Statement_Key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7a9dee36-b56d-4d77-b4ef-dc9b1f5f9675
+		summarizeBy: none
+		sourceColumn: Income_Statement_Key
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["ISAVAILABLEINMDX_FALSE_NONATTRIBUTE_COLUMNS"]}
+
+	partition Account = m
+		mode: import
+		source = ```
+				let
+				    Source = Binary.FromText(
+				    
+				"QWNjb3VudCBLZXkJQWNjb3VudCBOdW1iZXIgYW5kIE5hbWUJQWNjb3VudCBUeXBlCUFjY291bnQgVHlwZSBJbmRpY2F0b3IJSW5jb21lX1N0YXRlbWVudF9LZXkKMTAxMDAJMTAxMDAgLSBSZXZlbnVlCVJldmVudWUJMQkyCjEwMTEwCTEwMTEwIC0gUmV2ZW51ZQlSZXZlbnVlCTEJMgoxMDEyMAkxMDEyMCAtIFJldmVudWUJUmV2ZW51ZQkxCTIKMTAxMzAJMTAxMzAgLSBSZXZlbnVlCVJldmVudWUJMQkyCjEwMjAwCTEwMjAwIC0gUmV2ZW51ZQlSZXZlbnVlCTEJMwoxMDIxMAkxMDIxMCAtIFJldmVudWUJUmV2ZW51ZQkxCTMKMTAyMjAJMTAyMjAgLSBSZXZlbnVlCVJldmVudWUJMQkzCjEwMjMwCTEwMjMwIC0gUmV2ZW51ZQlSZXZlbnVlCTEJMwoyMDEwMAkyMDEwMCAtIEV4cGVuZGl0dXJlCUV4cGVuZGl0dXJlCS0xCTcKMjAxMTAJMjAxMTAgLSBFeHBlbmRpdHVyZQlFeHBlbmRpdHVyZQktMQk3CjIwMTIwCTIwMTIwIC0gRXhwZW5kaXR1cmUJRXhwZW5kaXR1cmUJLTEJNwoyMDEzMAkyMDEzMCAtIEV4cGVuZGl0dXJlCUV4cGVuZGl0dXJlCS0xCTcKMjAxNDAJMjAxNDAgLSBFeHBlbmRpdHVyZQlFeHBlbmRpdHVyZQktMQk3CjIwMjAwCTIwMjAwIC0gRXhwZW5kaXR1cmUJRXhwZW5kaXR1cmUJLTEJOAoyMDIxMAkyMDIxMCAtIEV4cGVuZGl0dXJlCUV4cGVuZGl0dXJlCS0xCTgKMjAyMjAJMjAyMjAgLSBFeHBlbmRpdHVyZQlFeHBlbmRpdHVyZQktMQk4CjIwMjMwCTIwMjMwIC0gRXhwZW5kaXR1cmUJRXhwZW5kaXR1cmUJLTEJOAoyMDI0MAkyMDI0MCAtIEV4cGVuZGl0dXJlCUV4cGVuZGl0dXJlCS0xCTgKMzAxMDAJMzAxMDAgLSBFeHBlbmRpdHVyZQlFeHBlbmRpdHVyZQktMQkxMgozMDExMAkzMDExMCAtIEV4cGVuZGl0dXJlCUV4cGVuZGl0dXJlCS0xCTEyCjMwMTIwCTMwMTIwIC0gRXhwZW5kaXR1cmUJRXhwZW5kaXR1cmUJLTEJMTIKMzAxMzAJMzAxMzAgLSBFeHBlbmRpdHVyZQlFeHBlbmRpdHVyZQktMQkxMgozMDE0MAkzMDE0MCAtIEV4cGVuZGl0dXJlCUV4cGVuZGl0dXJlCS0xCTEyCjMwMTUwCTMwMTUwIC0gRXhwZW5kaXR1cmUJRXhwZW5kaXR1cmUJLTEJMTIKMzAxNjAJMzAxNjAgLSBFeHBlbmRpdHVyZQlFeHBlbmRpdHVyZQktMQkxMgozMDE3MAkzMDE3MCAtIEV4cGVuZGl0dXJlCUV4cGVuZGl0dXJlCS0xCTEyCjMwMTgwCTMwMTgwIC0gRXhwZW5kaXR1cmUJRXhwZW5kaXR1cmUJLTEJMTIKNDAxMDAJNDAxMDAgLSBFeHBlbmRpdHVyZQlFeHBlbmRpdHVyZQktMQkxMgo0MDExMAk0MDExMCAtIEV4cGVuZGl0dXJlCUV4cGVuZGl0dXJlCS0xCTEyCjQwMTIwCTQwMTIwIC0gRXhwZW5kaXR1cmUJRXhwZW5kaXR1cmUJLTEJMTIKNDAxMzAJNDAxMzAgLSBFeHBlbmRpdHVyZQlFeHBlbmRpdHVyZQktMQkxMgo1MDEwMAk1MDEwMCAtIEV4cGVuZGl0dXJlCUV4cGVuZGl0dXJlCS0xCTEzCjUwMTEwCTUwMTEwIC0gRXhwZW5kaXR1cmUJRXhwZW5kaXR1cmUJLTEJMTMKNTAxMjAJNTAxMjAgLSBFeHBlbmRpdHVyZQlFeHBlbmRpdHVyZQktMQkxMwo1MDEzMAk1MDEzMCAtIEV4cGVuZGl0dXJlCUV4cGVuZGl0dXJlCS0xCTEzCjUwMTQwCTUwMTQwIC0gRXhwZW5kaXR1cmUJRXhwZW5kaXR1cmUJLTEJMTMKNTAxNTAJNTAxNTAgLSBFeHBlbmRpdHVyZQlFeHBlbmRpdHVyZQktMQkxMwo1MDE2MAk1MDE2MCAtIEV4cGVuZGl0dXJlCUV4cGVuZGl0dXJlCS0xCTEzCjYwMTAwCTYwMTAwIC0gRXhwZW5kaXR1cmUJRXhwZW5kaXR1cmUJLTEJMTMKNjAxMTAJNjAxMTAgLSBFeHBlbmRpdHVyZQlFeHBlbmRpdHVyZQktMQkxMwo2MDEyMAk2MDEyMCAtIEV4cGVuZGl0dXJlCUV4cGVuZGl0dXJlCS0xCTEzCjcwMTAwCTcwMTAwIC0gRXhwZW5kaXR1cmUJRXhwZW5kaXR1cmUJLTEJMTQKNzAxMTAJNzAxMTAgLSBFeHBlbmRpdHVyZQlFeHBlbmRpdHVyZQktMQkxNAo3MDEyMAk3MDEyMCAtIEV4cGVuZGl0dXJlCUV4cGVuZGl0dXJlCS0xCTE0CjcwMTMwCTcwMTMwIC0gRXhwZW5kaXR1cmUJRXhwZW5kaXR1cmUJLTEJMTQKNzAxNDAJNzAxNDAgLSBFeHBlbmRpdHVyZQlFeHBlbmRpdHVyZQktMQkxNAo3MDQwMAk3MDQwMCAtIEV4cGVuZGl0dXJlCUV4cGVuZGl0dXJlCS0xCTE0CjcwNDEwCTcwNDEwIC0gRXhwZW5kaXR1cmUJRXhwZW5kaXR1cmUJLTEJMTQKNzA0MjAJNzA0MjAgLSBFeHBlbmRpdHVyZQlFeHBlbmRpdHVyZQktMQkxNAo3MDQzMAk3MDQzMCAtIEV4cGVuZGl0dXJlCUV4cGVuZGl0dXJlCS0xCTE0CjEwNzEwCTEwNzEwIC0gT3RoZXIgaW5jb21lCVJldmVudWUJMQkxOAoxMDcyMAkxMDcxMCAtIE90aGVyIGluY29tZQlSZXZlbnVlCTEJMTgKODAxMDAJODAxMDAgLSBFeHBlbmRpdHVyZQlFeHBlbmRpdHVyZQktMQkyMQo4MDExMAk4MDExMCAtIEV4cGVuZGl0dXJlCUV4cGVuZGl0dXJlCS0xCTIxCjgwMTIwCTgwMTIwIC0gRXhwZW5kaXR1cmUJRXhwZW5kaXR1cmUJLTEJMjEKODAxMzAJODAxMzAgLSBFeHBlbmRpdHVyZQlFeHBlbmRpdHVyZQktMQkyMQ=="
+				    
+				        , BinaryEncoding.Base64),
+				    #"Imported CSV" = Csv.Document(Source,[Delimiter="#(tab)", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Imported CSV", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Account Key", Int64.Type}, {"Account Number and Name", type text}, {"Account Type", type text}, {"Account Type Indicator", Int64.Type}, {"Income_Statement_Key", Int64.Type}})
+				
+				
+				in
+				    #"Changed Type"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+	annotation TabularEditor_TableGroup = Dimensions
+
+	annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["SNOWFLAKE_SCHEMA_ARCHITECTURE"]}
+

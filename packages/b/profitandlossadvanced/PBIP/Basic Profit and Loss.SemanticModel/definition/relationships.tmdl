@@ -1,0 +1,20 @@
+relationship AutoDetected_5213c503-c2ff-4c9b-9a72-1420edfd150f
+	fromColumn: Ledger.'Account Key'
+	toColumn: Account.'Account Key'
+
+relationship AutoDetected_bef46327-871a-438a-9ae0-ea2301981dc8
+	fromColumn: Scenario.'Account Key'
+	toColumn: Account.'Account Key'
+
+relationship 2cc6d758-4570-8426-5f1f-026d9822c99e
+	fromColumn: Scenario.'Effective Date'
+	toColumn: 'Effective Date'.'Fiscal Date'
+
+relationship ae45ffe2-bc36-2af2-ca49-80bc462ec480
+	fromColumn: Ledger.Date
+	toColumn: 'Effective Date'.'Fiscal Date'
+
+relationship ad5bee16-1849-6d1c-5d5d-3e897a5ad8ec
+	fromColumn: Account.Income_Statement_Key
+	toColumn: Layout.Income_Statement_Key
+
