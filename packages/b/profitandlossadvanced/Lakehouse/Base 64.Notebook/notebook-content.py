@@ -38,8 +38,8 @@ Fiscal_Date_decoded_str = Fiscal_Date_decoded_bytes.decode("utf-8")
 Fiscal_Date_csv_data = StringIO(Fiscal_Date_decoded_str)
 Fiscal_Date_df = pd.read_csv(Fiscal_Date_csv_data)
 
-# Step 3: Display and/or save
-display(Fiscal_Date_df)
+# Step 3: CovertDatestoDate
+Fiscal_Date_df['FiscalDate'] = pd.to_datetime(Fiscal_Date_df['FiscalDate'], format='%m/%d/%Y', errors='coerce')
 
 # Step 4: Save to Parquet file
 Fiscal_Date_df.to_parquet("abfss://GitIntegrationFabricTrial@onelake.dfs.fabric.microsoft.com/profitandlossadvanced_lakehouse.Lakehouse/Files/Date.parquet")
@@ -47,9 +47,6 @@ Fiscal_Date_df.to_parquet("abfss://GitIntegrationFabricTrial@onelake.dfs.fabric.
 # Step 5: Save to Parquet table
 Fiscal_Date_df_table = spark.read.parquet("abfss://GitIntegrationFabricTrial@onelake.dfs.fabric.microsoft.com/profitandlossadvanced_lakehouse.Lakehouse/Files/Date.parquet")
 
-
-# Step 6: Save to CSV file
-Fiscal_Date_df.to_csv("abfss://GitIntegrationFabricTrial@onelake.dfs.fabric.microsoft.com/profitandlossadvanced_lakehouse.Lakehouse/Files/Date.csv")
 
 # METADATA ********************
 
