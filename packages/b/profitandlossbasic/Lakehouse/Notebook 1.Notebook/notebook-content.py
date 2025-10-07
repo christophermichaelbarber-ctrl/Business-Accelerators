@@ -24,8 +24,8 @@
 
 import pandas as pd
 
-wrangler_sample_df = pd.read_csv("https://aka.ms/wrangler/titanic.csv")
-display(wrangler_sample_df)
+accounts_df = pd.read_csv("https://aka.ms/wrangler/titanic.csv")
+display(accounts_df)
 
 # METADATA ********************
 
@@ -37,9 +37,29 @@ display(wrangler_sample_df)
 
 # CELL ********************
 
-# Welcome to your new notebook
-# Type here in the cell editor to add code!
-wrangler_sample_df.to_csv("abfss://GitIntegrationFabricTrial@onelake.dfs.fabric.microsoft.com/profitandlossbasic_lakehouse.Lakehouse/Files/test2.csv")
+accounts_df.to_parquet("abfss://GitIntegrationFabricTrial@onelake.dfs.fabric.microsoft.com/profitandlossbasic_lakehouse.Lakehouse/Files/accounts.parquet")
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+accounts_df_table = spark.read.parquet("abfss://GitIntegrationFabricTrial@onelake.dfs.fabric.microsoft.com/profitandlossbasic_lakehouse.Lakehouse/Files/accounts.parquet")
+accounts_df_table.write.mode("overwrite").format("delta").saveAsTable("Accounts_table")
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
 
 # METADATA ********************
 
