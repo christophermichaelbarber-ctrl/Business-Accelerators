@@ -1,0 +1,52 @@
+DEFINE
+    FUNCTION __Fn_PnL_Step2_CY_TimeHorizon = (
+    amount: EXPR,
+    amounttype: INT64,
+	prioryearoffset: INT64
+) =>
+
+VAR MonthtoDate_var = CALCULATE( __Fn_PnL_Step1_Sum_and_Subtotal( amount ),  TimeIntellignece__MonthToDate_Table_Function( 'Effective Date', prioryearoffset) )
+VAR YeartoDate_var =
+    CALCULATE( __Fn_PnL_Step1_Sum_and_Subtotal( amount ), TimeIntellignece__YearToDate_Table_Function( 'Effective Date', prioryearoffset ) )
+VAR QuartertoDate_var =
+    CALCULATE( __Fn_PnL_Step1_Sum_and_Subtotal( amount ), TimeIntellignece__QuarterToDate_Table_Function( 'Effective Date', prioryearoffset ) )
+VAR FullQuarter_var =
+    CALCULATE(
+        __Fn_PnL_Step1_Sum_and_Subtotal(
+            CALCULATE(
+                SUM( Scenario[Credit less debit] ),
+                Scenario[Scenario Key] = 1
+            )
+        ),
+        TimeIntellignece__QuarterToGo_Table_Function( 'Effective Date', prioryearoffset )
+    )
+        + QuartertoDate_var
+VAR FullYear_var =
+    CALCULATE(
+        CALCULATE(
+            SUM( Scenario[Credit less debit] ),
+            Scenario[Scenario Key] = 1
+        ),
+        TimeIntellignece__YearToGo_Table_Function( 'Effective Date', prioryearoffset )
+    )
+        + YeartoDate_var
+VAR selectedtimehorizon =
+    SELECTEDVALUE( SelectTimeFrame[Time Horizon Sort Order] )
+
+VAR result =
+    SWITCH(
+        TRUE( ),
+
+        selectedtimehorizon = 1, MonthtoDate_var,
+        selectedtimehorizon = 2, QuartertoDate_var,
+        selectedtimehorizon = 3,  FullQuarter_var,
+        selectedtimehorizon = 4, YeartoDate_var,
+        selectedtimehorizon = 5 , FullYear_var
+    )
+RETURN
+    result
+
+EVALUATE
+    {
+        __Fn_PnL_Step2_CY_TimeHorizon(amount, amounttype, prioryearoffset)
+    }

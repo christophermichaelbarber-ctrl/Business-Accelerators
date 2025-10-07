@@ -1,0 +1,35 @@
+table SelectTimeFrame
+	lineageTag: ecc9195c-8b3a-49d1-b292-ec29da31581d
+
+	column 'Time Horizon'
+		dataType: string
+		lineageTag: c1aa7613-5cd6-4b64-b118-c88c1b09e414
+		summarizeBy: none
+		sourceColumn: Time Horizon
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Time Horizon Sort Order'
+		dataType: int64
+		formatString: 0
+		lineageTag: a5c3f990-3095-49b0-8cf7-d96d1d6233d5
+		summarizeBy: sum
+		sourceColumn: Time Horizon Sort Order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SelectTimeFrame = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45W8s3PK8nQLcnXTUksSVXSUTJUitWJVgosTSwqSS1CEjcCi7uV5uQoQCWBgsZgwcjURGSVJgiVlUAZoIipUmwsAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Time Horizon" = _t, #"Time Horizon Sort Order" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Time Horizon", type text}, {"Time Horizon Sort Order", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+	annotation TabularEditor_TableGroup = Disconnected
+

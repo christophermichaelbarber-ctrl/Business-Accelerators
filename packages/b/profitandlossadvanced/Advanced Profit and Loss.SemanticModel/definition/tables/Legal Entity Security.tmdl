@@ -1,0 +1,69 @@
+table 'Legal Entity Security'
+	lineageTag: 3ce8653d-e1a9-4058-ab33-fc7da2431e4f
+
+	column 'Full Name'
+		dataType: string
+		lineageTag: 2e2a44c4-dfd7-401a-8462-b5301d48a48d
+		summarizeBy: none
+		sourceColumn: Full Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level
+		dataType: string
+		lineageTag: be9e497f-2dd7-436f-89a4-7791ddf69883
+		summarizeBy: none
+		sourceColumn: Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Employee ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f0e9a74-ffc7-4476-bd16-a8bb32c23614
+		summarizeBy: count
+		sourceColumn: Employee ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'User Name'
+		dataType: string
+		lineageTag: 24d6c229-796b-4a9d-947e-cf8ec3cb6e1c
+		summarizeBy: none
+		sourceColumn: User Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Legal Entity Key'
+		dataType: int64
+		formatString: 0
+		lineageTag: 34cb9858-9c0a-41c7-a145-7cfda0eb6f2c
+		summarizeBy: none
+		sourceColumn: Legal Entity Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Security_Key
+		dataType: int64
+		formatString: 0
+		lineageTag: 709a4a14-e2d4-45aa-b586-ad58ea8af476
+		summarizeBy: count
+		sourceColumn: Security_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Legal Entity Security' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("dZPLTsMwEEV/xcq6skjSFztKHxT1waKwoepiSNzUkNiVkyCFr+Fb+DI8Y1NVUVgkXtjnzM21st8Hk7wQKbA1qAIU+/kOesF08WTfcTSI7OL2udu/m+riDKrhiS7sXkjPobcPpjk0lVZsKz+Ft0wKYWQCJVtIBSoRbCaNSCptyD0a4SBHcaJa7ogedG/AJCLP65JtIDNQnZx/Xht9Ft32ISa7cNxzrQlDPEoTZmBs6vu6LMGkPn0podsdx3Yhgnui3QpG75N4rRWwXQXGSV9WF+UGFGTCGUNMgkc5Hm3ZsKcByZ6hEOUJ2ErnOv2S4t1JH4SxN9N0mgdIe45fuHbeGyoDR8zftJJsB7YsfTw6/8KQtksfI0kM/2Pa7pA+wcWvVQNsCxloZ95JlcFZm3/kIWVHiBPUVfPY19xYeFlnp1w0zv2o0qsLvPaOI2rbEtwTbTFe8C2Jl8JUtvFXUB/+17CitNsbj+3iAI5Ay9p3TR8Ovw==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Full Name" = _t, Level = _t, #"Employee ID" = _t, #"User Name" = _t, #"Legal Entity Key" = _t, Security_Key = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Full Name", type text}, {"Level", type text}, {"Employee ID", Int64.Type}, {"User Name", type text}, {"Legal Entity Key", Int64.Type}, {"Security_Key", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+	annotation TabularEditor_TableGroup = Dimensions
+

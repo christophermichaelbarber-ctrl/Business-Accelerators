@@ -1,0 +1,38 @@
+table 'Fx Assumptions'
+	lineageTag: 23df629a-e5ad-44e2-be93-de13eb433248
+
+	column 'Fx Assumption'
+		dataType: string
+		lineageTag: 63f10641-0656-4e23-89f5-d0521b3943a3
+		summarizeBy: none
+		sourceColumn: Fx Assumption
+		sortByColumn: 'Fx Assumption Sort Order'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fx Assumption Sort Order'
+		dataType: int64
+		formatString: 0
+		lineageTag: 65bf0128-d2dc-4335-a9de-7c30d935c438
+		summarizeBy: none
+		sourceColumn: Fx Assumption Sort Order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Fx Assumptions' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45W8i9LLUrMyVHSUTJUitWJVgrNS0ktyqnMzEsHChmBhdwqgExjpdhYAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Fx Assumption" = _t, #"Fx Assumption Sort Order" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Fx Assumption", type text}, {"Fx Assumption Sort Order", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+	annotation TabularEditor_TableGroup = Field Paramater
+

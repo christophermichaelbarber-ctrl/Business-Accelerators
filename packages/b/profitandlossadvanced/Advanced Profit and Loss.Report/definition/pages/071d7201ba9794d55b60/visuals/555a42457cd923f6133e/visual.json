@@ -1,0 +1,238 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "555a42457cd923f6133e",
+  "position": {
+    "x": 34.285818267839758,
+    "y": 51.428727401759637,
+    "z": 3000,
+    "height": 526.21277602380155,
+    "width": 816.15154354966387
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Layout"
+                    }
+                  },
+                  "Property": "Line name"
+                }
+              },
+              "queryRef": "Layout.Line name",
+              "nativeQueryRef": "Line name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Hidden"
+                    }
+                  },
+                  "Property": "View A1 A Act"
+                }
+              },
+              "queryRef": "Measures_Hidden.View A1 A Act",
+              "nativeQueryRef": "View A1 A Act"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Hidden"
+                    }
+                  },
+                  "Property": "View A1 B PY"
+                }
+              },
+              "queryRef": "Measures_Hidden.View A1 B PY",
+              "nativeQueryRef": "View A1 B PY"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Hidden"
+                    }
+                  },
+                  "Property": "View A1 C Fcst TD"
+                }
+              },
+              "queryRef": "Measures_Hidden.View A1 C Fcst TD",
+              "nativeQueryRef": "View A1 C Fcst TD"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Hidden"
+                    }
+                  },
+                  "Property": "View A1 E Pln"
+                }
+              },
+              "queryRef": "Measures_Hidden.View A1 E Pln",
+              "nativeQueryRef": "View A1 E Pln"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Hidden"
+                    }
+                  },
+                  "Property": "View A1 D Fcts BU"
+                }
+              },
+              "queryRef": "Measures_Hidden.View A1 D Fcts BU",
+              "nativeQueryRef": "View A1 D Fcts BU"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "grid": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'None'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "c260b1fe606755c08e4e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Layout"
+              }
+            },
+            "Property": "Line name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "0e10ceaf78b3e1de7045",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Hidden"
+              }
+            },
+            "Property": "View A1 A Act"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f4458daec9c7697d9bc3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Hidden"
+              }
+            },
+            "Property": "View A1 B PY"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "59421190302cdb07ba57",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Hidden"
+              }
+            },
+            "Property": "View A1 C Fcst TD"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "34b346c4943ad3096da3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Hidden"
+              }
+            },
+            "Property": "View A1 E Pln"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "01988ac7ae0ca408dedc",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Hidden"
+              }
+            },
+            "Property": "View A1 D Fcts BU"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

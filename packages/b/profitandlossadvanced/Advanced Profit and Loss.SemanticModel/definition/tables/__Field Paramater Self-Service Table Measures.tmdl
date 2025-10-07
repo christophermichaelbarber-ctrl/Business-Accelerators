@@ -1,0 +1,117 @@
+table '__Field Paramater Self-Service Table Measures'
+	isHidden
+	lineageTag: e203304f-cef3-4009-b1bb-c0f919ff1bfd
+
+	column Selected_Measure_Name
+		lineageTag: 9223cc7a-2c25-4dc3-8664-d65ea14ded97
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: Selected_Measures_Key
+
+		relatedColumnDetails
+			groupByColumn: Selected_Measures_Fields
+
+		annotation SummarizationSetBy = Automatic
+
+	column Selected_Measures_Fields
+		isHidden
+		lineageTag: 7d2d0c67-f039-42e3-8578-f73c51041510
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: Selected_Measures_Key
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column Selected_Measures_Key
+		isHidden
+		formatString: 0
+		lineageTag: b6607de8-b790-4f4c-a037-e7ba2158a8ee
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Self-Service Measures' = calculated
+		mode: import
+		source =
+				VAR result =
+				    {
+				        ( "Act", NAMEOF( [View A1 A Act] ), 1 ),
+				        ( "PY", NAMEOF( [View A1 B PY] ), 1 ),
+				        ( "Fcst TD", NAMEOF( [View A1 C Fcst TD] ), 1 ),
+				        ( "Fcst BU", NAMEOF( [View A1 D Fcts BU] ), 1 ),
+				        ( "Pln", NAMEOF( [View A1 E Pln] ), 1 ),
+				        ( "        ", NAMEOF( [View A1 F] ), 1 ),
+				        ( "vs PY", NAMEOF( [View A1 G vs PY] ), 1 ),
+				        ( "vs Fcst TD", NAMEOF( [View A1 H vs Fcst TD] ), 1 ),
+				        ( "vs Fcst BU", NAMEOF( [View A1 I vs Fcst BU] ), 1 ),
+				        ( "vs Pln", NAMEOF( [View A1 J vs Pln] ), 1 ),
+				        ( "        ", NAMEOF( [View A1 K] ), 1 ),
+				        ( "vs PY, %", NAMEOF( [View A1 L vs PY, %] ), 1 ),
+				        (
+				            "vs Fcst TD, %",
+				            NAMEOF( [View A1 M vs Fcst TD, %] ),
+				            1
+				        ),
+				        (
+				            "vs Fcst BU, %",
+				            NAMEOF( [View A1 N vs Fcst BU, %] ),
+				            1
+				        ),
+				        ( "vs Pln, %", NAMEOF( [View A1 O vs Pln, %] ), 1 ),
+				        ( "Act @py fx", NAMEOF( [View A2 A Act @PY] ), 2 ),
+				        ( "Act @fcst fx", NAMEOF( [View A2 B Act @Fcst] ), 2 ),
+				        ( "Act @plan fx", NAMEOF( [View A2 C Act @Plan] ), 2 ),
+				        ( "PY", NAMEOF( [View A2 D PY] ), 2 ),
+				        ( "Fcst TD", NAMEOF( [View A2 E Fcst TD] ), 2 ),
+				        ( "Fcst BU", NAMEOF( [View A2 F Fcts BU] ), 2 ),
+				        ( "Pln", NAMEOF( [View A2 G Pln] ), 2 ),
+				        ( "        ", NAMEOF( [View A2 H] ), 2 ),
+				        ( "vs PY", NAMEOF( [View A2 I vs PY] ), 2 ),
+				        ( "vs Fcst TD", NAMEOF( [View A2 J vs Fcst TD] ), 2 ),
+				        ( "vs Fcst BU", NAMEOF( [View A2 K vs Fcst BU] ), 2 ),
+				        ( "vs Pln", NAMEOF( [View A2 L vs Pln] ), 2 ),
+				        ( "        ", NAMEOF( [View A2 M] ), 2 ),
+				        ( "vs PY, %", NAMEOF( [View A2 N vs PY, %] ), 2 ),
+				        (
+				            "vs Fcst TD, %",
+				            NAMEOF( [View A2 O vs Fcst TD, %] ),
+				            2
+				        ),
+				        (
+				            "vs Fcst BU, %",
+				            NAMEOF( [View A2 P vs Fcst BU, %] ),
+				            2
+				        ),
+				        ( "vs Pln, %", NAMEOF( [View A2 Q vs Pln, %] ), 2 ),
+				        ( "Act @act fx", NAMEOF( [View A3 A Act @Act Fx] ), 3 ),
+				        ( "Act @py fx", NAMEOF( [View A3 B Act @PY Fx] ), 3 ),
+				        ( "Act @fcst fx",   NAMEOF( [View A3 C Act @Fcst Fx] ), 3
+				        ),
+				        (
+				            "Act @plan fx",
+				            NAMEOF( [View A3 D Act @Plan Fx] ),
+				            3
+				        ),
+				        ( "        ", NAMEOF( [View A3 E] ), 3 ),
+				        ( "vs PY", NAMEOF( [View A3 F vs PY] ), 3 ),
+				        ( "vs Fcst", NAMEOF( [View A3 G vs Fcst] ), 3 ),
+				        ( "vs Pln", NAMEOF( [View A3 H vs Pln] ), 3 ),
+				        ( "        ", NAMEOF( [View A3 I] ), 3 ),
+				        ( "vs PY, %", NAMEOF( [View A3 J vs PY, %] ), 3 ),
+				        ( "vs Fcst, %", NAMEOF( [View A3 K vs Fcst, %] ), 3 ),
+				        ( "vs Pln, %", NAMEOF( [View A3 L vs Pln, %] ), 3 )
+				    }
+				RETURN
+				    result
+
+	annotation PBI_Id = c0b37e42c7814f4597d787631645f6c5
+
+	annotation TabularEditor_TableGroup = Field Paramater
+

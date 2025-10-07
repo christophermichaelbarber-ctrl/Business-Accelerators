@@ -1,0 +1,80 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "d64796898dabe48e9102",
+  "position": {
+    "x": 142.36068019907378,
+    "y": 158.01290158221803,
+    "z": 0,
+    "height": 382.36140807395208,
+    "width": 605.21922681491048
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Scenario"
+                    }
+                  },
+                  "Property": "Scenario Key"
+                }
+              },
+              "queryRef": "Scenario.Scenario Key",
+              "nativeQueryRef": "Scenario Key",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Scenario"
+                    }
+                  },
+                  "Property": "Effective Date"
+                }
+              },
+              "queryRef": "Scenario.Effective Date",
+              "nativeQueryRef": "Effective Date",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Scenario"
+                        }
+                      },
+                      "Property": "Credit less debit"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Scenario.Credit less debit)",
+              "nativeQueryRef": "Sum of Credit less debit"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

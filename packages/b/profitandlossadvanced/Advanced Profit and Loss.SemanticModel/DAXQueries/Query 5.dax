@@ -1,0 +1,28 @@
+DEFINE
+    /// AddTax takes in amount and returns amount including tax
+    FUNCTION __Fn_PnL_Step1_Sum_and_Subtotal = (
+    amount: EXPR
+) =>
+VAR NCLD_filter_context_calculated_table =
+    CALCULATETABLE(
+        Layout,
+        REMOVEFILTERS( Layout ),
+        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
+        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
+    )
+VAR step1_lineitem =
+    amount * MAX( Account[Account Type Indicator] )
+VAR step2_subtotal =
+    CALCULATE(
+        amount * MAX( Account[Account Type Indicator] ),
+        NCLD_filter_context_calculated_table
+    )
+
+VAR result =  COALESCE( step1_lineitem, step2_subtotal )
+RETURN
+    result
+
+EVALUATE
+    {
+        __Fn_PnL_Step1_Sum_and_Subtotal(amount)
+    }

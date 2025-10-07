@@ -1,0 +1,128 @@
+table _Measures_Hidden_new
+	lineageTag: b09c0a6a-c242-4c0e-8683-7dd8633d82b7
+
+	measure 'Actuals @actual fx' = __Fn_PnL_Step3_CY_AddDivide( SUM( Ledger[Credit Less Debit @Global Fx] ), 1,0  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 1_Actuals
+		lineageTag: d4daba34-3a39-47db-932d-3e89f097e167
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'Prior Year Actuals' = __Fn_PnL_Step3_CY_AddDivide( SUM( Ledger[Credit Less Debit @Global Fx] ), 1,1  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 2_Comparisons
+		lineageTag: c1aa4fe3-d08e-4b45-aefe-7d17ca5517f4
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'Actuals @py fx' = __Fn_PnL_Step3_CY_AddDivide( SUM( Ledger[Credit Less Debit @PY Fx] ), 1,0  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 1_Actuals
+		lineageTag: b7862bc2-bd41-4ab2-a06f-95f249f5f80a
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'Actuals @fcst fx' = __Fn_PnL_Step3_CY_AddDivide( SUM( Ledger[Credit Less Debit @Fcst Fx] ),  1,0  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 1_Actuals
+		lineageTag: c7d54af6-7d30-4651-b24b-b72ed22da1ef
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'Actuals @plan fx' = __Fn_PnL_Step3_CY_AddDivide( SUM( Ledger[Credit Less Debit @Plan Fx] ), 1,0  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 1_Actuals
+		lineageTag: 2f81eb3b-3646-4804-8961-e0d15332e9ea
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure Plan =
+			__Fn_PnL_Step3_CY_AddDivide(
+			    CALCULATE(
+			        SUM( Scenario[Credit less debit] ),
+			        Scenario[Scenario Key] = 3
+			    ),
+			    2
+			,0  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 2_Comparisons
+		lineageTag: 3aef0cb7-3b09-46b4-a737-ae5e0d58f6f6
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'Forecast Top Down' =
+			__Fn_PnL_Step3_CY_AddDivide(
+			    CALCULATE(
+			        SUM( Scenario[Credit less debit] ),
+			        Scenario[Scenario Key] = 1
+			    ),
+			    2
+			,0  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 2_Comparisons
+		lineageTag: a1f44b98-ad54-4632-a293-b0d9128b8140
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'Forecast Bottom Up' =
+			__Fn_PnL_Step3_CY_AddDivide(
+			    CALCULATE(
+			        SUM( Scenario[Credit less debit] ),
+			        Scenario[Scenario Key] = 2
+			    ),
+			    2
+			,0  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 2_Comparisons
+		lineageTag: 928dd58e-e3a6-489a-adbf-dd652e3a45fa
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'Actuals @actual fx TEST' = __Fn_PnL_Step2_CY_TimeHorizon( SUM( Ledger[Credit Less Debit @Global Fx] ), 1,0 )
+		formatString: "£"#,0.###############;-"£"#,0.###############;"£"#,0.###############
+		displayFolder: 1_Actuals
+		lineageTag: e96e749f-c1a2-4d4e-9907-6891b38af702
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
+
+	partition _Measures_Hidden_new = m
+		mode: import
+		queryGroup: Measures
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+	annotation TabularEditor_TableGroup = Disconnected
+

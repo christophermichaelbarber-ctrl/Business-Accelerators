@@ -1,0 +1,158 @@
+table Layout
+	lineageTag: db5f803c-fc26-4c46-9da5-986b06b1a03d
+
+	column Income_Statement_Key
+		dataType: int64
+		isHidden
+		isKey
+		formatString: 0
+		lineageTag: a4e52894-7d10-46d9-b6fe-511e1a4d82f0
+		summarizeBy: none
+		sourceColumn: Income_Statement_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Line name'
+		dataType: string
+		lineageTag: c6fe9773-a93c-4e92-9650-dfba46fee563
+		summarizeBy: none
+		sourceColumn: Line name
+		sortByColumn: Income_Statement_Key
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Calculation_type
+		dataType: string
+		isHidden
+		lineageTag: ab252ae7-073e-4418-b31f-a3afa5bbfdd3
+		summarizeBy: none
+		sourceColumn: Calculation_type
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["ISAVAILABLEINMDX_FALSE_NONATTRIBUTE_COLUMNS"]}
+
+	column Subtotal_From
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5d5e9f34-dfc4-4564-a86a-7850799e4aa8
+		summarizeBy: none
+		sourceColumn: Subtotal_From
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["ISAVAILABLEINMDX_FALSE_NONATTRIBUTE_COLUMNS"]}
+
+	column Subtotal_To
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 47ba9c19-84ec-4b01-a991-91cb9561143f
+		summarizeBy: none
+		sourceColumn: Subtotal_To
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["ISAVAILABLEINMDX_FALSE_NONATTRIBUTE_COLUMNS"]}
+
+	column Divide_Numerator
+		dataType: int64
+		formatString: 0
+		lineageTag: 83c2e9cc-9db9-428d-a3f0-5b1fc421a95e
+		summarizeBy: none
+		sourceColumn: Divide_Numerator
+
+		annotation SummarizationSetBy = Automatic
+
+	column Divide_Denominator
+		dataType: int64
+		formatString: 0
+		lineageTag: f7a454df-9f8f-4218-b829-43de1d3517b0
+		summarizeBy: none
+		sourceColumn: Divide_Denominator
+
+		annotation SummarizationSetBy = Automatic
+
+	column Show_Perc
+		dataType: int64
+		formatString: 0
+		lineageTag: 375525cc-d74c-4394-9d01-0ef77d043010
+		summarizeBy: none
+		sourceColumn: Show_Perc
+
+		annotation SummarizationSetBy = Automatic
+
+	column Format_String_Default
+		dataType: string
+		lineageTag: bcece1c6-1641-4956-b95a-ce50a5729bb5
+		summarizeBy: none
+		sourceColumn: Format_String_Default
+
+		annotation SummarizationSetBy = Automatic
+
+	column Format_String_Variance_Abs
+		dataType: string
+		lineageTag: 80147b3e-4c2f-4e11-8cb8-6db1d0083ab2
+		summarizeBy: none
+		sourceColumn: Format_String_Variance_Abs
+
+		annotation SummarizationSetBy = Automatic
+
+	column Format_String_Variance_Per
+		dataType: string
+		lineageTag: 8d5f812a-eedc-419e-b791-647c8bab8bd7
+		summarizeBy: none
+		sourceColumn: Format_String_Variance_Per
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Formatting P_L.Hex_Text'
+		dataType: string
+		lineageTag: 9c567ece-e252-4400-a8b4-5665832db92d
+		summarizeBy: none
+		sourceColumn: Formatting P_L.Hex_Text
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Formatting P_L.Hex_Background'
+		dataType: string
+		lineageTag: 832da038-4167-4234-ada1-7834bc8b16f2
+		summarizeBy: none
+		sourceColumn: Formatting P_L.Hex_Background
+
+		annotation SummarizationSetBy = Automatic
+
+	column Show_Values
+		dataType: int64
+		formatString: 0
+		lineageTag: 0b232317-6b20-498a-b7d7-36396ef8f42c
+		summarizeBy: none
+		sourceColumn: Show_Values
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Layout = m
+		mode: import
+		source = ```
+				let
+				    Source = Binary.FromText(
+				    
+				"SW5jb21lX1N0YXRlbWVudF9LZXksTGluZSBuYW1lLFN1YnRvdGFsX0Zyb20sU3VidG90YWxfVG8sRGl2aWRlX051bWVyYXRvcixEaXZpZGVfRGVub21pbmF0b3IsU2hvd19QZXJjLEZvcm1hdF9TdHJpbmdfRGVmYXVsdCxGb3JtYXRfU3RyaW5nX1ZhcmlhbmNlX0FicyxGb3JtYXRfU3RyaW5nX1ZhcmlhbmNlX1BlcixGb3JtYXR0aW5nIFBfTC5IZXhfVGV4dCxGb3JtYXR0aW5nIFBfTC5IZXhfQmFja2dyb3VuZCxTaG93X1ZhbHVlcyxDYWxjdWxhdGlvbl90eXBlCjEwMSxSZXZlbnVlOiwsLCwsMSwwOzAtMDs7QCwwOzAtMDs7QCwwOzAtMDs7QCwjRkZGRkZGLCNGRkZGRkYsMSxCbGFuawoxMDUswqAsLCwsLDEsMDswLTA7O0AsMDswLTA7O0AsMDswLTA7O0AsI0ZGRkZGRiwjRkZGRkZGLDEsQmxhbmsKMTA2LENvc3Qgb2YgcmV2ZW51ZTrCoMKgLCwsLCwxLDA7MC0wOztALDA7MC0wOztALDA7MC0wOztALCNGRkZGRkYsI0ZGRkZGRiwxLEJsYW5rCjEwMizCoMKgwqBQcm9kdWN0LCwsLCwxLCIjLCMjMCw7KCMsIyMwLCk7LSIsIisjLCMjMCw7LSMsIyMwLDstIiwiKyMsIyMwLjAwJTstIywjIzAuMDAlOy0iLCM4Yjg2ODAsI0ZGRkZGRiwxLExpbmUtaXRlbSByZXZlbnVlCjEwMyzCoMKgwqBTZXJ2aWNlIGFuZCBvdGhlciwsLCwsMSwiIywjIzAsOygjLCMjMCwpOy0iLCIrIywjIzAsOy0jLCMjMCw7LSIsIisjLCMjMC4wMCU7LSMsIyMwLjAwJTstIiwjOGI4NjgwLCNGRkZGRkYsMSxMaW5lLWl0ZW0gcmV2ZW51ZQoxMDQswqDCoMKgwqDCoFRvdGFsIHJldmVudWUsMTAyLDEwMywsLDEsIiMsIyMwLDsoIywjIzAsKTstIiwiKyMsIyMwLDstIywjIzAsOy0iLCIrIywjIzAuMDAlOy0jLCMjMC4wMCU7LSIsIiMwMDAwMDAiIiIsI0YzRjNGMywxLFN1YnRvdGFsIE5DTEQKMTA3LMKgwqDCoFByb2R1Y3TCoCwsLCwsMSwiIywjIzAsOygjLCMjMCwpOy0iLCIrIywjIzAsOy0jLCMjMCw7LSIsIisjLCMjMC4wMCU7LSMsIyMwLjAwJTstIiwjOGI4NjgwLCNGRkZGRkYsMSxMaW5lLWl0ZW0gZXhwZW5zZQoxMDgswqDCoMKgU2VydmljZSBhbmQgb3RoZXLCoCwsLCwsMSwiIywjIzAsOygjLCMjMCwpOy0iLCIrIywjIzAsOy0jLCMjMCw7LSIsIisjLCMjMC4wMCU7LSMsIyMwLjAwJTstIiwjOGI4NjgwLCNGRkZGRkYsMSxMaW5lLWl0ZW0gZXhwZW5zZQoxMDkswqDCoMKgwqDCoFRvdGFsIGNvc3Qgb2YgcmV2ZW51ZcKgLDEwNywxMDgsLCwxLCIjLCMjMCw7KCMsIyMwLCk7LSIsIisjLCMjMCw7LSMsIyMwLDstIiwiKyMsIyMwLjAwJTstIywjIzAuMDAlOy0iLCIjMDAwMDAwIiIiLCNGM0YzRjMsMSxTdWJ0b3RhbCBORExDCjExMCzCoMKgwqDCoMKgR3Jvc3MgbWFyZ2luwqAsMTAyLDEwOCwsLDEsIiMsIyMwLDsoIywjIzAsKTstIiwiKyMsIyMwLDstIywjIzAsOy0iLCIrIywjIzAuMDAlOy0jLCMjMC4wMCU7LSIsIiMwMDAwMDAiIiIsI0YzRjNGMywxLFN1YnRvdGFsIE5DTEQKMTExLCLCoMKgwqDCoMKgR3Jvc3MgbWFyZ2luLCAlIiwsLDExMCwxMDQsLCIjLCMjMC4wJTsoIywjIzAuMCUpOy0iLCIrIywjIzAuMDAlOy0jLCMjMC4wMCU7LSIsMDswLTA7O0AsIiMwMDAwMDAiIiIsI0YzRjNGMywxLERpdmlkZSBQZXJjZW50YWdlCjExMizCoMKgLCwsLCwxLDA7MC0wOztALDA7MC0wOztALDA7MC0wOztALCNGRkZGRkYsI0ZGRkZGRiwxLEJsYW5rCjExMyxSZXNlYXJjaCBhbmQgZGV2ZWxvcG1lbnQsLCwsLDEsIiMsIyMwLDsoIywjIzAsKTstIiwiKyMsIyMwLDstIywjIzAsOy0iLCIrIywjIzAuMDAlOy0jLCMjMC4wMCU7LSIsIzhiODY4MCwjRkZGRkZGLDEsTGluZS1pdGVtIGV4cGVuc2UKMTE0LFNhbGVzIGFuZCBtYXJrZXRpbmcsLCwsLDEsIiMsIyMwLDsoIywjIzAsKTstIiwiKyMsIyMwLDstIywjIzAsOy0iLCIrIywjIzAuMDAlOy0jLCMjMC4wMCU7LSIsIzhiODY4MCwjRkZGRkZGLDEsTGluZS1pdGVtIGV4cGVuc2UKMTE1LEdlbmVyYWwgYW5kIGFkbWluaXN0cmF0aXZlLCwsLCwxLCIjLCMjMCw7KCMsIyMwLCk7LSIsIisjLCMjMCw7LSMsIyMwLDstIiwiKyMsIyMwLjAwJTstIywjIzAuMDAlOy0iLCM4Yjg2ODAsI0ZGRkZGRiwxLExpbmUtaXRlbSBleHBlbnNlCjExNizCoMKgwqAsLCwsLDEsMDswLTA7O0AsMDswLTA7O0AsMDswLTA7O0AsI0ZGRkZGRiwjRkZGRkZGLDEsQmxhbmsKMTE3LE9wZXJhdGluZyBpbmNvbWUsMTAyLDExNiwsLDEsIiMsIyMwLDsoIywjIzAsKTstIiwiKyMsIyMwLDstIywjIzAsOy0iLCIrIywjIzAuMDAlOy0jLCMjMC4wMCU7LSIsIiMwMDAwMDAiIiIsI0YzRjNGMywxLFN1YnRvdGFsIE5DTEQKMTE4LCJPcGVyYXRpbmcgaW5jb21lLCAlIiwsLDExNywxMDQsLCIjLCMjMC4wJTsoIywjIzAuMCUpOy0iLCIrIywjIzAuMDAlOy0jLCMjMC4wMCU7LSIsMDswLTA7O0AsIiMwMDAwMDAiIiIsI0YzRjNGMywxLERpdmlkZSBQZXJjZW50YWdlCjExOSzCoMKgwqDCoCwsLCwsMSwwOzAtMDs7QCwwOzAtMDs7QCwwOzAtMDs7QCwjRkZGRkZGLCNGRkZGRkYsMSxCbGFuawoxMjAsIk90aGVyIGluY29tZSwgbmV0IiwsLCwsMSwiIywjIzAsOygjLCMjMCwpOy0iLCIrIywjIzAsOy0jLCMjMCw7LSIsIisjLCMjMC4wMCU7LSMsIyMwLjAwJTstIiwjOGI4NjgwLCNGRkZGRkYsMSxMaW5lLWl0ZW0gcmV2ZW51ZQoxMjEsSW5jb21lIGJlZm9yZSBpbmNvbWUgdGF4ZXMsMTAyLDEyMCwsLDEsIiMsIyMwLDsoIywjIzAsKTstIiwiKyMsIyMwLDstIywjIzAsOy0iLCIrIywjIzAuMDAlOy0jLCMjMC4wMCU7LSIsIiMwMDAwMDAiIiIsI0YzRjNGMywxLFN1YnRvdGFsIE5DTEQKMTIyLMKgwqDCoMKgwqDCoCwsLCwsMSwwOzAtMDs7QCwwOzAtMDs7QCwwOzAtMDs7QCwjRkZGRkZGLCNGRkZGRkYsMSxCbGFuawoxMjMsVGF4IFByb3Zpc2lvbiwsLCwsMSwiIywjIzAsOygjLCMjMCwpOy0iLCIrIywjIzAsOy0jLCMjMCw7LSIsIisjLCMjMC4wMCU7LSMsIyMwLjAwJTstIiwjOGI4NjgwLCNGRkZGRkYsMSxMaW5lLWl0ZW0gZXhwZW5zZQoxMjQswqDCoMKgwqDCoMKgLCwsLCwxLDA7MC0wOztALDA7MC0wOztALDA7MC0wOztALCNGRkZGRkYsI0ZGRkZGRiwxLEJsYW5rCjEyNSxOZXQgaW5jb21lLDEwMiwxMjQsLCwxLCIjLCMjMCw7KCMsIyMwLCk7LSIsIisjLCMjMCw7LSMsIyMwLDstIiwiKyMsIyMwLjAwJTstIywjIzAuMDAlOy0iLCIjMDAwMDAwIiIiLCNGM0YzRjMsMSxTdWJ0b3RhbCBOQ0xECjEyNiwiTmV0IGluY29tZSwgJSIsLCwxMjUsMTA0LCwiIywjIzAuMCU7KCMsIyMwLjAlKTstIiwiKyMsIyMwLjAwJTstIywjIzAuMDAlOy0iLDA7MC0wOztALCIjMDAwMDAwIiIiLCNGM0YzRjMsMSxEaXZpZGUgUGVyY2VudGFnZQo="    
+				        , BinaryEncoding.Base64),
+				    #"Imported CSV" = Csv.Document(Source,[Delimiter=",", Columns=14, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Imported CSV", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Income_Statement_Key", Int64.Type}, {"Line name", type text}, {"Subtotal_From", Int64.Type}, {"Subtotal_To", Int64.Type}, {"Divide_Numerator", Int64.Type}, {"Divide_Denominator", Int64.Type}, {"Show_Perc", Int64.Type}, {"Format_String_Default", type text}, {"Format_String_Variance_Abs", type text}, {"Format_String_Variance_Per", type text}, {"Formatting P_L.Hex_Text", type text}, {"Formatting P_L.Hex_Background", type text}, {"Show_Values", Int64.Type}, {"Calculation_type", type text}})
+				
+				in
+				    #"Changed Type"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+	annotation TabularEditor_TableGroup = Dimensions
+

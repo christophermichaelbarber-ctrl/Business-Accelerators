@@ -1,0 +1,61 @@
+DEFINE
+    FUNCTION __Fn_PnL_Step3_CY_AddDivide = (
+    amount: EXPR,
+    amounttype: INT64,
+	prioryearoffset: INT64
+) =>
+VAR yearoffset = prioryearoffset
+VAR calculationfincialstatementstablednumerator =
+    CALCULATETABLE(
+        Layout,
+        REMOVEFILTERS( Layout ),
+        Layout[Income_Statement_Key]
+            = MAX( Layout[Divide_Numerator] )
+    )
+VAR numerator =
+    CALCULATE(
+        __Fn_PnL_Step2_CY_TimeHorizon( amount, amounttype, 	prioryearoffset),
+        calculationfincialstatementstablednumerator
+    )
+VAR calculationfincialstatementstabledenominator =
+    CALCULATETABLE(
+        Layout,
+        REMOVEFILTERS( Layout ),
+        Layout[Income_Statement_Key]
+            = MAX( Layout[Divide_Denominator] )
+    )
+VAR denominator =
+    CALCULATE(
+        __Fn_PnL_Step2_CY_TimeHorizon( amount, amounttype, 	prioryearoffset ),
+        calculationfincialstatementstabledenominator,
+        REMOVEFILTERS( Account )
+    )
+//Check if account table is filtered
+//VAR accountinscope = ISFILTERED( Account )
+//Check if selected calculation type equals blank
+//VAR selectedcalculationtype =
+  //  SELECTEDVALUE( Layout[Calculation_type] ) = "Blank"
+//If account table is filtered, don't show blanks else return 0 if the calculation type if blank
+/*
+VAR blankrows =
+    SWITCH(
+        TRUE( ),
+        accountinscope, BLANK( ),
+        selectedcalculationtype, 0
+    )
+	
+	*/
+	
+	
+VAR result =
+    COALESCE(
+        DIVIDE( numerator, denominator ),
+        __Fn_PnL_Step2_CY_TimeHorizon( amount, amounttype, 	prioryearoffset )
+    )
+RETURN
+    result
+
+EVALUATE
+    {
+        __Fn_PnL_Step3_CY_AddDivide(amount, amounttype, prioryearoffset)
+    }

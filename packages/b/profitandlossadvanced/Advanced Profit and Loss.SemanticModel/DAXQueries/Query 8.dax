@@ -1,0 +1,21 @@
+DEFINE
+    FUNCTION TimeIntellignece__FullQuarter_Table_Function = (
+    t: TABLE EXPR,
+    offset_scalear_val: SCALAR VAL
+) =>
+VAR current_Fiscal_Year =
+    SELECTEDVALUE( 'Effective Date'[Fiscal Year] )
+        - offset_scalear_val
+VAR current_Fiscal_Quarter_Sort =
+    SELECTEDVALUE( 'Effective Date'[Fiscal Quarter Sort] )
+VAR result =
+    CALCULATETABLE(
+        t,
+        REMOVEFILTERS( 'Effective Date' ),
+        'Effective Date'[Fiscal Year] = current_Fiscal_Year,
+        'Effective Date'[Fiscal Quarter Sort]
+            = current_Fiscal_Quarter_Sort
+    )
+RETURN
+    result
+

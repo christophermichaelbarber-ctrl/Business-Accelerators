@@ -1,0 +1,25 @@
+DEFINE
+    FUNCTION TimeIntellignece__MonthToDate_Table_Function = (
+    t: TABLE EXPR,
+    offset_scalear_val: SCALAR VAL
+) =>
+VAR current_Fiscal_Year =
+    SELECTEDVALUE( 'Effective Date'[Fiscal Year] )
+        - offset_scalear_val
+VAR current_Fiscal_Period_Number =
+    SELECTEDVALUE( 'Effective Date'[Fiscal Period Number] )
+VAR result =
+    CALCULATETABLE(
+        t,
+        REMOVEFILTERS( 'Effective Date' ),
+        'Effective Date'[Fiscal Year] = current_Fiscal_Year,
+        'Effective Date'[Fiscal Period Number]
+            = current_Fiscal_Period_Number
+    )
+RETURN
+    result
+
+EVALUATE
+    {
+        TimeIntellignece__MonthToDate_Table_Function(t, offset_scalear_val)
+    }
