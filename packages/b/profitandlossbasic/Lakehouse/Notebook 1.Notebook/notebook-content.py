@@ -39,7 +39,7 @@ display(wrangler_sample_df)
 
 # Welcome to your new notebook
 # Type here in the cell editor to add code!
-wrangler_sample_df.to_csv("abfss://GitIntegrationFabricTrial@onelake.dfs.fabric.microsoft.com/profitandlossbasic_lakehouse.Lakehouse/Files.csv")
+wrangler_sample_df.to_csv("abfss://GitIntegrationFabricTrial@onelake.dfs.fabric.microsoft.com/profitandlossbasic_lakehouse.Lakehouse/Files/test2.csv")
 
 # METADATA ********************
 
