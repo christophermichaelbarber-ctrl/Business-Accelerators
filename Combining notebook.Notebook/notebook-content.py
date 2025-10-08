@@ -22,6 +22,36 @@
 
 # CELL ********************
 
+#Creating the date table
+
+from datetime import datetime, timedelta
+from dateutil.relativedelta import relativedelta
+from pyspark.sql.functions import *
+
+start = datetime(2021, 1, 1)
+end = datetime(2024, 1, 31)   ##datetime.today() + relativedelta(months=6)
+date_list = [(start + timedelta(days=i),) for i in range((end - start).days + 1)]
+df = spark.createDataFrame(date_list, ["Date"])
+df = df.withColumn("Year", year(col("Date"))) \
+       .withColumn("Month", month(col("Date"))) \
+       .withColumn("Quarter", quarter(col("Date"))) \
+       .withColumn("MonthName", date_format(col("Date"), "MMMM")) \
+       .withColumn("DayName", date_format(col("Date"), "EEEE"))
+df.write.mode("overwrite").saveAsTable("Date")
+
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+#Create the account table from Base64 string (use same method for layout ect)
+
 import base64
 import pandas as pd
 from io import StringIO
@@ -47,6 +77,7 @@ Acccounts_df_table = spark.read.parquet("abfss://GitIntegrationFabricTrial@onela
 # Step 6: Create table
 Acccounts_df_table.write.mode("overwrite").format("delta").saveAsTable("Accounts")
 
+
 # METADATA ********************
 
 # META {
@@ -55,8 +86,6 @@ Acccounts_df_table.write.mode("overwrite").format("delta").saveAsTable("Accounts
 # META }
 
 # CELL ********************
-
-
 
 
 # METADATA ********************

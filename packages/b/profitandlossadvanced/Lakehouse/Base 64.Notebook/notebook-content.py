@@ -41,6 +41,8 @@ Fiscal_Date_df = pd.read_csv(Fiscal_Date_csv_data)
 # Step 3: CovertDatestoDate
 Fiscal_Date_df['FiscalDate'] = pd.to_datetime(Fiscal_Date_df['FiscalDate'], format='%m/%d/%Y', errors='coerce')
 
+display(Fiscal_Date_df)
+
 # Step 4: Save to Parquet file
 Fiscal_Date_df.to_parquet("abfss://GitIntegrationFabricTrial@onelake.dfs.fabric.microsoft.com/profitandlossadvanced_lakehouse.Lakehouse/Files/Date.parquet")
 

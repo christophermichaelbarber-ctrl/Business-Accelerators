@@ -36,3 +36,39 @@ display(df)
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# CELL ********************
+
+import base64
+from io import BytesIO
+
+# ✅ df is a Spark DataFrame
+pdf = df.toPandas()
+
+buffer = BytesIO()
+pdf.to_csv(buffer, index=False)
+buffer.seek(0)
+
+base64_str = base64.b64encode(buffer.read()).decode("utf-8")
+
+print(base64_str[:200] + "…")
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+df = spark.read.format("csv").option("header","true").load("Files/Journal Entry - Copy.csv")
+# df now is a Spark DataFrame containing CSV data from "Files/Journal Entry - Copy.csv".
+display(df)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }

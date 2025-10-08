@@ -1,12 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "Notebook",
-    "displayName": "Base 64 Account",
-    "description": "New notebook"
+    "type": "DataPipeline",
+    "displayName": "pipelinetest"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "b690d0a1-a0ce-b2d9-4abb-6022769ac580"
+    "logicalId": "5e891f9a-8fac-a656-40e7-66108949feec"
   }
 }
