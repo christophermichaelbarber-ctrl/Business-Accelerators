@@ -68,3 +68,16 @@ accounts_df_table.write.mode("overwrite").format("delta").saveAsTable("Accounts_
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# CELL ********************
+
+df = spark.read.format("csv").option("header","true").load("Files/Journal Entry.csv")
+# df now is a Spark DataFrame containing CSV data from "Files/Journal Entry.csv".
+display(df)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
