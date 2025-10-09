@@ -71,20 +71,34 @@ sdf = sdf.withColumn(
 from pyspark.sql import functions as F, Window as W
 
 # ── Your input Spark DF ─────────────────────────────────────────────────────────
-# Must contain: Date, AccountKey, CreditlessdebitatGlobalFx, CreditlessdebitatPYFx,
-#               CreditlessdebitatFcstFx, CreditlessdebitatPlanFx, DocumentID
-df = <your_input_dataframe>
+# Must contain columns: Date, AccountKey,
+#   CreditlessdebitatGlobalFx, CreditlessdebitatPYFx, CreditlessdebitatFcstFx, CreditlessdebitatPlanFx,
+#   DocumentID
 
-# ── 1) Define allocation weights for CurrencyKey 1..5 ───────────────────────────
-# Use equal split by default. Replace with your own weights if needed,
-# but make sure they sum to 1.0.
-weights = [(1, 0.2), (2, 0.2), (3, 0.2), (4, 0.2), (5, 0.2)]
-wdf = spark.createDataFrame(weights, ["CurrencyKey", "Weight"])
 
-# ── 2) Cross join to create one row per CurrencyKey ─────────────────────────────
-wide = df.crossJoin(F.broadcast(wdf))
+# ── 1) Define weights ───────────────────────────────────────────────────────────
+# 5 currencies (1..5) and 15 legal entities (1..15), equal split by default.
+num_curr = 5
+num_legal = 15
 
-# ── 3) Allocate the four measures ───────────────────────────────────────────────
+w_curr_equal = 1.0 / num_curr
+w_legal_equal = 1.0 / num_legal
+
+curr_weights = [(i, w_curr_equal) for i in range(1, num_curr + 1)]
+legal_weights = [(i, w_legal_equal) for i in range(1, num_legal + 1)]
+
+w_curr_df  = spark.createDataFrame(curr_weights,  ["CurrencyKey", "CurrencyWeight"])
+w_legal_df = spark.createDataFrame(legal_weights, ["LegalEntityKey", "LegalWeight"])
+
+# ── 2) Cross join to create 5×15 rows per original row ─────────────────────────
+wide = (
+    sdf
+    .crossJoin(F.broadcast(w_curr_df))
+    .crossJoin(F.broadcast(w_legal_df))
+    .withColumn("Weight", F.col("CurrencyWeight") * F.col("LegalWeight"))
+)
+
+# ── 3) Allocate the four measures with rounding-safe totals ─────────────────────
 measures = [
     "CreditlessdebitatGlobalFx",
     "CreditlessdebitatPYFx",
@@ -92,67 +106,41 @@ measures = [
     "CreditlessdebitatPlanFx",
 ]
 
-# How many decimals to keep (e.g., 2 for cents).
-DECIMALS = 2
-
-# Partition used to make "sum of allocations == original" even with rounding.
+# Partition at the original grain
 grp = ["Date", "AccountKey", "DocumentID"]
 part = W.partitionBy(*grp)
 
-# For each measure, do:
-#   - base = round(measure * Weight, DECIMALS)
-#   - delta = original - sum(base over 5 currency keys)
-#   - if CurrencyKey == 5, add delta (so totals match exactly)
+# Round to 2 decimals (change/remove as needed)
+DECIMALS = 2
+
 allocated = wide
 for c in measures:
+    # Pro-rata piece
     base = F.round(F.col(c) * F.col("Weight"), DECIMALS)
+
+    # Sum of allocated pieces within the 5×15 group
     sum_base = F.sum(base).over(part)
-    delta = (F.col(c) - sum_base)
-    fixed = F.when(F.col("CurrencyKey") == F.lit(5), base + delta).otherwise(base)
+
+    # Rounding delta to fix total back to the original value
+    delta = F.col(c) - sum_base
+
+    # Push the delta to a single, deterministic last bucket (CurrencyKey=5 & LegalEntityKey=15)
+    fixed = F.when(
+        (F.col("CurrencyKey") == F.lit(num_curr)) & (F.col("LegalEntityKey") == F.lit(num_legal)),
+        base + delta
+    ).otherwise(base)
+
     allocated = allocated.withColumn(c, fixed)
 
-# ── 4) (Optional) Keep originals for QA, or drop them if you don’t need them ────
-# If you kept original names in-place (we did), you already have allocated values.
-# To also keep originals, rename before step 3 and write new columns like c+"_Alloc".
+# (Optional) drop helper columns
+allocated = allocated.drop("CurrencyWeight", "LegalWeight", "Weight")
 
-# ── 5) Save as a Delta table in Fabric (adjust db/table names as needed) ────────
-
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
+# ── 4) Save to Delta table in Fabric ───────────────────────────────────────────
 (allocated
  .write
  .mode("overwrite")
  .format("delta")
- .saveAsTable("dbo.Ledger_WithCurrency"))
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
-
-
-
-# 5) Write as a managed Delta table in the Lakehouse (attached to the notebook)
-#    This creates/overwrites Tables/Ledger
-(sdf.write
-    .mode("overwrite")
-    .format("delta")
-    .saveAsTable("Ledger"))
-
-print("✅ Wrote Delta table: Ledger")
+ .saveAsTable("Ledger"))
 
 # METADATA ********************
 
