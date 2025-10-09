@@ -24,7 +24,11 @@
 
 import pandas as pd
 
-accounts_df = pd.read_csv("https://aka.ms/wrangler/titanic.csv")
+#accounts_df = pd.read_csv("https://aka.ms/wrangler/titanic.csv")
+
+accounts_df = pd.read_csv("C:\Users\Chris.barber\OneDrive - Avanade\Documents\Clients\Internal Avanade Project\Hero Offering\Data Agent/Ledger.csv")
+
+
 display(accounts_df)
 
 # METADATA ********************
