@@ -1,0 +1,9 @@
+expression 'DirectLake - profitandlossadvanced_lakehouse' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/f4f0fd69-066c-47fa-9b3e-b287bdf1dde2/3c875536-2d75-46e8-9e89-41498b7103d9", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: 3ccc74b3-3530-4ecd-84b7-a738a9977747
+
+	annotation PBI_IncludeFutureArtifacts = False
+

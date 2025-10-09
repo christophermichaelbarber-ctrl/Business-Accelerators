@@ -1,0 +1,58 @@
+table accounts
+	lineageTag: df7f7a89-a1d0-4093-a533-31e7e16b342c
+	sourceLineageTag: [dbo].[accounts]
+
+	column Account_Key
+		dataType: int64
+		formatString: 0
+		lineageTag: aee5476f-9537-4a8d-86f7-20940612fe0f
+		sourceLineageTag: Account_Key
+		summarizeBy: none
+		sourceColumn: Account_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Account_Number_and_Name
+		dataType: string
+		lineageTag: 0a88dbb0-e6af-45a2-a840-05bad3d3473b
+		sourceLineageTag: Account_Number_and_Name
+		summarizeBy: none
+		sourceColumn: Account_Number_and_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Account_Type
+		dataType: string
+		lineageTag: 77bf9ac9-a9af-497b-becf-7e6ff55a2d66
+		sourceLineageTag: Account_Type
+		summarizeBy: none
+		sourceColumn: Account_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Account_Type_Indicator
+		dataType: int64
+		formatString: 0
+		lineageTag: 38aa5b52-890c-41a3-8e53-0d57ad7ac640
+		sourceLineageTag: Account_Type_Indicator
+		summarizeBy: sum
+		sourceColumn: Account_Type_Indicator
+
+		annotation SummarizationSetBy = Automatic
+
+	column Income_Statement_Key
+		dataType: int64
+		formatString: 0
+		lineageTag: 9ce326ef-7b68-4fd5-8c14-5dc8b89e9d38
+		sourceLineageTag: Income_Statement_Key
+		summarizeBy: none
+		sourceColumn: Income_Statement_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	partition accounts = entity
+		mode: directLake
+		source
+			entityName: accounts
+			expressionSource: 'DirectLake - profitandlossadvanced_lakehouse'
+

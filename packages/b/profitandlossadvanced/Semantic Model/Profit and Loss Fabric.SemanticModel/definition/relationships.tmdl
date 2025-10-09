@@ -1,0 +1,12 @@
+relationship 9a6f0c2e-1e90-09d8-5818-320aa4c5babf
+	fromColumn: ledger.AccountKey
+	toColumn: accounts.Account_Key
+
+relationship ee5f6e4b-fd33-baf0-b556-24f9d71ab2f6
+	fromColumn: accounts.Income_Statement_Key
+	toColumn: layout.Income_Statement_Key
+
+relationship 915b7cb2-5bcf-7618-cfd4-100c70a7f196
+	fromColumn: ledger.Date
+	toColumn: date.FiscalDate
+
