@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "Notebook",
-    "displayName": "Base 64 Journal Entry",
+    "displayName": "Combining notebook",
     "description": "New notebook"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "b690d0a1-a0ce-b2d9-4abb-6022769ac580"
+    "logicalId": "8755fdda-6df2-83db-443f-6b0707bc0437"
   }
 }
