@@ -12,6 +12,8 @@ annotation __PBI_TimeIntelligenceEnabled = 1
 
 annotation PBI_ProTooling = ["WebModelingEdit"]
 
+annotation __TEdtr = 1
+
 ref table accounts
 ref table layout
 ref table date

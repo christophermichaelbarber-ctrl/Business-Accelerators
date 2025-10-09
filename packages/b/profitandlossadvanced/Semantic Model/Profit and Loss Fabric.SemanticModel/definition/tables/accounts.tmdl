@@ -4,6 +4,7 @@ table accounts
 
 	column Account_Key
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: aee5476f-9537-4a8d-86f7-20940612fe0f
 		sourceLineageTag: Account_Key
@@ -23,6 +24,7 @@ table accounts
 
 	column Account_Type
 		dataType: string
+		isHidden
 		lineageTag: 77bf9ac9-a9af-497b-becf-7e6ff55a2d66
 		sourceLineageTag: Account_Type
 		summarizeBy: none
@@ -32,6 +34,7 @@ table accounts
 
 	column Account_Type_Indicator
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 38aa5b52-890c-41a3-8e53-0d57ad7ac640
 		sourceLineageTag: Account_Type_Indicator
@@ -42,6 +45,7 @@ table accounts
 
 	column Income_Statement_Key
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 9ce326ef-7b68-4fd5-8c14-5dc8b89e9d38
 		sourceLineageTag: Income_Statement_Key

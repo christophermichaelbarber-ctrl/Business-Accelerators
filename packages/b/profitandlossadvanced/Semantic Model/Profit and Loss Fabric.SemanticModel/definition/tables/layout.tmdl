@@ -4,6 +4,7 @@ table layout
 
 	column Income_Statement_Key
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 98345e02-83e1-4aca-8056-ce9959e3bc1f
 		sourceLineageTag: Income_Statement_Key
@@ -23,6 +24,7 @@ table layout
 
 	column Calculation_type
 		dataType: string
+		isHidden
 		lineageTag: 1fa1d861-ada0-4c93-aae1-353281893a94
 		sourceLineageTag: Calculation_type
 		summarizeBy: none
@@ -32,6 +34,7 @@ table layout
 
 	column Format_String_Default
 		dataType: string
+		isHidden
 		lineageTag: f0acc2c2-c71a-41cb-8217-0f72f469527d
 		sourceLineageTag: Format_String_Default
 		summarizeBy: none
@@ -41,6 +44,7 @@ table layout
 
 	column Format_String_Variance_Abs
 		dataType: string
+		isHidden
 		lineageTag: 29990b91-edf4-4022-afb9-b5146adf848f
 		sourceLineageTag: Format_String_Variance_Abs
 		summarizeBy: none
@@ -50,6 +54,7 @@ table layout
 
 	column Format_String_Variance_Per
 		dataType: string
+		isHidden
 		lineageTag: 7b019025-55e7-42bb-ac62-b9d56dc999a3
 		sourceLineageTag: Format_String_Variance_Per
 		summarizeBy: none
@@ -59,6 +64,7 @@ table layout
 
 	column Formatting_P_L_Hex_Text
 		dataType: string
+		isHidden
 		lineageTag: 058183d6-65e3-4387-89e2-f5139dbf58dd
 		sourceLineageTag: Formatting_P_L_Hex_Text
 		summarizeBy: none
@@ -68,6 +74,7 @@ table layout
 
 	column Formatting_P_L_Hex_Background
 		dataType: string
+		isHidden
 		lineageTag: bdb44b17-c8f6-4303-ad12-63306458d69e
 		sourceLineageTag: Formatting_P_L_Hex_Background
 		summarizeBy: none
@@ -77,6 +84,7 @@ table layout
 
 	column Subtotal_From
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 12bbcf2b-cbc5-44d5-8a67-969584c114e0
 		sourceLineageTag: Subtotal_From
@@ -87,6 +95,7 @@ table layout
 
 	column Subtotal_To
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: d1f0f603-4bce-40d3-9cc3-290022d7e5d8
 		sourceLineageTag: Subtotal_To
@@ -97,6 +106,7 @@ table layout
 
 	column Divide_Numerator
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: e46e0269-4277-4082-847e-220634308f40
 		sourceLineageTag: Divide_Numerator
@@ -107,6 +117,7 @@ table layout
 
 	column Divide_Denominator
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 841be5a2-06ed-401c-af33-a57b7fa5cf05
 		sourceLineageTag: Divide_Denominator
@@ -117,6 +128,7 @@ table layout
 
 	column Show_Values
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 8c0cee40-2722-4ec2-9f09-756ae5c9a878
 		sourceLineageTag: Show_Values
@@ -127,6 +139,7 @@ table layout
 
 	column Show_Perc
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 43f4a754-d25a-4b5e-844b-11e227325ff0
 		sourceLineageTag: Show_Perc

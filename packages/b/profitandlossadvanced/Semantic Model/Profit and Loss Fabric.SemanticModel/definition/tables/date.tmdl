@@ -4,6 +4,7 @@ table date
 
 	column FiscalDate
 		dataType: dateTime
+		isHidden
 		formatString: General Date
 		lineageTag: b591dc33-b43c-47f8-a93d-d91e8a33a1fd
 		sourceLineageTag: FiscalDate
@@ -28,11 +29,13 @@ table date
 		sourceLineageTag: FiscalQuarter
 		summarizeBy: none
 		sourceColumn: FiscalQuarter
+		sortByColumn: FiscalQuarterSort
 
 		annotation SummarizationSetBy = Automatic
 
 	column FiscalPeriod
 		dataType: string
+		isHidden
 		lineageTag: fe918cb8-2b35-4571-8872-758e61beade7
 		sourceLineageTag: FiscalPeriod
 		summarizeBy: none
@@ -42,6 +45,7 @@ table date
 
 	column FiscalYearQuarter
 		dataType: string
+		isHidden
 		lineageTag: d4ea6860-63cc-4169-a298-75aae50f7a4d
 		sourceLineageTag: FiscalYearQuarter
 		summarizeBy: none
@@ -51,6 +55,7 @@ table date
 
 	column FiscalYearPeriod
 		dataType: string
+		isHidden
 		lineageTag: 25e2b91f-cf71-482b-9f51-bd3ed3e0c460
 		sourceLineageTag: FiscalYearPeriod
 		summarizeBy: none
@@ -60,6 +65,7 @@ table date
 
 	column FiscalPeriodCPSort
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: b4be52a4-e897-406d-b321-54891939be60
 		sourceLineageTag: FiscalPeriodCPSort
@@ -70,6 +76,7 @@ table date
 
 	column FutureDate
 		dataType: boolean
+		isHidden
 		formatString: """TRUE"";""TRUE"";""FALSE"""
 		lineageTag: 7cfc6804-31c8-479b-b3ec-8bcebfab8c26
 		sourceLineageTag: FutureDate
@@ -80,6 +87,7 @@ table date
 
 	column FiscalYearPeriodNumber
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: b6dfb738-c26f-40cb-94a2-37e39b8f5168
 		sourceLineageTag: FiscalYearPeriodNumber
@@ -90,6 +98,7 @@ table date
 
 	column FiscalPeriodNumber
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 1d2b6426-c63b-4bee-a692-3e926d895a94
 		sourceLineageTag: FiscalPeriodNumber
@@ -100,6 +109,7 @@ table date
 
 	column FiscalYearSort
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 6130e9ba-70f9-464d-abc7-8b81e0c1f676
 		sourceLineageTag: FiscalYearSort
@@ -110,6 +120,7 @@ table date
 
 	column FiscalQuarterSort
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 15fc3d05-a4ee-4fb7-827d-ac67441dbbe0
 		sourceLineageTag: FiscalQuarterSort
@@ -120,6 +131,7 @@ table date
 
 	column FiscalPeriodSort
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 6bf6f0f5-e629-482c-b5bc-2f8da7ac5efc
 		sourceLineageTag: FiscalPeriodSort
@@ -130,6 +142,7 @@ table date
 
 	column FiscalYearQuarterSort
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: bff0e441-6a62-44de-9e3a-434e272389a2
 		sourceLineageTag: FiscalYearQuarterSort
@@ -140,6 +153,7 @@ table date
 
 	column FiscalYearPeriodSort
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 54a5f58c-7d37-43da-aa2b-e31baa773c8e
 		sourceLineageTag: FiscalYearPeriodSort
@@ -154,6 +168,7 @@ table date
 		sourceLineageTag: FiscalPeriodCP
 		summarizeBy: none
 		sourceColumn: FiscalPeriodCP
+		sortByColumn: FiscalPeriodCPSort
 
 		annotation SummarizationSetBy = Automatic
 
