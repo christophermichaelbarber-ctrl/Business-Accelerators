@@ -249,50 +249,86 @@ print(f"✅ Wrote Delta table: {TABLE_NAME}")
 
 # CELL ********************
 
-##VERIFIED Accounts Table
+# Base64 Date table -> Delta (Fabric)
 import base64
 import pandas as pd
 from io import StringIO
-from pyspark.sql import types as T
+from pyspark.sql import functions as F, types as T
 
 # ==== CONFIG ====
 BASE64_STR = """
-QWNjb3VudF9LZXksQWNjb3VudF9OdW1iZXJfYW5kX05hbWUsQWNjb3VudF9UeXBlLEFjY291bnRfVHlwZV9JbmRpY2F0b3IsSW5jb21lX1N0YXRlbWVudF9LZXkKMTAxMDAsMTAxMDAgLSBSZXZlbnVlLFJldmVudWUsMSwyCjEwMTEwLDEwMTEwIC0gUmV2ZW51ZSxSZXZlbnVlLDEsMgoxMDEyMCwxMDEyMCAtIFJldmVudWUsUmV2ZW51ZSwxLDIKMTAxMzAsMTAxMzAgLSBSZXZlbnVlLFJldmVudWUsMSwyCjEwMjAwLDEwMjAwIC0gUmV2ZW51ZSxSZXZlbnVlLDEsMwoxMDIxMCwxMDIxMCAtIFJldmVudWUsUmV2ZW51ZSwxLDMKMTAyMjAsMTAyMjAgLSBSZXZlbnVlLFJldmVudWUsMSwzCjEwMjMwLDEwMjMwIC0gUmV2ZW51ZSxSZXZlbnVlLDEsMwoyMDEwMCwyMDEwMCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDcKMjAxMTAsMjAxMTAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSw3CjIwMTIwLDIwMTIwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsNwoyMDEzMCwyMDEzMCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDcKMjAxNDAsMjAxNDAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSw3CjIwMjAwLDIwMjAwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsOAoyMDIxMCwyMDIxMCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDgKMjAyMjAsMjAyMjAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSw4CjIwMjMwLDIwMjMwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsOAoyMDI0MCwyMDI0MCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDgKMzAxMDAsMzAxMDAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwxMwozMDExMCwzMDExMCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDEzCjMwMTIwLDMwMTIwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsMTMKMzAxMzAsMzAxMzAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwxMwozMDE0MCwzMDE0MCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDEzCjMwMTUwLDMwMTUwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsMTMKMzAxNjAsMzAxNjAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwxMwozMDE3MCwzMDE3MCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDEzCjMwMTgwLDMwMTgwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsMTMKNDAxMDAsNDAxMDAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwxMwo0MDExMCw0MDExMCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDEzCjQwMTIwLDQwMTIwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsMTMKNDAxMzAsNDAxMzAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwxMwo1MDEwMCw1MDEwMCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDE0CjUwMTEwLDUwMTEwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsMTQKNTAxMjAsNTAxMjAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwxNAo1MDEzMCw1MDEzMCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDE0CjUwMTQwLDUwMTQwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsMTQKNTAxNTAsNTAxNTAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwxNAo1MDE2MCw1MDE2MCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDE0CjYwMTAwLDYwMTAwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsMTQKNjAxMTAsNjAxMTAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwxNAo2MDEyMCw2MDEyMCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDE0CjcwMTAwLDcwMTAwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsMTUKNzAxMTAsNzAxMTAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwxNQo3MDEyMCw3MDEyMCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDE1CjcwMTMwLDcwMTMwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsMTUKNzAxNDAsNzAxNDAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwxNQo3MDQwMCw3MDQwMCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDE1CjcwNDEwLDcwNDEwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsMTUKNzA0MjAsNzA0MjAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwxNQo3MDQzMCw3MDQzMCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDE1CjEwNzEwLDEwNzEwIC0gT3RoZXIgaW5jb21lLFJldmVudWUsMSwyMAoxMDcyMCwxMDcxMCAtIE90aGVyIGluY29tZSxSZXZlbnVlLDEsMjAKODAxMDAsODAxMDAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwyMwo4MDExMCw4MDExMCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDIzCjgwMTIwLDgwMTIwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsMjMKODAxMzAsODAxMzAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwyMwo=
+RmlzY2FsRGF0ZSxGaXNjYWxZZWFyLEZpc2NhbFF1YXJ0ZXIsRmlzY2FsUGVyaW9kLEZpc2NhbFllYXJRdWFydGVyLEZpc2NhbFllYXJQZXJpb2QsRmlzY2FsWWVhclNvcnQsRmlzY2FsUXVhcnRlclNvcnQsRmlzY2FsUGVyaW9kU29ydCxGaXNjYWxZZWFyUXVhcnRlclNvcnQsRmlzY2FsWWVhclBlcmlvZFNvcnQsRmlzY2FsUGVyaW9kQ1AsRmlzY2FsUGVyaW9kQ1BTb3J0LEZ1dHVyZURhdGUsRmlzY2FsWWVhclBlcmlvZE51bWJlcixGaXNjYWxQZXJpb2ROdW1iZXIKMDEvMzEvMjAyNCwyMDI0LFExLFAxLDIwMjRRMSwyMDI0UDEsMSwxLDEyLDQsMTIsQ1kgIFAxLDgsRmFsc2UsMjAyNDAxLDE=
+"""
+TABLE_NAME = "Date"   # target Delta table name
 
-"""     # your base64 from the snippet
-TABLE_NAME = "Accounts"                   # target Delta table
+# Expected columns in the CSV (order taken from your header)
+expected_cols = [
+    "FiscalDate", "FiscalYear", "FiscalQuarter", "FiscalPeriod",
+    "FiscalYearQuarter", "FiscalYearPeriod",
+    "FiscalYearSort", "FiscalQuarterSort", "FiscalPeriodSort",
+    "FiscalPeriodCP", "FiscalPeriodCPSort",
+    "FutureDate", "FiscalYearPeriodNumber", "FiscalPeriodNumber"
+]
 
-# (Optional) Spark schema – recommended to avoid type drift
+# Spark schema we want on the final table
 spark_schema = T.StructType([
-    T.StructField("Account_Key", T.IntegerType(), True),
-    T.StructField("Account_Number_and_Name", T.StringType(), True),
-    T.StructField("Account_Type", T.StringType(), True),
-    T.StructField("Account_Type_Indicator", T.IntegerType(), True),
-    T.StructField("Income_Statement_Key", T.IntegerType(), True),
+    T.StructField("FiscalDate", T.DateType(), True),
+    T.StructField("FiscalYear", T.IntegerType(), True),
+    T.StructField("FiscalQuarter", T.StringType(), True),
+    T.StructField("FiscalPeriod", T.StringType(), True),
+    T.StructField("FiscalYearQuarter", T.StringType(), True),
+    T.StructField("FiscalYearPeriod", T.StringType(), True),
+    T.StructField("FiscalYearSort", T.IntegerType(), True),
+    T.StructField("FiscalQuarterSort", T.IntegerType(), True),
+    T.StructField("FiscalPeriodSort", T.IntegerType(), True),
+    T.StructField("FiscalPeriodCP", T.StringType(), True),
+    T.StructField("FiscalPeriodCPSort", T.IntegerType(), True),
+    T.StructField("FutureDate", T.BooleanType(), True),
+    T.StructField("FiscalYearPeriodNumber", T.IntegerType(), True),
+    T.StructField("FiscalPeriodNumber", T.IntegerType(), True),
 ])
 
 # ==== 1) Decode Base64 safely ====
 b64 = BASE64_STR.strip()
 if not b64:
     raise ValueError("Base64 string is empty. Paste a valid Base64 CSV.")
-
-csv_bytes = base64.b64decode(b64)
-csv_text = csv_bytes.decode("utf-8")
+csv_text = base64.b64decode(b64).decode("utf-8")
 if not csv_text.strip():
     raise ValueError("Decoded CSV is empty.")
 
 # ==== 2) Read CSV with pandas ====
 pdf = pd.read_csv(StringIO(csv_text))
+# Ensure expected columns (useful if pandas infers differently)
+missing = set(expected_cols) - set(pdf.columns)
+if missing:
+    raise ValueError(f"CSV missing expected columns: {sorted(missing)}")
 
-# (Optional) pandas cleanup / typing
-# pdf["Account_Key"] = pd.to_numeric(pdf["Account_Key"], errors="coerce").astype("Int64")
-# pdf["Account_Type_Indicator"] = pd.to_numeric(pdf["Account_Type_Indicator"], errors="coerce").astype("Int64")
-# pdf["Income_Statement_Key"] = pd.to_numeric(pdf["Income_Statement_Key"], errors="coerce").astype("Int64")
+# Parse date (mm/dd/yyyy in your sample like 01/31/2024)
+pdf["FiscalDate"] = pd.to_datetime(pdf["FiscalDate"], format="%m/%d/%Y", errors="coerce")
 
-# ==== 3) Convert pandas -> Spark ====
-sdf = spark.createDataFrame(pdf, schema=spark_schema)
+# Coerce numerics
+for c in ["FiscalYear","FiscalYearSort","FiscalQuarterSort","FiscalPeriodSort",
+          "FiscalPeriodCPSort","FiscalYearPeriodNumber","FiscalPeriodNumber"]:
+    pdf[c] = pd.to_numeric(pdf[c], errors="coerce")
 
-# ==== 4) Write as managed Delta table ====
+# Coerce boolean (handles True/False, 'true'/'false', 1/0)
+pdf["FutureDate"] = (
+    pdf["FutureDate"]
+      .astype(str)
+      .str.strip()
+      .str.lower()
+      .map({"true": True, "false": False, "1": True, "0": False})
+)
+
+# ==== 3) Convert pandas -> Spark and enforce Spark dtypes ====
+sdf = spark.createDataFrame(pdf)
+
+# Cast columns to final schema (idempotent if already correct)
+for f in spark_schema:
+    if f.name in sdf.columns:
+        sdf = sdf.withColumn(f.name, F.col(f.name).cast(f.dataType))
+
+# ==== 4) Write managed Delta table in the attached Lakehouse ====
 (sdf.write
     .mode("overwrite")
     .format("delta")
@@ -300,115 +336,6 @@ sdf = spark.createDataFrame(pdf, schema=spark_schema)
 
 print(f"✅ Wrote Delta table: {TABLE_NAME}")
 
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
-#Create the account table from Base64 string 
-
-import base64
-import pandas as pd
-from io import StringIO
-
-Acccounts_base64_string = """
-QWNjb3VudF9LZXksQWNjb3VudF9OdW1iZXJfYW5kX05hbWUsQWNjb3VudF9UeXBlLEFjY291bnRfVHlwZV9JbmRpY2F0b3IsSW5jb21lX1N0YXRlbWVudF9LZXkKMTAxMDAsMTAxMDAgLSBSZXZlbnVlLFJldmVudWUsMSwyCjEwMTEwLDEwMTEwIC0gUmV2ZW51ZSxSZXZlbnVlLDEsMgoxMDEyMCwxMDEyMCAtIFJldmVudWUsUmV2ZW51ZSwxLDIKMTAxMzAsMTAxMzAgLSBSZXZlbnVlLFJldmVudWUsMSwyCjEwMjAwLDEwMjAwIC0gUmV2ZW51ZSxSZXZlbnVlLDEsMwoxMDIxMCwxMDIxMCAtIFJldmVudWUsUmV2ZW51ZSwxLDMKMTAyMjAsMTAyMjAgLSBSZXZlbnVlLFJldmVudWUsMSwzCjEwMjMwLDEwMjMwIC0gUmV2ZW51ZSxSZXZlbnVlLDEsMwoyMDEwMCwyMDEwMCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDcKMjAxMTAsMjAxMTAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSw3CjIwMTIwLDIwMTIwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsNwoyMDEzMCwyMDEzMCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDcKMjAxNDAsMjAxNDAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSw3CjIwMjAwLDIwMjAwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsOAoyMDIxMCwyMDIxMCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDgKMjAyMjAsMjAyMjAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSw4CjIwMjMwLDIwMjMwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsOAoyMDI0MCwyMDI0MCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDgKMzAxMDAsMzAxMDAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwxMwozMDExMCwzMDExMCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDEzCjMwMTIwLDMwMTIwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsMTMKMzAxMzAsMzAxMzAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwxMwozMDE0MCwzMDE0MCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDEzCjMwMTUwLDMwMTUwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsMTMKMzAxNjAsMzAxNjAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwxMwozMDE3MCwzMDE3MCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDEzCjMwMTgwLDMwMTgwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsMTMKNDAxMDAsNDAxMDAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwxMwo0MDExMCw0MDExMCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDEzCjQwMTIwLDQwMTIwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsMTMKNDAxMzAsNDAxMzAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwxMwo1MDEwMCw1MDEwMCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDE0CjUwMTEwLDUwMTEwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsMTQKNTAxMjAsNTAxMjAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwxNAo1MDEzMCw1MDEzMCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDE0CjUwMTQwLDUwMTQwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsMTQKNTAxNTAsNTAxNTAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwxNAo1MDE2MCw1MDE2MCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDE0CjYwMTAwLDYwMTAwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsMTQKNjAxMTAsNjAxMTAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwxNAo2MDEyMCw2MDEyMCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDE0CjcwMTAwLDcwMTAwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsMTUKNzAxMTAsNzAxMTAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwxNQo3MDEyMCw3MDEyMCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDE1CjcwMTMwLDcwMTMwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsMTUKNzAxNDAsNzAxNDAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwxNQo3MDQwMCw3MDQwMCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDE1CjcwNDEwLDcwNDEwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsMTUKNzA0MjAsNzA0MjAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwxNQo3MDQzMCw3MDQzMCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDE1CjEwNzEwLDEwNzEwIC0gT3RoZXIgaW5jb21lLFJldmVudWUsMSwyMAoxMDcyMCwxMDcxMCAtIE90aGVyIGluY29tZSxSZXZlbnVlLDEsMjAKODAxMDAsODAxMDAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwyMwo4MDExMCw4MDExMCAtIEV4cGVuZGl0dXJlLEV4cGVuZGl0dXJlLC0xLDIzCjgwMTIwLDgwMTIwIC0gRXhwZW5kaXR1cmUsRXhwZW5kaXR1cmUsLTEsMjMKODAxMzAsODAxMzAgLSBFeHBlbmRpdHVyZSxFeHBlbmRpdHVyZSwtMSwyMwo=
-"""
-
-# Step 1: Decode the Base64 string
-Acccounts_decoded_bytes = base64.b64decode(Acccounts_base64_string)
-Acccounts_decoded_str = Acccounts_decoded_bytes.decode("utf-8")
-
-# Step 2: Convert to a pandas DataFrame
-Acccounts_csv_data = StringIO(Acccounts_decoded_str)
-Acccounts_df = pd.read_csv(Acccounts_csv_data)
-
-# Step 4: Save to Parquet file
-Acccounts_df.to_parquet("abfss://GitIntegrationFabricTrial@onelake.dfs.fabric.microsoft.com/profitandlossadvanced_lakehouse.Lakehouse/Files/Accounts.parquet")
-
-# Step 5: Save to Parquet table
-Acccounts_df_table = spark.read.parquet("abfss://GitIntegrationFabricTrial@onelake.dfs.fabric.microsoft.com/profitandlossadvanced_lakehouse.Lakehouse/Files/Accounts.parquet")
-
-# Step 6: Create table
-Acccounts_df_table.write.mode("overwrite").format("delta").saveAsTable("Accounts")
-
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# MARKDOWN ********************
-
-
-# CELL ********************
-
-#Create the Currency table from Base64 string 
-
-import base64
-import pandas as pd
-from io import StringIO
-currency_base64_string = """
-
-"""
-
-# Step 1: Decode the Base64 string
-currency_decoded_bytes = base64.b64decode(currency_base64_string)
-currency_decoded_str = currency_decoded_bytes.decode("utf-8")
-
-# Step 2: Convert to a pandas DataFrame
-currency_csv_data = StringIO(currency_decoded_str)
-currency_df = pd.read_csv(currency_csv_data)
-
-# Step 4: Save to Parquet file
-currency_df.to_parquet("abfss://GitIntegrationFabricTrial@onelake.dfs.fabric.microsoft.com/profitandlossadvanced_lakehouse.Lakehouse/Files/Currency.parquet")
-
-# Step 5: Save to Parquet table
-currency_df_table = spark.read.parquet("abfss://GitIntegrationFabricTrial@onelake.dfs.fabric.microsoft.com/profitandlossadvanced_lakehouse.Lakehouse/Files/Currency.parquet")
-
-# Step 6: Create table
-currency_df_table.write.mode("overwrite").format("delta").saveAsTable("Currency")
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
-#Create the Posting Date table from Base64 string
-
-import base64
-import pandas as pd
-from io import StringIO
-postingdatebase64_string = """
-
-"""
-
-# Step 1: Decode the Base64 string
-postingdate_decoded_bytes = base64.b64decode(postingdate_base64_string)
-postingdate_decoded_str = postingdate_decoded_bytes.decode("utf-8")
-
-# Step 2: Convert to a pandas DataFrame
-postingdate_csv_data = StringIO(postingdate_decoded_str)
-postingdate_df = pd.read_csv(postingdate_csv_data)
-
-# Step 4: Save to Parquet file
-postingdate_df.to_parquet("abfss://GitIntegrationFabricTrial@onelake.dfs.fabric.microsoft.com/profitandlossadvanced_lakehouse.Lakehouse/Files/postingdate.parquet")
-
-# Step 5: Save to Parquet table
-postingdate_df_table = spark.read.parquet("abfss://GitIntegrationFabricTrial@onelake.dfs.fabric.microsoft.com/profitandlossadvanced_lakehouse.Lakehouse/Files/postingdate.parquet")
-
-# Step 6: Create table
-postingdate_df_table.write.mode("overwrite").format("delta").saveAsTable("PostingDate")
 
 # METADATA ********************
 
