@@ -1,0 +1,185 @@
+table 'Legal entity'
+	lineageTag: da0c04c1-5c4e-4912-bea4-f264a14f5603
+
+	column 'Legal Entity Key'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8ebbc43c-f44d-4a75-872f-660d3a491ab2
+		summarizeBy: none
+		sourceColumn: Legal Entity Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Legal entity name'
+		dataType: string
+		lineageTag: d583c131-6cba-42db-9b2e-e4e6f0833c38
+		summarizeBy: none
+		sourceColumn: Legal entity name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Legal Entity Sort Order'
+		dataType: int64
+		formatString: 0
+		lineageTag: 25fc222a-f540-4f6b-bc9a-06bc275ece50
+		summarizeBy: sum
+		sourceColumn: Legal Entity Sort Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Group
+		dataType: string
+		lineageTag: 5ccd57e2-8022-48a2-98f1-207aebb126fb
+		summarizeBy: none
+		sourceColumn: Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: e4dc2456-ca25-4355-85f0-6071eaab2acf
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 19ac7e1b-136c-4d92-b998-2eded5da969a
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Child
+		dataType: int64
+		formatString: 0
+		lineageTag: aabf58de-d6b2-45c9-97c2-cb1f57c4c51e
+		summarizeBy: sum
+		sourceColumn: Child
+
+		annotation SummarizationSetBy = Automatic
+
+	column Parent
+		dataType: int64
+		formatString: 0
+		lineageTag: 9f68850b-cdfb-423b-a1f2-9a9b2a816d68
+		summarizeBy: sum
+		sourceColumn: Parent
+
+		annotation SummarizationSetBy = Automatic
+
+	column Path
+		dataType: string
+		lineageTag: 0271aa44-f84b-470f-a9d6-e7ede0be975d
+		summarizeBy: none
+		sourceColumn: Path
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Legal entity level 1'
+		dataType: int64
+		formatString: 0
+		lineageTag: e2c3b55f-4972-46f5-b61a-bfb3fb0fd204
+		summarizeBy: sum
+		sourceColumn: Legal entity level 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Legal entity level 2'
+		dataType: int64
+		formatString: 0
+		lineageTag: 12f3cafa-de47-4244-ae3b-cc5e63cf36cd
+		summarizeBy: sum
+		sourceColumn: Legal entity level 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Legal entity level 3'
+		dataType: int64
+		formatString: 0
+		lineageTag: 671f456d-640d-496b-8a6a-0e5e2e902914
+		summarizeBy: sum
+		sourceColumn: Legal entity level 3
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Legal entity level 4'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5dc0e6e0-65a1-4eb2-ad20-b785c0db03c8
+		summarizeBy: sum
+		sourceColumn: Legal entity level 4
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Legal entity level 5'
+		dataType: int64
+		formatString: 0
+		lineageTag: 61440703-4404-4491-80e6-4e08a1101b0f
+		summarizeBy: sum
+		sourceColumn: Legal entity level 5
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Legal entity level 1 name'
+		dataType: string
+		lineageTag: 17eb1561-23d8-4e9b-b9a8-01679cc7a326
+		summarizeBy: none
+		sourceColumn: Legal entity level 1 name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Legal entity level 2 name'
+		dataType: string
+		lineageTag: eff5c8d6-ab28-4840-adfa-fc7d02fd80f1
+		summarizeBy: none
+		sourceColumn: Legal entity level 2 name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Legal entity level 3 name'
+		dataType: string
+		lineageTag: 4b551d38-789e-45cb-a472-f1618b1e8b51
+		summarizeBy: none
+		sourceColumn: Legal entity level 3 name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Legal entity level 4 name'
+		dataType: string
+		lineageTag: 078db832-a4ad-46a9-92c2-9335badb8e1e
+		summarizeBy: none
+		sourceColumn: Legal entity level 4 name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Legal entity level 5 name'
+		dataType: string
+		lineageTag: 500c3bef-e004-40cc-8f62-4574f47cb2e9
+		summarizeBy: none
+		sourceColumn: Legal entity level 5 name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Legal entity' = m
+		mode: import
+		source = ```
+				let
+				    Source = Binary.FromText(
+				    
+				"TGVnYWwgRW50aXR5IEtleSxMZWdhbCBlbnRpdHkgbmFtZSxMZWdhbCBFbnRpdHkgU29ydCBPcmRlcixHcm91cCxDb3VudHJ5LFJlZ2lvbixDaGlsZCxQYXJlbnQsUGF0aCxMZWdhbCBlbnRpdHkgbGV2ZWwgMSxMZWdhbCBlbnRpdHkgbGV2ZWwgMixMZWdhbCBlbnRpdHkgbGV2ZWwgMyxMZWdhbCBlbnRpdHkgbGV2ZWwgNCxMZWdhbCBlbnRpdHkgbGV2ZWwgNSxMZWdhbCBlbnRpdHkgbGV2ZWwgMSBuYW1lLExlZ2FsIGVudGl0eSBsZXZlbCAyIG5hbWUsTGVnYWwgZW50aXR5IGxldmVsIDMgbmFtZSxMZWdhbCBlbnRpdHkgbGV2ZWwgNCBuYW1lLExlZ2FsIGVudGl0eSBsZXZlbCA1IG5hbWUKMSxDb21wYW55IEhvbGRpbmdzLDEsR3JvdXAsVVNBLEFtZXJpY2FzLDEsLDEsMSwsLCwsQ29tcGFueSBIb2xkaW5ncywsLCwKMixDb21wYW55IExvZ2lzdGljcyBVUywyLEdyb3VwLFVTQSxBbWVyaWNhcywyLDEsMXwyLDEsMiwsLCxDb21wYW55IEhvbGRpbmdzLENvbXBhbnkgTG9naXN0aWNzIFVTLCwsCjMsQ29tcGFueSBSZXRhaWwgSW5jLDMsR3JvdXAsVVNBLEFtZXJpY2FzLDMsMiwxfDJ8MywxLDIsMywsLENvbXBhbnkgSG9sZGluZ3MsQ29tcGFueSBMb2dpc3RpY3MgVVMsQ29tcGFueSBSZXRhaWwgSW5jLCwKNCxDb21wYW55IFJldGFpbCBDYW5hZGEsNCxHcm91cCxDYW5hZGEsQW1lcmljYXMsNCwzLDF8MnwzfDQsMSwyLDMsNCwsQ29tcGFueSBIb2xkaW5ncyxDb21wYW55IExvZ2lzdGljcyBVUyxDb21wYW55IFJldGFpbCBJbmMsQ29tcGFueSBSZXRhaWwgQ2FuYWRhLAo1LENvbXBhbnkgUmV0YWlsIE1leGljbyw1LEdyb3VwLE1leGljbyxBbWVyaWNhcyw1LDMsMXwyfDN8NSwxLDIsMyw1LCxDb21wYW55IEhvbGRpbmdzLENvbXBhbnkgTG9naXN0aWNzIFVTLENvbXBhbnkgUmV0YWlsIEluYyxDb21wYW55IFJldGFpbCBNZXhpY28sCjYsQ29tcGFueSBGaW5hbmNlIEx0ZCw2LEdyb3VwLFVLLEV1cm9wZSw2LDEsMXw2LDEsNiwsLCxDb21wYW55IEhvbGRpbmdzLENvbXBhbnkgRmluYW5jZSBMdGQsLCwKNyxDb21wYW55IEludmVzdG1lbnRzLDcsR3JvdXAsVUssRXVyb3BlLDcsNiwxfDZ8NywxLDYsNywsLENvbXBhbnkgSG9sZGluZ3MsQ29tcGFueSBGaW5hbmNlIEx0ZCxDb21wYW55IEludmVzdG1lbnRzLCwKOCxDb21wYW55IFRlY2ggTHRkLDgsR3JvdXAsVUssRXVyb3BlLDgsNywxfDZ8N3w4LDEsNiw3LDgsLENvbXBhbnkgSG9sZGluZ3MsQ29tcGFueSBGaW5hbmNlIEx0ZCxDb21wYW55IEludmVzdG1lbnRzLENvbXBhbnkgVGVjaCBMdGQsCjksQ29tcGFueSBMb2dpc3RpY3MgTHRkLDksR3JvdXAsVUssRXVyb3BlLDksNywxfDZ8N3w5LDEsNiw3LDksLENvbXBhbnkgSG9sZGluZ3MsQ29tcGFueSBGaW5hbmNlIEx0ZCxDb21wYW55IEludmVzdG1lbnRzLENvbXBhbnkgTG9naXN0aWNzIEx0ZCwKMTAsQ29tcGFueSBEaWdpdGFsIEdtYkgsMTAsR3JvdXAsR2VybWFueSxFdXJvcGUsMTAsNiwxfDZ8MTAsMSw2LDEwLCwsQ29tcGFueSBIb2xkaW5ncyxDb21wYW55IEZpbmFuY2UgTHRkLENvbXBhbnkgRGlnaXRhbCBHbWJILCwKMTEsQ29tcGFueSBEaWdpdGFsIEZyYW5jZSwxMSxHcm91cCxGcmFuY2UsRXVyb3BlLDExLDYsMXw2fDExLDEsNiwxMSwsLENvbXBhbnkgSG9sZGluZ3MsQ29tcGFueSBGaW5hbmNlIEx0ZCxDb21wYW55IERpZ2l0YWwgRnJhbmNlLCwKMTIsQ29tcGFueSBBc2lhIEhvbGRpbmdzLDEyLEdyb3VwLFNpbmdhcG9yZSxBc2lhLDEyLDEsMXwxMiwxLDEyLCwsLENvbXBhbnkgSG9sZGluZ3MsQ29tcGFueSBBc2lhIEhvbGRpbmdzLCwsCjEzLENvbXBhbnkgQXNpYSBUZWNoLDEzLEdyb3VwLEluZGlhLEFzaWEsMTMsMTIsMXwxMnwxMywxLDEyLDEzLCwsQ29tcGFueSBIb2xkaW5ncyxDb21wYW55IEFzaWEgSG9sZGluZ3MsQ29tcGFueSBBc2lhIFRlY2gsLAoxNCxDb21wYW55IEFzaWEgRmluYW5jZSwxNCxHcm91cCxIb25nIEtvbmcsQXNpYSwxNCwxMiwxfDEyfDE0LDEsMTIsMTQsLCxDb21wYW55IEhvbGRpbmdzLENvbXBhbnkgQXNpYSBIb2xkaW5ncyxDb21wYW55IEFzaWEgRmluYW5jZSwsCjE1LENvbXBhbnkgTG9naXN0aWNzIEFzaWEsMTUsR3JvdXAsU2luZ2Fwb3JlLEFzaWEsMTUsMTIsMXwxMnwxNSwxLDEyLDE1LCwsQ29tcGFueSBIb2xkaW5ncyxDb21wYW55IEFzaWEgSG9sZGluZ3MsQ29tcGFueSBMb2dpc3RpY3MgQXNpYSwsCjE2LENvbXBhbnkgTG9naXN0aWNzIEluZGlhLDE2LEdyb3VwLEluZGlhLEFzaWEsMTYsMTUsMXwxMnwxNXwxNiwxLDEyLDE1LDE2LCxDb21wYW55IEhvbGRpbmdzLENvbXBhbnkgQXNpYSBIb2xkaW5ncyxDb21wYW55IExvZ2lzdGljcyBBc2lhLENvbXBhbnkgTG9naXN0aWNzIEluZGlhLAoxNyxDb21wYW55IExvZ2lzdGljcyBIb25rIEtvbmcsMTcsR3JvdXAsSW5kaWEsQXNpYSwxNywxNiwxfDEyfDE1fDE2fDE3LDEsMTIsMTUsMTYsMTcsQ29tcGFueSBIb2xkaW5ncyxDb21wYW55IEFzaWEgSG9sZGluZ3MsQ29tcGFueSBMb2dpc3RpY3MgQXNpYSxDb21wYW55IExvZ2lzdGljcyBJbmRpYSxDb21wYW55IExvZ2lzdGljcyBIb25rIEtvbmc="
+				        , BinaryEncoding.Base64),
+				    #"Imported CSV" = Csv.Document(Source,[Delimiter=",", Columns=19, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Imported CSV", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Legal Entity Key", Int64.Type}, {"Legal entity name", type text}, {"Legal Entity Sort Order", Int64.Type}, {"Group", type text}, {"Country", type text}, {"Region", type text}, {"Child", Int64.Type}, {"Parent", Int64.Type}, {"Path", type text}, {"Legal entity level 1", Int64.Type}, {"Legal entity level 2", Int64.Type}, {"Legal entity level 3", Int64.Type}, {"Legal entity level 4", Int64.Type}, {"Legal entity level 5", Int64.Type}, {"Legal entity level 1 name", type text}, {"Legal entity level 2 name", type text}, {"Legal entity level 3 name", type text}, {"Legal entity level 4 name", type text}, {"Legal entity level 5 name", type text}})
+				in
+				    #"Changed Type"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+	annotation TabularEditor_TableGroup = Dimensions
+
