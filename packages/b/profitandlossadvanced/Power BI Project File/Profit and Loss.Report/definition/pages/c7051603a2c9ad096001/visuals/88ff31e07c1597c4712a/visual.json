@@ -2,14 +2,82 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
   "name": "88ff31e07c1597c4712a",
   "position": {
-    "x": 10,
-    "y": 0,
+    "x": 0,
+    "y": 22.360316261634626,
     "z": 0,
-    "height": 280,
-    "width": 280
+    "height": 567.20668917013165,
+    "width": 602.98319518874712
   },
   "visual": {
-    "visualType": "pivotTable",
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "layout"
+                    }
+                  },
+                  "Property": "Line_name"
+                }
+              },
+              "queryRef": "layout.Line_name",
+              "nativeQueryRef": "Line_name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "measuretable"
+                    }
+                  },
+                  "Property": "Basic Actuals"
+                }
+              },
+              "queryRef": "measuretable.Basic Actuals",
+              "nativeQueryRef": "Basic Actuals"
+            }
+          ]
+        }
+      }
+    },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "27649fe655a6363cd835",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "layout"
+              }
+            },
+            "Property": "Line_name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "5baa5095dda28dd04d08",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "measuretable"
+              }
+            },
+            "Property": "Basic Actuals"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

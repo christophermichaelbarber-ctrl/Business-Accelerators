@@ -1,0 +1,139 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "cee462b8a380ee1c80ba",
+  "position": {
+    "x": 661.120017468997,
+    "y": 27.577723389349373,
+    "z": 1,
+    "height": 636.523669581199,
+    "width": 575.40547179939767
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "accounts"
+                    }
+                  },
+                  "Property": "Income_Statement_Key"
+                }
+              },
+              "queryRef": "accounts.Income_Statement_Key",
+              "nativeQueryRef": "Income_Statement_Key"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "accounts"
+                    }
+                  },
+                  "Property": "Account_Number_and_Name"
+                }
+              },
+              "queryRef": "accounts.Account_Number_and_Name",
+              "nativeQueryRef": "Account_Number_and_Name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ledger"
+                    }
+                  },
+                  "Property": "Sum of Credit Less Debit at Global Fx"
+                }
+              },
+              "queryRef": "ledger.Sum of Credit Less Debit at Global Fx",
+              "nativeQueryRef": "Sum of Credit Less Debit at Global Fx"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "measuretable"
+                    }
+                  },
+                  "Property": "Basic Actuals"
+                }
+              },
+              "queryRef": "measuretable.Basic Actuals",
+              "nativeQueryRef": "Basic Actuals"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "072819d6383593754550",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "measuretable"
+              }
+            },
+            "Property": "Basic Actuals"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "87007ad0d1d3958a0028",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ledger"
+              }
+            },
+            "Property": "Sum of Credit Less Debit at Global Fx"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "fec665a902320d99a823",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "accounts"
+              }
+            },
+            "Property": "Account_Number_and_Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a04cf73aa750c27c0830",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "accounts"
+              }
+            },
+            "Property": "Income_Statement_Key"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}
