@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "Notebook",
-    "displayName": "Base 64 Ledger",
+    "displayName": "Ledger test",
     "description": "New notebook"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "04daab8c-1ea4-82f6-4ef8-e1eaf29b729e"
+    "logicalId": "ea4834ea-13c1-a572-4ad8-7cd74c8103d9"
   }
 }
