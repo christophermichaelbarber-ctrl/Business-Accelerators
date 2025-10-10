@@ -1,0 +1,72 @@
+table measuretable
+	lineageTag: aeb5aaef-712a-48dd-b80e-30eaa39d66a2
+	sourceLineageTag: [dbo].[measuretable]
+
+	measure 'Basic Actuals' = __Fn_PnL_Sum_Subtotal_and_Blanks( SUM( 'ledger'[CreditlessdebitatGlobalFx]) )
+		formatString: #,##0,;(#,##0,);
+		displayFolder: Metrics
+		lineageTag: c4c96c8a-83c7-451c-b09d-bad7b23e1304
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["INTEGER_FORMATTING"]}
+
+	measure 'Basic Plan' = __Fn_PnL_ShowScenario( SUM( Scenario[Credit less debit] ) )
+		formatString: " #,##0,;(#,##0,);"
+		displayFolder: Metrics
+		lineageTag: 4b8f1293-fdd2-428b-967e-40cacfd650e7
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["INTEGER_FORMATTING"]}
+
+	measure 'Var, #' = __Fn_PnL_HideVariances( [Basic Actuals], [Basic Plan] )
+		formatString: " +#,##0,;-#,##0,;"
+		displayFolder: Variance
+		lineageTag: 4c0c03af-2694-464a-8dbc-4f893fbccb82
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["INTEGER_FORMATTING"]}
+
+	measure 'Var, %' = DIVIDE( [Var, #], [Basic Actuals] )
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: Variance
+		lineageTag: a233240d-0410-441b-8725-e585033f96b3
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Var, Text Highlight' = __Fn_PnL_Variance_Highlights( [Var, #] )
+		formatString: 0
+		displayFolder: Variance\Highlight
+		lineageTag: 0fb666b9-4c8c-4996-939d-36ebb8076feb
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["INTEGER_FORMATTING"]}
+
+	column ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 79d2f4ae-2c34-411d-ac00-ecc67ca6f55d
+		sourceLineageTag: ID
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Col1
+		dataType: string
+		isHidden
+		lineageTag: 23deb3aa-58df-4945-b02e-e169ee7dae33
+		sourceLineageTag: Col1
+		summarizeBy: none
+		sourceColumn: Col1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition measuretable = entity
+		mode: directLake
+		source
+			entityName: measuretable
+			expressionSource: 'DirectLake - profitandlossadvanced_lakehouse'
+

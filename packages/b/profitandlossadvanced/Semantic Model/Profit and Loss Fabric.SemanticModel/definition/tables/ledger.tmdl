@@ -2,6 +2,9 @@ table ledger
 	lineageTag: c289844d-a5b8-4c8a-83c8-0387735763ca
 	sourceLineageTag: [dbo].[ledger]
 
+	measure 'Sum of Credit Less Debit at Global Fx' = SUM(ledger[CreditlessdebitatGlobalFx])
+		lineageTag: 976b4f0c-096e-4a48-a676-e8b5abb7bf21
+
 	column DocumentID
 		dataType: int64
 		formatString: 0

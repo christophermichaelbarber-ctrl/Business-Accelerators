@@ -18,4 +18,5 @@ ref table accounts
 ref table layout
 ref table date
 ref table ledger
+ref table measuretable
 
