@@ -11035,6 +11035,16 @@ cultureInfo en-US
 			          "view A1 c fcst TD": {
 			            "State": "Generated"
 			          }
+			        },
+			        {
+			          "Fcst TD": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -11054,6 +11064,16 @@ cultureInfo en-US
 			          "view A1 d fcts BU": {
 			            "State": "Generated"
 			          }
+			        },
+			        {
+			          "Fcst BU": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -11072,6 +11092,16 @@ cultureInfo en-US
 			        {
 			          "view A1 e pln": {
 			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Pln": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -11123,6 +11153,16 @@ cultureInfo en-US
 			          "view A1 g vs PY": {
 			            "State": "Generated"
 			          }
+			        },
+			        {
+			          "vs PY": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -11141,6 +11181,16 @@ cultureInfo en-US
 			        {
 			          "view A1 h vs fcst TD": {
 			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "vs Fcst TD": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -11161,6 +11211,16 @@ cultureInfo en-US
 			          "view A1 i vs fcst BU": {
 			            "State": "Generated"
 			          }
+			        },
+			        {
+			          "vs Fcst BU": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -11179,6 +11239,16 @@ cultureInfo en-US
 			        {
 			          "view A1 j vs pln": {
 			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "vs Pln": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -11230,6 +11300,16 @@ cultureInfo en-US
 			          "view A1 l vs PY, %": {
 			            "State": "Generated"
 			          }
+			        },
+			        {
+			          "vs PY, %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -11248,6 +11328,16 @@ cultureInfo en-US
 			        {
 			          "view A1 m vs fcst TD, %": {
 			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "vs Fcst TD, %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -11268,6 +11358,16 @@ cultureInfo en-US
 			          "view A1 n vs fcst BU, %": {
 			            "State": "Generated"
 			          }
+			        },
+			        {
+			          "vs Fcst BU, %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -11286,6 +11386,16 @@ cultureInfo en-US
 			        {
 			          "view A1 o vs pln, %": {
 			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "vs Pln, %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -11306,6 +11416,16 @@ cultureInfo en-US
 			          "view A2 a act @PY": {
 			            "State": "Generated"
 			          }
+			        },
+			        {
+			          "Act @py fx": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -11325,6 +11445,16 @@ cultureInfo en-US
 			          "view A2 b act @fcst": {
 			            "State": "Generated"
 			          }
+			        },
+			        {
+			          "Act @fcst fx": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -11343,6 +11473,16 @@ cultureInfo en-US
 			        {
 			          "view A2 c act @plan": {
 			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Act @plan fx": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -11400,6 +11540,16 @@ cultureInfo en-US
 			          "view A2 e fcst TD": {
 			            "State": "Generated"
 			          }
+			        },
+			        {
+			          "Fcst TD": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -11419,6 +11569,16 @@ cultureInfo en-US
 			          "view A2 f fcts BU": {
 			            "State": "Generated"
 			          }
+			        },
+			        {
+			          "Fcst BU": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -11437,6 +11597,16 @@ cultureInfo en-US
 			        {
 			          "view A2 g pln": {
 			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Pln": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -11488,6 +11658,16 @@ cultureInfo en-US
 			          "view A2 i vs PY": {
 			            "State": "Generated"
 			          }
+			        },
+			        {
+			          "vs PY": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -11506,6 +11686,16 @@ cultureInfo en-US
 			        {
 			          "view A2 j vs fcst TD": {
 			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "vs Fcst TD": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -11526,6 +11716,16 @@ cultureInfo en-US
 			          "view A2 k vs fcst BU": {
 			            "State": "Generated"
 			          }
+			        },
+			        {
+			          "vs Fcst BU": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -11544,6 +11744,16 @@ cultureInfo en-US
 			        {
 			          "view A2 l vs pln": {
 			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "vs Pln": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -11595,6 +11805,16 @@ cultureInfo en-US
 			          "view A2 n vs PY, %": {
 			            "State": "Generated"
 			          }
+			        },
+			        {
+			          "vs PY, %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -11613,6 +11833,16 @@ cultureInfo en-US
 			        {
 			          "view A2 o vs fcst TD, %": {
 			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "vs Fcst TD, %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -11633,6 +11863,16 @@ cultureInfo en-US
 			          "view A2 p vs fcst BU, %": {
 			            "State": "Generated"
 			          }
+			        },
+			        {
+			          "vs Fcst BU, %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -11651,6 +11891,16 @@ cultureInfo en-US
 			        {
 			          "view A2 q vs pln, %": {
 			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "vs Pln, %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -11671,6 +11921,16 @@ cultureInfo en-US
 			          "view A3 a act @act fx": {
 			            "State": "Generated"
 			          }
+			        },
+			        {
+			          "Act @act fx": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -11689,6 +11949,16 @@ cultureInfo en-US
 			        {
 			          "view A3 b act @PY fx": {
 			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Act @py fx": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -11709,6 +11979,16 @@ cultureInfo en-US
 			          "view A3 c act @fcst fx": {
 			            "State": "Generated"
 			          }
+			        },
+			        {
+			          "Act @fcst fx": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -11727,6 +12007,16 @@ cultureInfo en-US
 			        {
 			          "view A3 d act @plan fx": {
 			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Act @plan fx": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -11778,6 +12068,16 @@ cultureInfo en-US
 			          "view A3 f vs PY": {
 			            "State": "Generated"
 			          }
+			        },
+			        {
+			          "vs PY": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -11797,6 +12097,16 @@ cultureInfo en-US
 			          "view A3 g vs fcst": {
 			            "State": "Generated"
 			          }
+			        },
+			        {
+			          "vs Fcst": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -11815,6 +12125,16 @@ cultureInfo en-US
 			        {
 			          "view A3 h vs pln": {
 			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "vs Pln": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -11860,6 +12180,16 @@ cultureInfo en-US
 			          "view A3 j vs PY, %": {
 			            "State": "Generated"
 			          }
+			        },
+			        {
+			          "vs PY, %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -11879,6 +12209,16 @@ cultureInfo en-US
 			          "view A3 k vs fcst, %": {
 			            "State": "Generated"
 			          }
+			        },
+			        {
+			          "vs Fcst, %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -11897,6 +12237,16 @@ cultureInfo en-US
 			        {
 			          "view A3 l vs pln, %": {
 			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "vs Pln, %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]

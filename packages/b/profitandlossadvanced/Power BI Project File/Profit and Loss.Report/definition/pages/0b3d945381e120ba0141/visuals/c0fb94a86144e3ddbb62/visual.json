@@ -1,12 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
-  "name": "88ff31e07c1597c4712a",
+  "name": "c0fb94a86144e3ddbb62",
   "position": {
-    "x": 51.428727401759637,
-    "y": 46.211320274044894,
+    "x": 24.596347887798089,
+    "y": 58.882166155637847,
     "z": 0,
     "height": 567.20668917013165,
-    "width": 602.98319518874712
+    "width": 765.46816002329206
   },
   "visual": {
     "visualType": "tableEx",
@@ -33,67 +33,69 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "_Measures"
+                      "Entity": "_Measures_Hidden"
                     }
                   },
-                  "Property": "Basic Actuals"
+                  "Property": "Actuals @actual fx"
                 }
               },
-              "queryRef": "_Measures.Basic Actuals",
-              "nativeQueryRef": "Basic Actuals"
+              "queryRef": "_Measures_Hidden.Actuals @actual fx",
+              "nativeQueryRef": "Actuals @actual fx"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "_Measures"
+                      "Entity": "_Measures_Hidden"
                     }
                   },
-                  "Property": "Basic Plan"
+                  "Property": "Actuals @actual fx test"
                 }
               },
-              "queryRef": "_Measures.Basic Plan",
-              "nativeQueryRef": "Basic Plan"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Var, #"
-                }
-              },
-              "queryRef": "_Measures.Var, #",
-              "nativeQueryRef": "Var, #"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Var, %"
-                }
-              },
-              "queryRef": "_Measures.Var, %",
-              "nativeQueryRef": "Var, %"
+              "queryRef": "_Measures_Hidden.Actuals @actual fx test",
+              "nativeQueryRef": "Actuals @actual fx test"
             }
           ]
         }
       }
+    },
+    "objects": {
+      "grid": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'None'"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "drillFilterOtherVisuals": true
   },
   "filterConfig": {
     "filters": [
       {
-        "name": "d3ffe3e9ab0731e570ea",
+        "name": "dad723cfb70c373c111b",
         "field": {
           "Column": {
             "Expression": {
@@ -107,60 +109,47 @@
         "type": "Categorical"
       },
       {
-        "name": "467fc8529d6b026950d6",
+        "name": "0545116eee019a1b8b1b",
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "_Measures"
+                "Entity": "_Measures_Hidden"
               }
             },
-            "Property": "Basic Actuals"
+            "Property": "Actuals @actual fx"
           }
         },
         "type": "Advanced"
       },
       {
-        "name": "22f7751ea45265990c3b",
+        "name": "e51d8ff9d60393e97769",
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "_Measures"
+                "Entity": "_Measures_Hidden"
               }
             },
-            "Property": "Basic Plan"
+            "Property": "Actuals @actual fx test"
           }
         },
         "type": "Advanced"
       },
       {
-        "name": "c2b69f30db2679339071",
+        "name": "da82ed11109625d0667c",
         "field": {
-          "Measure": {
+          "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "_Measures"
+                "Entity": "date"
               }
             },
-            "Property": "Var, #"
+            "Property": "FiscalYear"
           }
         },
-        "type": "Advanced"
-      },
-      {
-        "name": "15905d0d7ca66610788d",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures"
-              }
-            },
-            "Property": "Var, %"
-          }
-        },
-        "type": "Advanced"
+        "type": "Advanced",
+        "howCreated": "User"
       }
     ]
   }

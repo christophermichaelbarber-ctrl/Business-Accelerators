@@ -142,7 +142,6 @@ table Layout
 				    #"Imported CSV" = Csv.Document(Source,[Delimiter=",", Columns=14, Encoding=65001, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(#"Imported CSV", [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Income_Statement_Key", Int64.Type}, {"Line_name", type text}, {"Subtotal_From", Int64.Type}, {"Subtotal_To", Int64.Type}, {"Divide_Numerator", Int64.Type}, {"Divide_Denominator", Int64.Type}, {"Show_Perc", Int64.Type}, {"Format_String_Default", type text}, {"Format_String_Variance_Abs", type text}, {"Format_String_Variance_Per", type text}, {"Formatting P_L.Hex_Text", type text}, {"Formatting P_L.Hex_Background", type text}, {"Show_Values", Int64.Type}, {"Calculation_type", type text}})
-				
 				in
 				    #"Changed Type"
 				```
