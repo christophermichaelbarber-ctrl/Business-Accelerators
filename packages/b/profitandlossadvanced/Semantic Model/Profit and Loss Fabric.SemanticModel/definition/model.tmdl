@@ -10,7 +10,7 @@ annotation PBI_QueryOrder = ["DirectLake - profitandlossadvanced_lakehouse"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_ProTooling = ["WebModelingEdit"]
+annotation PBI_ProTooling = ["WebModelingEdit","RemoteModeling"]
 
 annotation __TEdtr = 1
 
@@ -19,4 +19,8 @@ ref table layout
 ref table date
 ref table ledger
 ref table measuretable
+ref table currency
+ref table legalentity
+ref table '__Field Paramater Self-Service Table Measures'
+ref table 'Fx Assumptions'
 

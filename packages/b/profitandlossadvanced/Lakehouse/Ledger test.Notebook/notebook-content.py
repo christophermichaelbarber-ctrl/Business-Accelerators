@@ -56,7 +56,7 @@ sdf = sdf.withColumn(
     "Date",
     F.to_timestamp(F.col("Date").cast("timestamp"))  # idempotent if already timestamp
 )
-
+display(sdf)
 
 
 # METADATA ********************
@@ -79,7 +79,7 @@ from pyspark.sql import functions as F, Window as W
 # ── 1) Define weights ───────────────────────────────────────────────────────────
 # 5 currencies (1..5) and 15 legal entities (1..15), equal split by default.
 num_curr = 5
-num_legal = 15
+num_legal = 17
 
 w_curr_equal = 1.0 / num_curr
 w_legal_equal = 1.0 / num_legal

@@ -70,3 +70,5 @@ table measuretable
 			entityName: measuretable
 			expressionSource: 'DirectLake - profitandlossadvanced_lakehouse'
 
+	annotation TabularEditor_TableGroup = Measures
+

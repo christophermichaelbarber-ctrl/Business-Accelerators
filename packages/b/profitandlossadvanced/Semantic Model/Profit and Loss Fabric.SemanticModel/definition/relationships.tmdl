@@ -10,3 +10,15 @@ relationship 915b7cb2-5bcf-7618-cfd4-100c70a7f196
 	fromColumn: ledger.Date
 	toColumn: date.FiscalDate
 
+relationship 43ffd3de-5d1a-10f1-a9ed-31b85d9117f7
+	fromColumn: ledger.CurrencyKey
+	toColumn: currency.Currency_Key
+
+relationship f40d6959-b2f9-6a90-36f9-f094237afe83
+	fromColumn: ledger.LegalEntityKey
+	toColumn: legalentity.Legal_Entity_Key
+
+relationship 120e471a-f13e-49d0-83f8-26c1fd6a27b7
+	fromColumn: '__Field Paramater Self-Service Table Measures'.Selected_Measures_Key
+	toColumn: 'Fx Assumptions'.'Fx Assumption Sort Order'
+

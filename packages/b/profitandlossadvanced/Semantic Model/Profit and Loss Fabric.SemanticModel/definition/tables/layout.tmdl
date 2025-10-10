@@ -155,3 +155,5 @@ table layout
 			entityName: layout
 			expressionSource: 'DirectLake - profitandlossadvanced_lakehouse'
 
+	annotation TabularEditor_TableGroup = Dimensions
+

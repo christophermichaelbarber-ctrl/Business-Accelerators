@@ -273,3 +273,185 @@ measure_df.write.format("delta").saveAsTable('MeasureTable')
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# CELL ********************
+
+# Base64 Legal Entity table -> Delta (Fabric)
+import base64
+import pandas as pd
+from io import StringIO
+from pyspark.sql import functions as F, types as T
+
+# ==== CONFIG ====
+BASE64_STR = """
+TGVnYWxfRW50aXR5X0tleSxMZWdhbF9lbnRpdHlfbmFtZSxMZWdhbF9FbnRpdHlfU29ydF9PcmRlcixHcm91cCxDb3VudHJ5LFJlZ2lvbixDaGlsZCxQYXJlbnQsUGF0aCxMZWdhbF9lbnRpdHlfbGV2ZWxfMSxMZWdhbF9lbnRpdHlfbGV2ZWxfMixMZWdhbF9lbnRpdHlfbGV2ZWxfMyxMZWdhbF9lbnRpdHlfbGV2ZWxfNCxMZWdhbF9lbnRpdHlfbGV2ZWxfNSxMZWdhbF9lbnRpdHlfbGV2ZWxfMV9uYW1lLExlZ2FsX2VudGl0eV9sZXZlbF8yX25hbWUsTGVnYWxfZW50aXR5X2xldmVsXzNfbmFtZSxMZWdhbF9lbnRpdHlfbGV2ZWxfNF9uYW1lLExlZ2FsX2VudGl0eV9sZXZlbF81X25hbWUKMSxDb21wYW55IEhvbGRpbmdzLDEsR3JvdXAsVVNBLEFtZXJpY2FzLDEsLDEsMSwsLCwsQ29tcGFueSBIb2xkaW5ncywsLCwKMixDb21wYW55IExvZ2lzdGljcyBVUywyLEdyb3VwLFVTQSxBbWVyaWNhcywyLDEsMXwyLDEsMiwsLCxDb21wYW55IEhvbGRpbmdzLENvbXBhbnkgTG9naXN0aWNzIFVTLCwsCjMsQ29tcGFueSBSZXRhaWwgSW5jLDMsR3JvdXAsVVNBLEFtZXJpY2FzLDMsMiwxfDJ8MywxLDIsMywsLENvbXBhbnkgSG9sZGluZ3MsQ29tcGFueSBMb2dpc3RpY3MgVVMsQ29tcGFueSBSZXRhaWwgSW5jLCwKNCxDb21wYW55IFJldGFpbCBDYW5hZGEsNCxHcm91cCxDYW5hZGEsQW1lcmljYXMsNCwzLDF8MnwzfDQsMSwyLDMsNCwsQ29tcGFueSBIb2xkaW5ncyxDb21wYW55IExvZ2lzdGljcyBVUyxDb21wYW55IFJldGFpbCBJbmMsQ29tcGFueSBSZXRhaWwgQ2FuYWRhLAo1LENvbXBhbnkgUmV0YWlsIE1leGljbyw1LEdyb3VwLE1leGljbyxBbWVyaWNhcyw1LDMsMXwyfDN8NSwxLDIsMyw1LCxDb21wYW55IEhvbGRpbmdzLENvbXBhbnkgTG9naXN0aWNzIFVTLENvbXBhbnkgUmV0YWlsIEluYyxDb21wYW55IFJldGFpbCBNZXhpY28sCjYsQ29tcGFueSBGaW5hbmNlIEx0ZCw2LEdyb3VwLFVLLEV1cm9wZSw2LDEsMXw2LDEsNiwsLCxDb21wYW55IEhvbGRpbmdzLENvbXBhbnkgRmluYW5jZSBMdGQsLCwKNyxDb21wYW55IEludmVzdG1lbnRzLDcsR3JvdXAsVUssRXVyb3BlLDcsNiwxfDZ8NywxLDYsNywsLENvbXBhbnkgSG9sZGluZ3MsQ29tcGFueSBGaW5hbmNlIEx0ZCxDb21wYW55IEludmVzdG1lbnRzLCwKOCxDb21wYW55IFRlY2ggTHRkLDgsR3JvdXAsVUssRXVyb3BlLDgsNywxfDZ8N3w4LDEsNiw3LDgsLENvbXBhbnkgSG9sZGluZ3MsQ29tcGFueSBGaW5hbmNlIEx0ZCxDb21wYW55IEludmVzdG1lbnRzLENvbXBhbnkgVGVjaCBMdGQsCjksQ29tcGFueSBMb2dpc3RpY3MgTHRkLDksR3JvdXAsVUssRXVyb3BlLDksNywxfDZ8N3w5LDEsNiw3LDksLENvbXBhbnkgSG9sZGluZ3MsQ29tcGFueSBGaW5hbmNlIEx0ZCxDb21wYW55IEludmVzdG1lbnRzLENvbXBhbnkgTG9naXN0aWNzIEx0ZCwKMTAsQ29tcGFueSBEaWdpdGFsIEdtYkgsMTAsR3JvdXAsR2VybWFueSxFdXJvcGUsMTAsNiwxfDZ8MTAsMSw2LDEwLCwsQ29tcGFueSBIb2xkaW5ncyxDb21wYW55IEZpbmFuY2UgTHRkLENvbXBhbnkgRGlnaXRhbCBHbWJILCwKMTEsQ29tcGFueSBEaWdpdGFsIEZyYW5jZSwxMSxHcm91cCxGcmFuY2UsRXVyb3BlLDExLDYsMXw2fDExLDEsNiwxMSwsLENvbXBhbnkgSG9sZGluZ3MsQ29tcGFueSBGaW5hbmNlIEx0ZCxDb21wYW55IERpZ2l0YWwgRnJhbmNlLCwKMTIsQ29tcGFueSBBc2lhIEhvbGRpbmdzLDEyLEdyb3VwLFNpbmdhcG9yZSxBc2lhLDEyLDEsMXwxMiwxLDEyLCwsLENvbXBhbnkgSG9sZGluZ3MsQ29tcGFueSBBc2lhIEhvbGRpbmdzLCwsCjEzLENvbXBhbnkgQXNpYSBUZWNoLDEzLEdyb3VwLEluZGlhLEFzaWEsMTMsMTIsMXwxMnwxMywxLDEyLDEzLCwsQ29tcGFueSBIb2xkaW5ncyxDb21wYW55IEFzaWEgSG9sZGluZ3MsQ29tcGFueSBBc2lhIFRlY2gsLAoxNCxDb21wYW55IEFzaWEgRmluYW5jZSwxNCxHcm91cCxIb25nIEtvbmcsQXNpYSwxNCwxMiwxfDEyfDE0LDEsMTIsMTQsLCxDb21wYW55IEhvbGRpbmdzLENvbXBhbnkgQXNpYSBIb2xkaW5ncyxDb21wYW55IEFzaWEgRmluYW5jZSwsCjE1LENvbXBhbnkgTG9naXN0aWNzIEFzaWEsMTUsR3JvdXAsU2luZ2Fwb3JlLEFzaWEsMTUsMTIsMXwxMnwxNSwxLDEyLDE1LCwsQ29tcGFueSBIb2xkaW5ncyxDb21wYW55IEFzaWEgSG9sZGluZ3MsQ29tcGFueSBMb2dpc3RpY3MgQXNpYSwsCjE2LENvbXBhbnkgTG9naXN0aWNzIEluZGlhLDE2LEdyb3VwLEluZGlhLEFzaWEsMTYsMTUsMXwxMnwxNXwxNiwxLDEyLDE1LDE2LCxDb21wYW55IEhvbGRpbmdzLENvbXBhbnkgQXNpYSBIb2xkaW5ncyxDb21wYW55IExvZ2lzdGljcyBBc2lhLENvbXBhbnkgTG9naXN0aWNzIEluZGlhLAoxNyxDb21wYW55IExvZ2lzdGljcyBIb25rIEtvbmcsMTcsR3JvdXAsSW5kaWEsQXNpYSwxNywxNiwxfDEyfDE1fDE2fDE3LDEsMTIsMTUsMTYsMTcsQ29tcGFueSBIb2xkaW5ncyxDb21wYW55IEFzaWEgSG9sZGluZ3MsQ29tcGFueSBMb2dpc3RpY3MgQXNpYSxDb21wYW55IExvZ2lzdGljcyBJbmRpYSxDb21wYW55IExvZ2lzdGljcyBIb25rIEtvbmc=
+"""
+TABLE_NAME = "LegalEntity"   # target Delta table name
+
+# Expected CSV columns (exact order from your Base64 header)
+expected_cols = [
+    "Legal_Entity_Key","Legal_entity_name","Legal_Entity_Sort_Order",
+    "Group","Country","Region","Child","Parent","Path",
+    "Legal_entity_level_1","Legal_entity_level_2","Legal_entity_level_3",
+    "Legal_entity_level_4","Legal_entity_level_5",
+    "Legal_entity_level_1_name","Legal_entity_level_2_name",
+    "Legal_entity_level_3_name","Legal_entity_level_4_name",
+    "Legal_entity_level_5_name"
+]
+
+# Spark schema for the legal-entity hierarchy
+# NOTE: some hierarchy columns can contain pipe-delimited values (e.g., "1|2"),
+# so we keep them as strings to avoid parsing errors.
+spark_schema = T.StructType([
+    T.StructField("Legal_Entity_Key",            T.IntegerType(), True),
+    T.StructField("Legal_entity_name",           T.StringType(),  True),
+    T.StructField("Legal_Entity_Sort_Order",     T.IntegerType(), True),
+    T.StructField("Group",                       T.StringType(),  True),
+    T.StructField("Country",                     T.StringType(),  True),
+    T.StructField("Region",                      T.StringType(),  True),
+    T.StructField("Child",                       T.StringType(),  True),
+    T.StructField("Parent",                      T.StringType(),  True),
+    T.StructField("Path",                        T.StringType(),  True),
+    T.StructField("Legal_entity_level_1",        T.IntegerType(),  True),
+    T.StructField("Legal_entity_level_2",        T.IntegerType(),  True),
+    T.StructField("Legal_entity_level_3",        T.IntegerType(),  True),
+    T.StructField("Legal_entity_level_4",        T.IntegerType(),  True),
+    T.StructField("Legal_entity_level_5",        T.IntegerType(),  True),
+    T.StructField("Legal_entity_level_1_name",   T.StringType(),  True),
+    T.StructField("Legal_entity_level_2_name",   T.StringType(),  True),
+    T.StructField("Legal_entity_level_3_name",   T.StringType(),  True),
+    T.StructField("Legal_entity_level_4_name",   T.StringType(),  True),
+    T.StructField("Legal_entity_level_5_name",   T.StringType(),  True),
+])
+
+# ==== 1) Decode Base64 safely ====
+b64 = BASE64_STR.strip()
+if not b64:
+    raise ValueError("Base64 string is empty. Paste a valid Base64 CSV.")
+csv_text = base64.b64decode(b64).decode("utf-8")
+if not csv_text.strip():
+    raise ValueError("Decoded CSV is empty.")
+
+# ==== 2) Read CSV with pandas ====
+pdf = pd.read_csv(StringIO(csv_text))
+missing = set(expected_cols) - set(pdf.columns)
+if missing:
+    raise ValueError(f"CSV missing expected columns: {sorted(missing)}")
+
+# Trim whitespace in all string-like columns
+for c in pdf.columns:
+    if pdf[c].dtype == object:
+        pdf[c] = pdf[c].astype(str).str.strip()
+
+# Coerce numerics where safe
+for c in ["Legal_Entity_Key", "Legal_Entity_Sort_Order"]:
+    pdf[c] = pd.to_numeric(pdf[c], errors="coerce")
+
+# ==== 3) Convert pandas -> Spark and enforce Spark dtypes ====
+sdf = spark.createDataFrame(pdf)
+
+# Cast columns to final schema (idempotent if already correct)
+for f in spark_schema:
+    if f.name in sdf.columns:
+        sdf = sdf.withColumn(f.name, F.col(f.name).cast(f.dataType))
+
+# Optional: de-duplicate by key/sort order + name if needed
+# sdf = sdf.dropDuplicates(["Legal_Entity_Key", "Legal_entity_name"])
+
+# ==== 4) Write managed Delta table in the attached Lakehouse ====
+(sdf.write
+    .mode("overwrite")        # change to "append" if you want to accumulate
+    .format("delta")
+    .saveAsTable(TABLE_NAME))
+
+print(f"✅ Wrote Delta table: {TABLE_NAME}  (rows: {sdf.count()})")
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# Base64 Currency table -> Delta (Fabric)
+import base64
+import pandas as pd
+from io import StringIO
+from pyspark.sql import functions as F, types as T
+
+# ==== CONFIG ====
+BASE64_STR = """
+Q3VycmVuY3lfS2V5LEN1cnJlbmN5LEN1cnJlbmN5X0dyb3VwLEN1cnJlbmN5X0dyb3VwX1NvcnRfT3JkZXIsVW5kZXJseWluZ19DdXJyZW5jeQo3LFVTRCxVU0QsMSwwCjQsR0JQLEdCUCwyLDAKNixFVVIsRVVSLDMsMAo1LElOUixJTlIsNCwwCjMsWkFSLFpBUiw1LDAKMixBVUQsT3RoZXIgLDYsMAoxLEJSTCxPdGhlciAsNiwwCjAsQ0FELE90aGVyICw2LDAK
+"""
+TABLE_NAME = "Currency"   # target Delta table name
+
+# Expected columns in the CSV (taken from the header)
+expected_cols = [
+    "Currency_Key",
+    "Currency",
+    "Currency_Group",
+    "Currency_Group_Sort_Order",
+    "Underlying_Currency"
+]
+
+# Spark schema we want on the final table
+spark_schema = T.StructType([
+    T.StructField("Currency_Key",                T.IntegerType(), True),
+    T.StructField("Currency",                    T.StringType(),  True),
+    T.StructField("Currency_Group",              T.StringType(),  True),
+    T.StructField("Currency_Group_Sort_Order",   T.IntegerType(), True),
+    T.StructField("Underlying_Currency",         T.IntegerType(), True),
+])
+
+# ==== 1) Decode Base64 safely ====
+b64 = BASE64_STR.strip()
+if not b64:
+    raise ValueError("Base64 string is empty. Paste a valid Base64 CSV.")
+csv_text = base64.b64decode(b64).decode("utf-8")
+if not csv_text.strip():
+    raise ValueError("Decoded CSV is empty.")
+
+# ==== 2) Read CSV with pandas ====
+pdf = pd.read_csv(StringIO(csv_text))
+missing = set(expected_cols) - set(pdf.columns)
+if missing:
+    raise ValueError(f"CSV missing expected columns: {sorted(missing)}")
+
+# Trim whitespace in all string-like columns
+for c in pdf.columns:
+    if pdf[c].dtype == object:
+        pdf[c] = pdf[c].astype(str).str.strip()
+
+# Coerce numerics
+for c in ["Currency_Key", "Currency_Group_Sort_Order", "Underlying_Currency"]:
+    pdf[c] = pd.to_numeric(pdf[c], errors="coerce")
+
+# ==== 3) Convert pandas -> Spark and enforce Spark dtypes ====
+sdf = spark.createDataFrame(pdf)
+
+# Cast columns to final schema (idempotent if already correct)
+for f in spark_schema:
+    if f.name in sdf.columns:
+        sdf = sdf.withColumn(f.name, F.col(f.name).cast(f.dataType))
+
+# (Optional) de-duplicate by key if needed
+# sdf = sdf.dropDuplicates(["Currency_Key"])
+
+# ==== 4) Write managed Delta table in the attached Lakehouse ====
+(sdf.write
+    .mode("overwrite")          # change to "append" if you want to accumulate
+    .format("delta")
+    .saveAsTable(TABLE_NAME))
+
+print(f"✅ Wrote Delta table: {TABLE_NAME}  (rows: {sdf.count()})")
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }

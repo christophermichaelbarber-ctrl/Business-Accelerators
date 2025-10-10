@@ -91,7 +91,7 @@ table ledger
 		formatString: 0
 		lineageTag: 52141faf-4628-4b4e-89d8-bcde18743ff8
 		sourceLineageTag: CurrencyKey
-		summarizeBy: count
+		summarizeBy: none
 		sourceColumn: CurrencyKey
 
 		annotation SummarizationSetBy = Automatic
@@ -102,7 +102,7 @@ table ledger
 		formatString: 0
 		lineageTag: 490108d1-f1f0-4c54-8832-55e89a014334
 		sourceLineageTag: LegalEntityKey
-		summarizeBy: count
+		summarizeBy: none
 		sourceColumn: LegalEntityKey
 
 		annotation SummarizationSetBy = Automatic
@@ -112,4 +112,6 @@ table ledger
 		source
 			entityName: ledger
 			expressionSource: 'DirectLake - profitandlossadvanced_lakehouse'
+
+	annotation TabularEditor_TableGroup = Fact
 

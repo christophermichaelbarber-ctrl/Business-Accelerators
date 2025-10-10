@@ -178,3 +178,5 @@ table date
 			entityName: date
 			expressionSource: 'DirectLake - profitandlossadvanced_lakehouse'
 
+	annotation TabularEditor_TableGroup = Dimensions
+
