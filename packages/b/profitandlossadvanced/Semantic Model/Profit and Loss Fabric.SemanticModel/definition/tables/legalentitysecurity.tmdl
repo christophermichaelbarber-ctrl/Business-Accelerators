@@ -1,0 +1,69 @@
+table legalentitysecurity
+	lineageTag: fbdeea40-59e9-40ee-ab83-eefe957fca62
+	sourceLineageTag: [dbo].[legalentitysecurity]
+
+	column Full_Name
+		dataType: string
+		lineageTag: 72ac79eb-37c9-43a2-a8de-4a7170097fc6
+		sourceLineageTag: Full_Name
+		summarizeBy: none
+		sourceColumn: Full_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level
+		dataType: string
+		lineageTag: ec9ab521-e2e1-447d-8686-dfba5334ff96
+		sourceLineageTag: Level
+		summarizeBy: none
+		sourceColumn: Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column Employee_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 42e210e5-4423-499d-a9a7-5f08e272089a
+		sourceLineageTag: Employee_ID
+		summarizeBy: count
+		sourceColumn: Employee_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column User_Name
+		dataType: string
+		lineageTag: 7e0c0df4-374b-4cdb-a8b6-86ae567d4fd9
+		sourceLineageTag: User_Name
+		summarizeBy: none
+		sourceColumn: User_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Legal_Entity_Key
+		dataType: int64
+		formatString: 0
+		lineageTag: 40b26f92-e51d-472f-9716-cfa2acbfe88b
+		sourceLineageTag: Legal_Entity_Key
+		summarizeBy: count
+		sourceColumn: Legal_Entity_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Security_Key
+		dataType: int64
+		formatString: 0
+		lineageTag: 439afd34-6cce-45ac-8700-2a4b901bf8a2
+		sourceLineageTag: Security_Key
+		summarizeBy: count
+		sourceColumn: Security_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	partition legalentitysecurity = entity
+		mode: directLake
+		source
+			entityName: legalentitysecurity
+			expressionSource: 'DirectLake - profitandlossadvanced_lakehouse'
+
+	annotation TabularEditor_TableGroup = Dimensions
+

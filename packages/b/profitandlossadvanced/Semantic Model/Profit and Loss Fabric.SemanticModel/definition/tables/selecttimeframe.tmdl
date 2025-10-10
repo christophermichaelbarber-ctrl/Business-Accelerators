@@ -1,0 +1,31 @@
+table selecttimeframe
+	lineageTag: e08220a9-7e3a-42a0-80d8-4ac2c2e5b908
+	sourceLineageTag: [dbo].[selecttimeframe]
+
+	column Time_Horizon
+		dataType: string
+		lineageTag: 7c816b1d-01bc-4acc-9c5c-df1a97ed4702
+		sourceLineageTag: Time_Horizon
+		summarizeBy: none
+		sourceColumn: Time_Horizon
+
+		annotation SummarizationSetBy = Automatic
+
+	column Time_Horizon_Sort_Order
+		dataType: int64
+		formatString: 0
+		lineageTag: 04cddd2f-35d9-4d07-9358-53c64d3027ca
+		sourceLineageTag: Time_Horizon_Sort_Order
+		summarizeBy: sum
+		sourceColumn: Time_Horizon_Sort_Order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition selecttimeframe = entity
+		mode: directLake
+		source
+			entityName: selecttimeframe
+			expressionSource: 'DirectLake - profitandlossadvanced_lakehouse'
+
+	annotation TabularEditor_TableGroup = Disconnected
+

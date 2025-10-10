@@ -70,5 +70,5 @@ table _Measures
 			entityName: measuretable
 			expressionSource: 'DirectLake - profitandlossadvanced_lakehouse'
 
-	annotation TabularEditor_TableGroup = Measures
+	annotation TabularEditor_TableGroup = Disconnected
 

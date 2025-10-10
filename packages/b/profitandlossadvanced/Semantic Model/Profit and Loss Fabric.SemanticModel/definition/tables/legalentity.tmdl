@@ -3,6 +3,46 @@ table legalentity
 	lineageTag: 1222a725-7c00-49d0-86cb-0b74128e6058
 	sourceLineageTag: [dbo].[legalentity]
 
+	measure 'var Overall Actuals @actual fx vs Forecast Bottom Up' = [Actuals @actual fx] - [Forecast Bottom Up]
+		displayFolder: 3_Varaince\a_overall
+		lineageTag: b6f0e7c6-e879-4e46-8b5e-9c443de48b4a
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Abs],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'var Overall Actuals @actual fx vs Forecast Top Down' = [Actuals @actual fx] - [Forecast Top Down]
+		displayFolder: 3_Varaince\a_overall
+		lineageTag: 470bae97-37a1-4c1c-8a61-077c5fd80a9b
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Abs],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'var Overall Actuals @actual fx vs Plan' = [Actuals @actual fx] - [Basic Plan]
+		displayFolder: 3_Varaince\a_overall
+		lineageTag: 8a0449e3-28cb-4489-8fc2-dd7faf4d1bbc
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Abs],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'var Overall Actuals @actual fx vs PY' = [Actuals @actual fx] - [Prior Year Actuals]
+		displayFolder: 3_Varaince\a_overall
+		lineageTag: 31de0038-261b-4c2c-a32f-cc16e9a4b83b
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Abs],
+				    "#,##0,;(#,##0,);-"
+				)
+
 	column Legal_Entity_Key
 		dataType: int64
 		isHidden

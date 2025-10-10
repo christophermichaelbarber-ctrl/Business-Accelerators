@@ -1,0 +1,181 @@
+table _Measures_Hidden
+	lineageTag: e4edf78f-2f36-4594-9789-1273f2fdbcab
+	sourceLineageTag: [dbo].[measuretable]
+
+	measure 'Actuals @actual fx' = __Fn_PnL_Step3_CY_AddDivide( SUM( Ledger[Credit Less Debit @Global Fx] ), 1,0  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 1_Actuals
+		lineageTag: 92ed88ce-4dbf-4e04-9370-130b0baaf357
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'Actuals @actual fx TEST' = __Fn_PnL_Step2_CY_TimeHorizon( SUM( Ledger[Credit Less Debit @Global Fx] ), 1,0 )
+		formatString: "£"#,0.###############;-"£"#,0.###############;"£"#,0.###############
+		displayFolder: 1_Actuals
+		lineageTag: 7806ba29-fb11-4f88-a415-e5871d4aaa7d
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
+
+	measure 'Actuals @fcst fx' = __Fn_PnL_Step3_CY_AddDivide( SUM( Ledger[Credit Less Debit @Fcst Fx] ),  1,0  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 1_Actuals
+		lineageTag: c18b4f34-f448-4fad-b9bd-3c6f803aa347
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'Actuals @plan fx' = __Fn_PnL_Step3_CY_AddDivide( SUM( Ledger[Credit Less Debit @Plan Fx] ), 1,0  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 1_Actuals
+		lineageTag: 19b97181-d0e2-4d2c-8a11-ca972909070b
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'Actuals @py fx' = __Fn_PnL_Step3_CY_AddDivide( SUM( Ledger[Credit Less Debit @PY Fx] ), 1,0  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 1_Actuals
+		lineageTag: fa3b27df-5fe5-4e1d-a5d9-4975228d46ec
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'Forecast Bottom Up' =
+			__Fn_PnL_Step3_CY_AddDivide(
+			    CALCULATE(
+			        SUM( Scenario[Credit less debit] ),
+			        Scenario[Scenario Key] = 2
+			    ),
+			    2
+			,0  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 2_Comparisons
+		lineageTag: 7953fbb1-27ce-48eb-9325-c0ab248164ed
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'Forecast Top Down' =
+			__Fn_PnL_Step3_CY_AddDivide(
+			    CALCULATE(
+			        SUM( Scenario[Credit less debit] ),
+			        Scenario[Scenario Key] = 1
+			    ),
+			    2
+			,0  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 2_Comparisons
+		lineageTag: 629d00da-60ec-405d-b2a2-f03bd8586fa9
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure Plan =
+			__Fn_PnL_Step3_CY_AddDivide(
+			    CALCULATE(
+			        SUM( Scenario[Credit less debit] ),
+			        Scenario[Scenario Key] = 3
+			    ),
+			    2
+			,0  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 2_Comparisons
+		lineageTag: a552a3b7-45b4-440b-8b68-034a0352a12f
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'Prior Year Actuals' = __Fn_PnL_Step3_CY_AddDivide( SUM( Ledger[Credit Less Debit @Global Fx] ), 1,1  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 2_Comparisons
+		lineageTag: 93287979-8283-4f72-8325-35d4548bbcaf
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'var Overall Actuals @actual fx vs Forecast Bottom Up 1' = [Actuals @actual fx] - [Forecast Bottom Up]
+		displayFolder: 3_Varaince\a_overall
+		lineageTag: 160da851-c841-4527-a877-31ea2f39755b
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Abs],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'var Overall Actuals @actual fx vs Forecast Top Down 1' = [Actuals @actual fx] - [Forecast Top Down]
+		displayFolder: 3_Varaince\a_overall
+		lineageTag: 8945c872-5171-4e90-8657-509487abd5f7
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Abs],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'var Overall Actuals @actual fx vs Plan 1' = [Actuals @actual fx] - [Basic Plan]
+		displayFolder: 3_Varaince\a_overall
+		lineageTag: be865c7c-0e32-4a21-a4db-a751a0783132
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Abs],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'var Overall Actuals @actual fx vs PY 1' = [Actuals @actual fx] - [Prior Year Actuals]
+		displayFolder: 3_Varaince\a_overall
+		lineageTag: 714704e1-6ab0-4e26-bdf0-386fcf0878e3
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Abs],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	column ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 79d2f4ae-2c34-411d-ac00-ecc67ca6f55d
+		sourceLineageTag: ID
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Col1
+		dataType: string
+		isHidden
+		lineageTag: 23deb3aa-58df-4945-b02e-e169ee7dae33
+		sourceLineageTag: Col1
+		summarizeBy: none
+		sourceColumn: Col1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = entity
+		mode: directLake
+		source
+			entityName: measuretable
+			expressionSource: 'DirectLake - profitandlossadvanced_lakehouse'
+
+	annotation TabularEditor_TableGroup = Disconnected
+
