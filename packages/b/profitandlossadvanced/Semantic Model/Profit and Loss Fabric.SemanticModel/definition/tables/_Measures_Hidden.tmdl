@@ -1,0 +1,1625 @@
+table _Measures_Hidden
+	lineageTag: d3be5814-e104-4155-96c5-de79bbda9904
+	sourceLineageTag: [dbo].[measuretable]
+
+	measure Green = "#64B669"
+		isHidden
+		displayFolder: Field Paramaters\_Formatting
+		lineageTag: c0632da1-e1d9-4ba3-a6df-c84cd5964d56
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure Gray = "#F3F3F3"
+		isHidden
+		displayFolder: Field Paramaters\_Formatting
+		lineageTag: 2571f70f-0147-4bde-ad12-5874a10b7c87
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure Red = "#EB3B3B"
+		isHidden
+		displayFolder: Field Paramaters\_Formatting
+		lineageTag: d5b5a682-8dde-486c-bfb4-12b39a13c321
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure Blue = "#000000"
+		isHidden
+		displayFolder: Field Paramaters\_Formatting
+		lineageTag: 671f1098-2fb7-4dc3-8397-74f5cc675feb
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'Medium Gray' = "#8b8680"
+		isHidden
+		displayFolder: Field Paramaters\_Formatting
+		lineageTag: 11566507-fbc5-49b4-aa55-2dcd0a62702c
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'View A1 A Act' = [Actuals @actual fx]
+		isHidden
+		displayFolder: Field Paramaters\View A1: Overall
+		lineageTag: 29b4d602-b093-4bee-b560-2e3bff4d9a78
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'View A1 B PY' = [Prior Year Actuals]
+		isHidden
+		displayFolder: Field Paramaters\View A1: Overall
+		lineageTag: 57430e00-4823-4eee-86e4-c1b0bb59de86
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'View A1 C Fcst TD' = [Forecast Top Down]
+		isHidden
+		displayFolder: Field Paramaters\View A1: Overall
+		lineageTag: a0d8ad20-f480-44a6-96d7-ea6e2bb4f079
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'View A1 D Fcts BU' = [Forecast Bottom Up]
+		isHidden
+		displayFolder: Field Paramaters\View A1: Overall
+		lineageTag: 3c4b9c72-2faa-46e5-bdbe-faa84d0e48f4
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'View A1 E Pln' = [Basic Plan]
+		isHidden
+		displayFolder: Field Paramaters\View A1: Overall
+		lineageTag: 61ee1aea-d5c7-4127-b783-504657ce9f5e
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'View A1 F' = [Blank Column]
+		isHidden
+		displayFolder: Field Paramaters\View A1: Overall
+		lineageTag: 3a6eb7b0-5a48-4f59-a1b8-f9f1ce3d0434
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'View A1 G vs PY' = [View A1 A Act] - [View A1 B PY]
+		isHidden
+		displayFolder: Field Paramaters\View A1: Overall
+		lineageTag: bdd7db09-01d1-43c2-a1ad-eb29034abd2f
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Abs],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A1 H vs Fcst TD' = [View A1 A Act] - [View A1 C Fcst TD]
+		isHidden
+		displayFolder: Field Paramaters\View A1: Overall
+		lineageTag: 07ef9646-5b3e-4ed0-924f-3d2e574dcb1a
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Abs],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A1 I vs Fcst BU' = [View A1 A Act] - [View A1 D Fcts BU]
+		isHidden
+		displayFolder: Field Paramaters\View A1: Overall
+		lineageTag: 6a878c3e-cbf6-47d6-8c83-f0f18afbb4f1
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Abs],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A1 J vs Pln' = [View A1 A Act] - [View A1 E Pln]
+		isHidden
+		displayFolder: Field Paramaters\View A1: Overall
+		lineageTag: 15e25348-9a8a-42a4-b29a-936caa472e8e
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Abs],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A1 K' = [Blank Column]
+		isHidden
+		displayFolder: Field Paramaters\View A1: Overall
+		lineageTag: 4b98507a-2c48-47a5-902a-0915205041cd
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'View A1 L vs PY, %' = DIVIDE( [View A1 G vs PY], [View A1 A Act] ) * [Show Perc]
+		isHidden
+		displayFolder: Field Paramaters\View A1: Overall
+		lineageTag: b7b625a2-2e5a-4294-b9c8-4be93678dbea
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Per],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A1 M vs Fcst TD, %' =
+			DIVIDE( [View A1 H vs Fcst TD], [View A1 A Act] )
+			    * [Show Perc]
+		isHidden
+		displayFolder: Field Paramaters\View A1: Overall
+		lineageTag: ce71dff2-927d-4e21-b510-625a9cff74e1
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Per],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A1 N vs Fcst BU, %' =
+			DIVIDE( [View A1 I vs Fcst BU], [View A1 A Act] )
+			    * [Show Perc]
+		isHidden
+		displayFolder: Field Paramaters\View A1: Overall
+		lineageTag: 7cae4675-cadb-419f-ada0-591a220f4ca0
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Per],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A1 O vs Pln, %' = DIVIDE( [View A1 J vs Pln], [View A1 A Act] ) * [Show Perc]
+		isHidden
+		displayFolder: Field Paramaters\View A1: Overall
+		lineageTag: ac6d730d-5e86-4fab-955f-3e849d746136
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Per],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A1 Format Fcst BU' =
+			// subtotal
+			VAR NCLD_filter_context_calculated_table =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
+			        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
+			    )
+			VAR indicatorsubtotal =
+			    CALCULATE(
+			        [Net Credit Less Debit Indicator],
+			        NCLD_filter_context_calculated_table
+			    )
+			//percentage
+			VAR numeratormax = MAX( Layout[Divide_Numerator] )
+			VAR Pct_Table =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= numeratormax,
+			        Layout[Income_Statement_Key] <= numeratormax
+			    )
+			VAR subtotalfrom =
+			    CALCULATE(
+			        MAX( Layout[Subtotal_From] ),
+			        REMOVEFILTERS( Layout ),
+			        Pct_Table
+			    )
+			VAR subtotalto =
+			    CALCULATE(
+			        MAX( Layout[Subtotal_To] ),
+			        REMOVEFILTERS( Layout ),
+			        Pct_Table
+			    )
+			VAR NCLD_filter_context_calculated_table_Pct =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= subtotalfrom,
+			        Layout[Income_Statement_Key] <= subtotalto
+			    )
+			VAR indicatorpct =
+			    CALCULATE(
+			        [Net Credit Less Debit Indicator],
+			        NCLD_filter_context_calculated_table_Pct
+			    )
+			// indicatpr
+			VAR indicator =
+			    COALESCE(
+			        [Net Credit Less Debit Indicator],
+			        indicatorsubtotal,
+			        indicatorpct
+			    )
+			VAR varianceadj = [View A1 I vs Fcst BU] * indicator
+			VAR result =
+			    SWITCH(
+			        TRUE( ),
+			        varianceadj > 0, [Green],
+			        varianceadj < 0, [Red],
+			        [Gray]
+			    )
+			RETURN
+			    result
+		isHidden
+		displayFolder: Field Paramaters\View A1: Overall\Formatting
+		lineageTag: 5c2487c3-7064-4ec9-9512-2df886e42414
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Per],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A1 Format Fcst TD' =
+			// subtotal
+			VAR NCLD_filter_context_calculated_table =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
+			        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
+			    )
+			VAR indicatorsubtotal =
+			    CALCULATE(
+			        [Net Credit Less Debit Indicator],
+			        NCLD_filter_context_calculated_table
+			    )
+			//percentage
+			VAR numeratormax = MAX( Layout[Divide_Numerator] )
+			VAR Pct_Table =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= numeratormax,
+			        Layout[Income_Statement_Key] <= numeratormax
+			    )
+			VAR subtotalfrom =
+			    CALCULATE(
+			        MAX( Layout[Subtotal_From] ),
+			        REMOVEFILTERS( Layout ),
+			        Pct_Table
+			    )
+			VAR subtotalto =
+			    CALCULATE(
+			        MAX( Layout[Subtotal_To] ),
+			        REMOVEFILTERS( Layout ),
+			        Pct_Table
+			    )
+			VAR NCLD_filter_context_calculated_table_Pct =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= subtotalfrom,
+			        Layout[Income_Statement_Key] <= subtotalto
+			    )
+			VAR indicatorpct =
+			    CALCULATE(
+			        [Net Credit Less Debit Indicator],
+			        NCLD_filter_context_calculated_table_Pct
+			    )
+			// indicatpr
+			VAR indicator =
+			    COALESCE(
+			        [Net Credit Less Debit Indicator],
+			        indicatorsubtotal,
+			        indicatorpct
+			    )
+			VAR varianceadj = [View A1 H vs Fcst TD] * indicator
+			VAR result =
+			    SWITCH(
+			        TRUE( ),
+			        varianceadj > 0, [Green],
+			        varianceadj < 0, [Red],
+			        [Gray]
+			    )
+			RETURN
+			    result
+		isHidden
+		displayFolder: Field Paramaters\View A1: Overall\Formatting
+		lineageTag: d3404722-3559-4c9e-911a-f313b0833964
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Per],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A1 Format Pln' =
+			// subtotal
+			VAR NCLD_filter_context_calculated_table =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
+			        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
+			    )
+			VAR indicatorsubtotal =
+			    CALCULATE(
+			        [Net Credit Less Debit Indicator],
+			        NCLD_filter_context_calculated_table
+			    )
+			//percentage
+			VAR numeratormax = MAX( Layout[Divide_Numerator] )
+			VAR Pct_Table =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= numeratormax,
+			        Layout[Income_Statement_Key] <= numeratormax
+			    )
+			VAR subtotalfrom =
+			    CALCULATE(
+			        MAX( Layout[Subtotal_From] ),
+			        REMOVEFILTERS( Layout ),
+			        Pct_Table
+			    )
+			VAR subtotalto =
+			    CALCULATE(
+			        MAX( Layout[Subtotal_To] ),
+			        REMOVEFILTERS( Layout ),
+			        Pct_Table
+			    )
+			VAR NCLD_filter_context_calculated_table_Pct =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= subtotalfrom,
+			        Layout[Income_Statement_Key] <= subtotalto
+			    )
+			VAR indicatorpct =
+			    CALCULATE(
+			        [Net Credit Less Debit Indicator],
+			        NCLD_filter_context_calculated_table_Pct
+			    )
+			// indicatpr
+			VAR indicator =
+			    COALESCE(
+			        [Net Credit Less Debit Indicator],
+			        indicatorsubtotal,
+			        indicatorpct
+			    )
+			VAR varianceadj = [View A1 J vs Pln] * indicator
+			VAR result =
+			    SWITCH(
+			        TRUE( ),
+			        varianceadj > 0, [Green],
+			        varianceadj < 0, [Red],
+			        [Gray]
+			    )
+			RETURN
+			    result
+		isHidden
+		displayFolder: Field Paramaters\View A1: Overall\Formatting
+		lineageTag: 24a3b8c4-0761-4a95-b274-119162d0c32d
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Per],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A1 Format PY' =
+			// subtotal
+			VAR NCLD_filter_context_calculated_table =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
+			        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
+			    )
+			VAR indicatorsubtotal =
+			    CALCULATE(
+			        [Net Credit Less Debit Indicator],
+			        NCLD_filter_context_calculated_table
+			    )
+			//percentage
+			VAR numeratormax = MAX( Layout[Divide_Numerator] )
+			VAR Pct_Table =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= numeratormax,
+			        Layout[Income_Statement_Key] <= numeratormax
+			    )
+			VAR subtotalfrom =
+			    CALCULATE(
+			        MAX( Layout[Subtotal_From] ),
+			        REMOVEFILTERS( Layout ),
+			        Pct_Table
+			    )
+			VAR subtotalto =
+			    CALCULATE(
+			        MAX( Layout[Subtotal_To] ),
+			        REMOVEFILTERS( Layout ),
+			        Pct_Table
+			    )
+			VAR NCLD_filter_context_calculated_table_Pct =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= subtotalfrom,
+			        Layout[Income_Statement_Key] <= subtotalto
+			    )
+			VAR indicatorpct =
+			    CALCULATE(
+			        [Net Credit Less Debit Indicator],
+			        NCLD_filter_context_calculated_table_Pct
+			    )
+			// indicatpr
+			VAR indicator =
+			    COALESCE(
+			        [Net Credit Less Debit Indicator],
+			        indicatorsubtotal,
+			        indicatorpct
+			    )
+			VAR varianceadj = [View A1 G vs PY] * indicator
+			VAR result =
+			    SWITCH(
+			        TRUE( ),
+			        varianceadj > 0, [Green],
+			        varianceadj < 0, [Red],
+			        [Gray]
+			    )
+			RETURN
+			    result
+		isHidden
+		displayFolder: Field Paramaters\View A1: Overall\Formatting
+		lineageTag: 8c33c81b-0ada-45c8-892f-2b3cdde0f6d1
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Per],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A2 A Act @PY' = [Actuals @py fx]
+		isHidden
+		displayFolder: Field Paramaters\View A2: Underlying
+		lineageTag: 8b4b78e7-a881-4dd4-88b7-c6b08f29a2f8
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'View A2 B Act @Fcst' = [Actuals @fcst fx]
+		isHidden
+		displayFolder: Field Paramaters\View A2: Underlying
+		lineageTag: f6ac0999-c8da-4472-9972-862a9165f363
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'View A2 C Act @Plan' = [Actuals @plan fx]
+		isHidden
+		displayFolder: Field Paramaters\View A2: Underlying
+		lineageTag: 1548fb8b-1cb1-4a48-96e7-7c09e5489196
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'View A2 D PY' = [Prior Year Actuals]
+		isHidden
+		displayFolder: Field Paramaters\View A2: Underlying
+		lineageTag: 61ea52ad-a525-4013-b6b2-e11ceb942863
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'View A2 E Fcst TD' = [Forecast Top Down]
+		isHidden
+		displayFolder: Field Paramaters\View A2: Underlying
+		lineageTag: ca11f229-911a-424f-9110-88c5d0aff5d0
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'View A2 F Fcts BU' = [Forecast Bottom Up]
+		isHidden
+		displayFolder: Field Paramaters\View A2: Underlying
+		lineageTag: f17bc8bb-8d58-453b-82fb-a06b67d6d4f7
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'View A2 G Pln' = [Basic Plan]
+		isHidden
+		displayFolder: Field Paramaters\View A2: Underlying
+		lineageTag: 8cae50e0-d177-40c9-a845-01e5f0e341ad
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'View A2 H' = [Blank Column]
+		isHidden
+		displayFolder: Field Paramaters\View A2: Underlying
+		lineageTag: 7e60048c-9cb1-45f6-a205-93cb6aa0153b
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'View A2 I vs PY' = [View A2 A Act @PY] - [View A2 D PY]
+		isHidden
+		displayFolder: Field Paramaters\View A2: Underlying
+		lineageTag: 6a0b8894-5256-4e7e-ab37-99c0074ddb1a
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Abs],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A2 J vs Fcst TD' = [View A2 B Act @Fcst] - [View A2 E Fcst TD]
+		isHidden
+		displayFolder: Field Paramaters\View A2: Underlying
+		lineageTag: 8ccbeb96-5958-4793-a020-3027dc9c4ba5
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Abs],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A2 K vs Fcst BU' = [View A2 B Act @Fcst] - [View A2 F Fcts BU]
+		isHidden
+		displayFolder: Field Paramaters\View A2: Underlying
+		lineageTag: c3feaa41-1211-4d9c-b2e5-c08822e75687
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Abs],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A2 L vs Pln' = [View A2 C Act @Plan] - [View A2 G Pln]
+		isHidden
+		displayFolder: Field Paramaters\View A2: Underlying
+		lineageTag: ea079ce6-aea5-444a-84da-5a4522e0a0e7
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Abs],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A2 M' = [Blank Column]
+		isHidden
+		displayFolder: Field Paramaters\View A2: Underlying
+		lineageTag: 2e02e4b8-c71c-44de-9f1a-5c155bbc4058
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'View A2 N vs PY, %' =
+			DIVIDE( [View A2 I vs PY], [View A2 A Act @PY] )
+			    * [Show Perc]
+		isHidden
+		displayFolder: Field Paramaters\View A2: Underlying
+		lineageTag: 2653a927-aa4f-4658-8b26-1480fe5edcaf
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Per],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A2 O vs Fcst TD, %' =
+			DIVIDE( [View A2 J vs Fcst TD], [View A2 B Act @Fcst] )
+			    * [Show Perc]
+		isHidden
+		displayFolder: Field Paramaters\View A2: Underlying
+		lineageTag: efa5ba65-1a80-4bb8-868b-e426525d7e95
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Per],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A2 P vs Fcst BU, %' =
+			DIVIDE( [View A2 K vs Fcst BU], [View A2 B Act @Fcst] )
+			    * [Show Perc]
+		isHidden
+		displayFolder: Field Paramaters\View A2: Underlying
+		lineageTag: def7cba5-0fcb-4d1a-bdeb-3b57b6e7d0d7
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Per],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A2 Q vs Pln, %' =
+			DIVIDE( [View A2 L vs Pln], [View A2 C Act @Plan] )
+			    * [Show Perc]
+		isHidden
+		displayFolder: Field Paramaters\View A2: Underlying
+		lineageTag: a4cc22b5-9781-407c-bc3f-383a1bacbdd6
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Per],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A2 Format PY' =
+			// subtotal
+			VAR NCLD_filter_context_calculated_table =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
+			        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
+			    )
+			VAR indicatorsubtotal =
+			    CALCULATE(
+			        [Net Credit Less Debit Indicator],
+			        NCLD_filter_context_calculated_table
+			    )
+			//percentage
+			VAR numeratormax = MAX( Layout[Divide_Numerator] )
+			VAR Pct_Table =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= numeratormax,
+			        Layout[Income_Statement_Key] <= numeratormax
+			    )
+			VAR subtotalfrom =
+			    CALCULATE(
+			        MAX( Layout[Subtotal_From] ),
+			        REMOVEFILTERS( Layout ),
+			        Pct_Table
+			    )
+			VAR subtotalto =
+			    CALCULATE(
+			        MAX( Layout[Subtotal_To] ),
+			        REMOVEFILTERS( Layout ),
+			        Pct_Table
+			    )
+			VAR NCLD_filter_context_calculated_table_Pct =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= subtotalfrom,
+			        Layout[Income_Statement_Key] <= subtotalto
+			    )
+			VAR indicatorpct =
+			    CALCULATE(
+			        [Net Credit Less Debit Indicator],
+			        NCLD_filter_context_calculated_table_Pct
+			    )
+			// indicatpr
+			VAR indicator =
+			    COALESCE(
+			        [Net Credit Less Debit Indicator],
+			        indicatorsubtotal,
+			        indicatorpct
+			    )
+			VAR varianceadj = [View A2 I vs PY] * indicator
+			VAR result =
+			    SWITCH(
+			        TRUE( ),
+			        varianceadj > 0, [Green],
+			        varianceadj < 0, [Red],
+			        [Gray]
+			    )
+			RETURN
+			    result
+		isHidden
+		displayFolder: Field Paramaters\View A2: Underlying\Formatting
+		lineageTag: 910069f6-66e8-4ea1-a047-5fb20aa7dc44
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Per],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A2 Format Pln' =
+			// subtotal
+			VAR NCLD_filter_context_calculated_table =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
+			        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
+			    )
+			VAR indicatorsubtotal =
+			    CALCULATE(
+			        [Net Credit Less Debit Indicator],
+			        NCLD_filter_context_calculated_table
+			    )
+			//percentage
+			VAR numeratormax = MAX( Layout[Divide_Numerator] )
+			VAR Pct_Table =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= numeratormax,
+			        Layout[Income_Statement_Key] <= numeratormax
+			    )
+			VAR subtotalfrom =
+			    CALCULATE(
+			        MAX( Layout[Subtotal_From] ),
+			        REMOVEFILTERS( Layout ),
+			        Pct_Table
+			    )
+			VAR subtotalto =
+			    CALCULATE(
+			        MAX( Layout[Subtotal_To] ),
+			        REMOVEFILTERS( Layout ),
+			        Pct_Table
+			    )
+			VAR NCLD_filter_context_calculated_table_Pct =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= subtotalfrom,
+			        Layout[Income_Statement_Key] <= subtotalto
+			    )
+			VAR indicatorpct =
+			    CALCULATE(
+			        [Net Credit Less Debit Indicator],
+			        NCLD_filter_context_calculated_table_Pct
+			    )
+			// indicatpr
+			VAR indicator =
+			    COALESCE(
+			        [Net Credit Less Debit Indicator],
+			        indicatorsubtotal,
+			        indicatorpct
+			    )
+			VAR varianceadj = [View A2 L vs Pln] * indicator
+			VAR result =
+			    SWITCH(
+			        TRUE( ),
+			        varianceadj > 0, [Green],
+			        varianceadj < 0, [Red],
+			        [Gray]
+			    )
+			RETURN
+			    result
+		isHidden
+		displayFolder: Field Paramaters\View A2: Underlying\Formatting
+		lineageTag: 0419e407-1498-4a0d-af9f-21663281acc7
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Per],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A2 Format Fcst TD' =
+			// subtotal
+			VAR NCLD_filter_context_calculated_table =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
+			        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
+			    )
+			VAR indicatorsubtotal =
+			    CALCULATE(
+			        [Net Credit Less Debit Indicator],
+			        NCLD_filter_context_calculated_table
+			    )
+			//percentage
+			VAR numeratormax = MAX( Layout[Divide_Numerator] )
+			VAR Pct_Table =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= numeratormax,
+			        Layout[Income_Statement_Key] <= numeratormax
+			    )
+			VAR subtotalfrom =
+			    CALCULATE(
+			        MAX( Layout[Subtotal_From] ),
+			        REMOVEFILTERS( Layout ),
+			        Pct_Table
+			    )
+			VAR subtotalto =
+			    CALCULATE(
+			        MAX( Layout[Subtotal_To] ),
+			        REMOVEFILTERS( Layout ),
+			        Pct_Table
+			    )
+			VAR NCLD_filter_context_calculated_table_Pct =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= subtotalfrom,
+			        Layout[Income_Statement_Key] <= subtotalto
+			    )
+			VAR indicatorpct =
+			    CALCULATE(
+			        [Net Credit Less Debit Indicator],
+			        NCLD_filter_context_calculated_table_Pct
+			    )
+			// indicatpr
+			VAR indicator =
+			    COALESCE(
+			        [Net Credit Less Debit Indicator],
+			        indicatorsubtotal,
+			        indicatorpct
+			    )
+			VAR varianceadj = [View A2 J vs Fcst TD] * indicator
+			VAR result =
+			    SWITCH(
+			        TRUE( ),
+			        varianceadj > 0, [Green],
+			        varianceadj < 0, [Red],
+			        [Gray]
+			    )
+			RETURN
+			    result
+		isHidden
+		displayFolder: Field Paramaters\View A2: Underlying\Formatting
+		lineageTag: 47ea7b8b-8d7c-4e01-b547-cc63f4a8ab3c
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Per],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A2 Format Fcst BU' =
+			// subtotal
+			VAR NCLD_filter_context_calculated_table =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
+			        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
+			    )
+			VAR indicatorsubtotal =
+			    CALCULATE(
+			        [Net Credit Less Debit Indicator],
+			        NCLD_filter_context_calculated_table
+			    )
+			//percentage
+			VAR numeratormax = MAX( Layout[Divide_Numerator] )
+			VAR Pct_Table =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= numeratormax,
+			        Layout[Income_Statement_Key] <= numeratormax
+			    )
+			VAR subtotalfrom =
+			    CALCULATE(
+			        MAX( Layout[Subtotal_From] ),
+			        REMOVEFILTERS( Layout ),
+			        Pct_Table
+			    )
+			VAR subtotalto =
+			    CALCULATE(
+			        MAX( Layout[Subtotal_To] ),
+			        REMOVEFILTERS( Layout ),
+			        Pct_Table
+			    )
+			VAR NCLD_filter_context_calculated_table_Pct =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= subtotalfrom,
+			        Layout[Income_Statement_Key] <= subtotalto
+			    )
+			VAR indicatorpct =
+			    CALCULATE(
+			        [Net Credit Less Debit Indicator],
+			        NCLD_filter_context_calculated_table_Pct
+			    )
+			// indicatpr
+			VAR indicator =
+			    COALESCE(
+			        [Net Credit Less Debit Indicator],
+			        indicatorsubtotal,
+			        indicatorpct
+			    )
+			VAR varianceadj = [View A2 K vs Fcst BU] * indicator
+			VAR result =
+			    SWITCH(
+			        TRUE( ),
+			        varianceadj > 0, [Green],
+			        varianceadj < 0, [Red],
+			        [Gray]
+			    )
+			RETURN
+			    result
+		isHidden
+		displayFolder: Field Paramaters\View A2: Underlying\Formatting
+		lineageTag: d116a06e-341b-47d3-a1bc-168cf345b57c
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Per],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A3 A Act @Act Fx' = [Actuals @actual fx]
+		isHidden
+		displayFolder: Field Paramaters\View A3: Fx
+		lineageTag: 5a568eb2-a0ac-4475-ac12-a73b30e0f82f
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'View A3 B Act @PY Fx' = [Actuals @py fx]
+		isHidden
+		displayFolder: Field Paramaters\View A3: Fx
+		lineageTag: 79593ec6-b93d-4979-b925-b7d177bcfea4
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'View A3 C Act @Fcst Fx' = [Actuals @fcst fx]
+		isHidden
+		displayFolder: Field Paramaters\View A3: Fx
+		lineageTag: bd631d90-d972-4dc2-955c-57bdd80793ef
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'View A3 D Act @Plan Fx' = [Actuals @plan fx]
+		isHidden
+		displayFolder: Field Paramaters\View A3: Fx
+		lineageTag: 5f970b0b-501e-4955-809d-7e3b5552f4f5
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'View A3 E' = [Blank Column]
+		isHidden
+		displayFolder: Field Paramaters\View A3: Fx
+		lineageTag: a575dc5a-3be1-47d2-9c8e-1e1db190e388
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'View A3 F vs PY' = [View A3 A Act @Act Fx] - [View A3 B Act @PY Fx]
+		isHidden
+		displayFolder: Field Paramaters\View A3: Fx
+		lineageTag: 1a71a8cb-d34c-4d32-a9eb-6f2bb37e2b07
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Abs],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A3 G vs Fcst' = [View A3 A Act @Act Fx] - [View A3 C Act @Fcst Fx]
+		isHidden
+		displayFolder: Field Paramaters\View A3: Fx
+		lineageTag: 7e0da6c5-abe9-4f3a-b469-643662f81316
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Abs],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A3 H vs Pln' = [View A3 A Act @Act Fx] - [View A3 D Act @Plan Fx]
+		isHidden
+		displayFolder: Field Paramaters\View A3: Fx
+		lineageTag: 844b9abc-c430-4ffe-b5ca-d3d1ba86d0e3
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Abs],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A3 I' = [Blank Column]
+		isHidden
+		displayFolder: Field Paramaters\View A3: Fx
+		lineageTag: f6092e1f-5f95-463d-b6e9-bfa86cef6880
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'View A3 J vs PY, %' =
+			DIVIDE( [View A3 F vs PY], [View A3 A Act @Act Fx] )
+			    * [Show Perc]
+		isHidden
+		displayFolder: Field Paramaters\View A3: Fx
+		lineageTag: b60fdb1f-281e-4b97-9f02-a35100d8f560
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Per],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A3 K vs Fcst, %' =
+			DIVIDE( [View A3 G vs Fcst], [View A3 A Act @Act Fx] )
+			    * [Show Perc]
+		isHidden
+		displayFolder: Field Paramaters\View A3: Fx
+		lineageTag: 3051fb85-749c-4c02-87a2-06b21301293d
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Per],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A3 L vs Pln, %' =
+			DIVIDE( [View A3 H vs Pln], [View A3 A Act @Act Fx] )
+			    * [Show Perc]
+		isHidden
+		displayFolder: Field Paramaters\View A3: Fx
+		lineageTag: 3f0f383f-ab48-44d9-a28f-1536c3d17203
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Per],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A3 Format PY' =
+			// subtotal
+			VAR NCLD_filter_context_calculated_table =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
+			        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
+			    )
+			VAR indicatorsubtotal =
+			    CALCULATE(
+			        [Net Credit Less Debit Indicator],
+			        NCLD_filter_context_calculated_table
+			    )
+			//percentage
+			VAR numeratormax = MAX( Layout[Divide_Numerator] )
+			VAR Pct_Table =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= numeratormax,
+			        Layout[Income_Statement_Key] <= numeratormax
+			    )
+			VAR subtotalfrom =
+			    CALCULATE(
+			        MAX( Layout[Subtotal_From] ),
+			        REMOVEFILTERS( Layout ),
+			        Pct_Table
+			    )
+			VAR subtotalto =
+			    CALCULATE(
+			        MAX( Layout[Subtotal_To] ),
+			        REMOVEFILTERS( Layout ),
+			        Pct_Table
+			    )
+			VAR NCLD_filter_context_calculated_table_Pct =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= subtotalfrom,
+			        Layout[Income_Statement_Key] <= subtotalto
+			    )
+			VAR indicatorpct =
+			    CALCULATE(
+			        [Net Credit Less Debit Indicator],
+			        NCLD_filter_context_calculated_table_Pct
+			    )
+			// indicatpr
+			VAR indicator =
+			    COALESCE(
+			        [Net Credit Less Debit Indicator],
+			        indicatorsubtotal,
+			        indicatorpct
+			    )
+			VAR varianceadj = [View A3 F vs PY] * indicator
+			VAR result =
+			    SWITCH(
+			        TRUE( ),
+			        varianceadj > 0, [Green],
+			        varianceadj < 0, [Red],
+			        [Gray]
+			    )
+			RETURN
+			    result
+		isHidden
+		displayFolder: Field Paramaters\View A3: Fx\Formatting
+		lineageTag: 073c8056-2b0e-403e-81d8-ce28d5e7a3a9
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Per],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A3 Format Fcst' =
+			// subtotal
+			VAR NCLD_filter_context_calculated_table =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
+			        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
+			    )
+			VAR indicatorsubtotal =
+			    CALCULATE(
+			        [Net Credit Less Debit Indicator],
+			        NCLD_filter_context_calculated_table
+			    )
+			//percentage
+			VAR numeratormax = MAX( Layout[Divide_Numerator] )
+			VAR Pct_Table =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= numeratormax,
+			        Layout[Income_Statement_Key] <= numeratormax
+			    )
+			VAR subtotalfrom =
+			    CALCULATE(
+			        MAX( Layout[Subtotal_From] ),
+			        REMOVEFILTERS( Layout ),
+			        Pct_Table
+			    )
+			VAR subtotalto =
+			    CALCULATE(
+			        MAX( Layout[Subtotal_To] ),
+			        REMOVEFILTERS( Layout ),
+			        Pct_Table
+			    )
+			VAR NCLD_filter_context_calculated_table_Pct =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= subtotalfrom,
+			        Layout[Income_Statement_Key] <= subtotalto
+			    )
+			VAR indicatorpct =
+			    CALCULATE(
+			        [Net Credit Less Debit Indicator],
+			        NCLD_filter_context_calculated_table_Pct
+			    )
+			// indicatpr
+			VAR indicator =
+			    COALESCE(
+			        [Net Credit Less Debit Indicator],
+			        indicatorsubtotal,
+			        indicatorpct
+			    )
+			VAR varianceadj = [View A3 G vs Fcst] * indicator
+			VAR result =
+			    SWITCH(
+			        TRUE( ),
+			        varianceadj > 0, [Green],
+			        varianceadj < 0, [Red],
+			        [Gray]
+			    )
+			RETURN
+			    result
+		isHidden
+		displayFolder: Field Paramaters\View A3: Fx\Formatting
+		lineageTag: 99058d4d-9866-47f3-9d21-df3504c6d4a3
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Per],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'View A3 Format Pln' =
+			// subtotal
+			VAR NCLD_filter_context_calculated_table =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
+			        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
+			    )
+			VAR indicatorsubtotal =
+			    CALCULATE(
+			        [Net Credit Less Debit Indicator],
+			        NCLD_filter_context_calculated_table
+			    )
+			//percentage
+			VAR numeratormax = MAX( Layout[Divide_Numerator] )
+			VAR Pct_Table =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= numeratormax,
+			        Layout[Income_Statement_Key] <= numeratormax
+			    )
+			VAR subtotalfrom =
+			    CALCULATE(
+			        MAX( Layout[Subtotal_From] ),
+			        REMOVEFILTERS( Layout ),
+			        Pct_Table
+			    )
+			VAR subtotalto =
+			    CALCULATE(
+			        MAX( Layout[Subtotal_To] ),
+			        REMOVEFILTERS( Layout ),
+			        Pct_Table
+			    )
+			VAR NCLD_filter_context_calculated_table_Pct =
+			    CALCULATETABLE(
+			        Layout,
+			        REMOVEFILTERS( Layout ),
+			        Layout[Income_Statement_Key] >= subtotalfrom,
+			        Layout[Income_Statement_Key] <= subtotalto
+			    )
+			VAR indicatorpct =
+			    CALCULATE(
+			        [Net Credit Less Debit Indicator],
+			        NCLD_filter_context_calculated_table_Pct
+			    )
+			// indicatpr
+			VAR indicator =
+			    COALESCE(
+			        [Net Credit Less Debit Indicator],
+			        indicatorsubtotal,
+			        indicatorpct
+			    )
+			VAR varianceadj = [View A3 H vs Pln] * indicator
+			VAR result =
+			    SWITCH(
+			        TRUE( ),
+			        varianceadj > 0, [Green],
+			        varianceadj < 0, [Red],
+			        [Gray]
+			    )
+			RETURN
+			    result
+		isHidden
+		displayFolder: Field Paramaters\View A3: Fx\Formatting
+		lineageTag: 2388d452-4bdc-4908-be2e-46da50f33254
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Per],
+				    "0;0-0;;@"
+				)
+
+		changedProperty = IsHidden
+
+	measure 'Blank Column' = BLANK( ) + BLANK( )
+		isHidden
+		displayFolder: Show Values and Blanks
+		lineageTag: 1fec8c87-506f-41c2-bdf5-a19156a27861
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+	measure 'Show Perc' =
+			VAR showperc = MAX( Layout[Show_Perc] )
+			VAR isnotfilteredledger = ISFILTERED( Ledger )
+			VAR result = showperc
+			RETURN
+			    showperc
+		isHidden
+		displayFolder: Show Values and Blanks
+		lineageTag: 60b552b2-599a-476e-9765-6a41fd3ba23f
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+	measure 'Line Name Background' =
+			VAR CalcType = SELECTEDVALUE( Layout[Calculation_type] )
+			VAR Subtotals = CalcType = "Subtotal"
+			VAR Divides = CalcType = "Divide"
+			VAR result =
+			    SWITCH(
+			        TRUE( ),
+			        Subtotals, [Gray],
+			        Divides, [Gray]
+			    )
+			RETURN
+			    result
+		isHidden
+		lineageTag: 621a10f9-0788-4634-8b7f-23243d73355d
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'Line Name Font' =
+			VAR CalcType = SELECTEDVALUE( Layout[Calculation_type] )
+			VAR Subtotals = CalcType = "Subtotal"
+			VAR Divides = CalcType = "Divide"
+			VAR result =
+			    SWITCH(
+			        TRUE( ),
+			        Subtotals, [Blue],
+			        Divides, [Blue],
+			        [Medium Gray]
+			    )
+			RETURN
+			    result
+		isHidden
+		lineageTag: c58643e4-b3fa-45da-9495-75ae96aa6f66
+
+		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
+
+		changedProperty = IsHidden
+
+	measure 'Actuals @actual fx' = __Fn_PnL_Step3_CY_AddDivide( SUM('ledger'[CreditlessdebitatGlobalFx] ), 1,0  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 1_BaseMeasures\1_Actuals
+		lineageTag: e534341b-62a1-4e67-a4b5-7a91a055e09f
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'Actuals @fcst fx' = __Fn_PnL_Step3_CY_AddDivide( SUM( Ledger[CreditLessDebitatFcstFx] ),  1,0  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 1_BaseMeasures\1_Actuals
+		lineageTag: e4b9ab90-feda-4e97-8621-ca0ecfaa8977
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'Actuals @plan fx' = __Fn_PnL_Step3_CY_AddDivide( SUM( Ledger[CreditLessDebitatPlanFx] ), 1,0  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 1_BaseMeasures\1_Actuals
+		lineageTag: ade7dde9-8f73-492e-8bdc-e19e88df36b5
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'Actuals @py fx' = __Fn_PnL_Step3_CY_AddDivide( SUM( Ledger[CreditLessDebitatPYFx] ), 1,0  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 1_BaseMeasures\1_Actuals
+		lineageTag: 91adc52e-b08d-4d50-b679-8cc34fe0cd3a
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'Forecast Bottom Up' =
+			__Fn_PnL_Step3_CY_AddDivide(
+			    CALCULATE(
+			        SUM( Scenario[Creditlessdebit] ),
+			        Scenario[Scenario_Key] = 2
+			    ),
+			    2
+			,0  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 1_BaseMeasures\2_Comparisons
+		lineageTag: 42330ded-e2b8-46f4-b97e-68dbd7baa4e0
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'Forecast Top Down' =
+			__Fn_PnL_Step3_CY_AddDivide(
+			    CALCULATE(
+			        SUM( Scenario[Creditlessdebit] ),
+			        Scenario[Scenario_Key] = 1
+			    ),
+			    2
+			,0  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 1_BaseMeasures\2_Comparisons
+		lineageTag: 925934db-46af-4887-831d-937ea0c8e962
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure Plan =
+			__Fn_PnL_Step3_CY_AddDivide(
+			    CALCULATE(
+			        SUM( Scenario[Creditlessdebit] ),
+			        Scenario[Scenario_Key] = 3
+			    ),
+			    2
+			,0  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 1_BaseMeasures\2_Comparisons
+		lineageTag: ea951efe-e697-45ee-9478-1d5a058f5ddc
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'Prior Year Actuals' = __Fn_PnL_Step3_CY_AddDivide( SUM( Ledger[CreditLessDebitatGlobalFx] ), 1,1  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 1_BaseMeasures\2_Comparisons
+		lineageTag: 537a56b1-a930-48bd-918f-b218ca5c9581
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'var Overall Actuals @actual fx vs Forecast Bottom Up 1' = [Actuals @actual fx] - [Forecast Bottom Up]
+		displayFolder: 1_BaseMeasures\3_Varaince\a_overall
+		lineageTag: 34ebf40c-c679-408b-9e83-b04f580d0ea3
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Abs],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'var Overall Actuals @actual fx vs Forecast Top Down 1' = [Actuals @actual fx] - [Forecast Top Down]
+		displayFolder: 1_BaseMeasures\3_Varaince\a_overall
+		lineageTag: 7e48ceea-28ed-4df0-926f-5d399300a664
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Abs],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'var Overall Actuals @actual fx vs Plan 1' = [Actuals @actual fx] - [Basic Plan]
+		displayFolder: 1_BaseMeasures\3_Varaince\a_overall
+		lineageTag: 30fb2085-97f3-465c-9ed0-cfe6741cf235
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Abs],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'var Overall Actuals @actual fx vs PY 1' = [Actuals @actual fx] - [Prior Year Actuals]
+		displayFolder: 1_BaseMeasures\3_Varaince\a_overall
+		lineageTag: c4150e4f-0506-4139-85cc-c9838d0862ce
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Variance_Abs],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	measure 'Actuals @actual fx test' = __Fn_PnL_Step2_CY_TimeHorizon( SUM('ledger'[CreditlessdebitatGlobalFx] ), 1,0  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+		displayFolder: 1_BaseMeasures\1_Actuals
+		lineageTag: 6e68e2b6-4427-45b3-b139-1fb1dd49cf1b
+
+		formatStringDefinition =
+				SELECTEDVALUE(
+				    Layout[Format_String_Default],
+				    "#,##0,;(#,##0,);-"
+				)
+
+	column ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 79d2f4ae-2c34-411d-ac00-ecc67ca6f55d
+		sourceLineageTag: ID
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Col1
+		dataType: string
+		isHidden
+		lineageTag: 23deb3aa-58df-4945-b02e-e169ee7dae33
+		sourceLineageTag: Col1
+		summarizeBy: none
+		sourceColumn: Col1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = entity
+		mode: directLake
+		source
+			entityName: measuretable
+			expressionSource: 'DirectLake - profitandlossadvanced_lakehouse'
+
+	annotation TabularEditor_TableGroup = Disconnected
+

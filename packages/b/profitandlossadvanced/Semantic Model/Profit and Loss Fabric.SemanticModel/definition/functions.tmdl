@@ -32,10 +32,10 @@ function __Fn_PnL_Step1_Sum_and_Subtotal =
 		        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
 		    )
 		VAR step1_lineitem =
-		    amount * MAX( Account[Account Type Indicator] )
+		    amount * MAX( Accounts[Account_Type_Indicator] )
 		VAR step2_subtotal =
 		    CALCULATE(
-		        amount * MAX( Account[Account Type Indicator] ),
+		        amount * MAX( Accounts[Account_Type_Indicator]),
 		        NCLD_filter_context_calculated_table
 		    )
 		
@@ -53,31 +53,31 @@ function __Fn_PnL_Step2_CY_TimeHorizon =
 		VAR yearoffset = prioryearoffset
 		VAR MonthtoDate_var = __Fn_PnL_Step1_Sum_and_Subtotal( amount )
 		VAR YeartoDate_var =
-		    CALCULATE( __Fn_PnL_Step1_Sum_and_Subtotal( amount ), TimeIntellignece__YearToDate_Table_Function( 'Effective Date', yearoffset ) )
+		    CALCULATE( __Fn_PnL_Step1_Sum_and_Subtotal( amount ), TimeIntellignece__YearToDate_Table_Function( 'Date', yearoffset ) )
 		VAR QuartertoDate_var =
-		    CALCULATE( __Fn_PnL_Step1_Sum_and_Subtotal( amount ), TimeIntellignece__QuarterToDate_Table_Function( 'Effective Date', yearoffset ) )
+		    CALCULATE( __Fn_PnL_Step1_Sum_and_Subtotal( amount ), TimeIntellignece__QuarterToDate_Table_Function( 'Date', yearoffset ) )
 		VAR FullQuarter_var =
 		    CALCULATE(
 		        __Fn_PnL_Step1_Sum_and_Subtotal(
 		            CALCULATE(
-		                SUM( Scenario[Credit less debit] ),
-		                Scenario[Scenario Key] = 1
+		                SUM( Scenario[Creditlessdebit] ),
+		                Scenario[Scenario_Key] = 1
 		            )
 		        ),
-		        TimeIntellignece__QuarterToGo_Table_Function( 'Effective Date', yearoffset )
+		        TimeIntellignece__QuarterToGo_Table_Function( 'Date', yearoffset )
 		    )
 		        + QuartertoDate_var
 		VAR FullYear_var =
 		    CALCULATE(
 		        CALCULATE(
-		            SUM( Scenario[Credit less debit] ),
-		            Scenario[Scenario Key] = 1
+		            SUM( Scenario[Creditlessdebit] ),
+		            Scenario[Scenario_Key] = 1
 		        ),
-		        TimeIntellignece__YearToGo_Table_Function( 'Effective Date', yearoffset )
+		        TimeIntellignece__YearToGo_Table_Function( 'Date', yearoffset )
 		    )
 		        + YeartoDate_var
 		VAR selectedtimehorizon =
-		    SELECTEDVALUE( SelectTimeFrame[Time Horizon Sort Order] )
+		    SELECTEDVALUE( SelectTimeFrame[Time_Horizon_Sort_Order] )
 		
 		VAR result =
 		    SWITCH(
@@ -123,7 +123,7 @@ function __Fn_PnL_Step3_CY_AddDivide = ```
 		    CALCULATE(
 		        __Fn_PnL_Step2_CY_TimeHorizon( amount, amounttype, 	prioryearoffset ),
 		        calculationfincialstatementstabledenominator,
-		        REMOVEFILTERS( Account )
+		        REMOVEFILTERS( Accounts )
 		    )
 		//Check if account table is filtered
 		//VAR accountinscope = ISFILTERED( Account )
@@ -157,7 +157,7 @@ function __Fn_PnL_Sum_Subtotal_and_Blanks =
 		(
 		    amount: EXPR
 		) =>
-		VAR accountinscope = ISFILTERED( Account )
+		VAR accountinscope = ISFILTERED( Accounts )
 		VAR NCLD_filter_context_calculated_table =
 		    CALCULATETABLE(
 		        Layout,
@@ -166,10 +166,10 @@ function __Fn_PnL_Sum_Subtotal_and_Blanks =
 		        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
 		    )
 		VAR step1_lineitem =
-		    amount * MAX( Account[Account Type Indicator] )
+		    amount * MAX( Accounts[Account_Type_Indicator] )
 		VAR step2_subtotal =
 		    CALCULATE(
-		        amount * MAX( Account[Account Type Indicator] ),
+		        amount * MAX( Accounts[Account_Type_Indicator] ),
 		        NCLD_filter_context_calculated_table
 		    )
 		VAR step3_addblanks =
@@ -198,10 +198,10 @@ function __Fn_PnL_Variance_Highlights =
 		        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
 		        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
 		    )
-		VAR step1_lineitem = MAX( Account[Account Type Indicator] )
+		VAR step1_lineitem = MAX( Accounts[Account_Type_Indicator] )
 		VAR step2_subtotal =
 		    CALCULATE(
-		        MAX( Account[Account Type Indicator] ),
+		        MAX( Accounts[Account_Type_Indicator] ),
 		        NCLD_filter_context_calculated_table
 		    )
 		VAR indicator = COALESCE( step1_lineitem, step2_subtotal )
@@ -217,20 +217,20 @@ function __Fn_PnL_Variance_Highlights =
 
 function TimeIntellignece__FullQuarter_Table_Function =
 		(
-		    t: TABLE EXPR,
+		    t: anyref EXPR,
 		    offset_scalear_val: SCALAR VAL
 		) =>
 		VAR current_Fiscal_Year =
-		    SELECTEDVALUE( 'Effective Date'[Fiscal Year] )
+		    SELECTEDVALUE( 'Date'[FiscalYear] )
 		        - offset_scalear_val
 		VAR current_Fiscal_Quarter_Sort =
-		    SELECTEDVALUE( 'Effective Date'[Fiscal Quarter Sort] )
+		    SELECTEDVALUE( 'Date'[FiscalQuarterSort] )
 		VAR result =
 		    CALCULATETABLE(
 		        t,
-		        REMOVEFILTERS( 'Effective Date' ),
-		        'Effective Date'[Fiscal Year] = current_Fiscal_Year,
-		        'Effective Date'[Fiscal Quarter Sort]
+		        REMOVEFILTERS( 'Date' ),
+		        'Date'[FiscalYear] = current_Fiscal_Year,
+		        'Date'[FiscalQuarterSort]
 		            = current_Fiscal_Quarter_Sort
 		    )
 		RETURN
@@ -239,17 +239,17 @@ function TimeIntellignece__FullQuarter_Table_Function =
 
 function TimeIntellignece__FullYear_Table_Function =
 		(
-		    t: TABLE EXPR,
+		    t:  anyref EXPR,
 		    offset_scalear_val: SCALAR VAL
 		) =>
 		VAR current_Fiscal_Year =
-		    SELECTEDVALUE( 'Effective Date'[Fiscal Year] )
+		    SELECTEDVALUE( 'Date'[FiscalYear] )
 		        - offset_scalear_val
 		VAR result =
 		    CALCULATETABLE(
 		        t,
-		        REMOVEFILTERS( 'Effective Date' ),
-		        'Effective Date'[Fiscal Year] = current_Fiscal_Year
+		        REMOVEFILTERS( 'Date' ),
+		        'Date'[FiscalYear] = current_Fiscal_Year
 		    )
 		RETURN
 		    result
@@ -257,20 +257,20 @@ function TimeIntellignece__FullYear_Table_Function =
 
 function TimeIntellignece__MonthToDate_Table_Function =
 		(
-		    t: TABLE EXPR,
+		    t:  anyref EXPR ,
 		    offset_scalear_val: SCALAR VAL
 		) =>
 		VAR current_Fiscal_Year =
-		    SELECTEDVALUE( 'Effective Date'[Fiscal Year] )
+		    SELECTEDVALUE( 'Date'[FiscalYear] )
 		        - offset_scalear_val
 		VAR current_Fiscal_Period_Number =
-		    SELECTEDVALUE( 'Effective Date'[Fiscal Period Number] )
+		    SELECTEDVALUE( 'Date'[FiscalPeriodNumber] )
 		VAR result =
 		    CALCULATETABLE(
 		        t,
-		        REMOVEFILTERS( 'Effective Date' ),
-		        'Effective Date'[Fiscal Year] = current_Fiscal_Year,
-		        'Effective Date'[Fiscal Period Number]
+		        REMOVEFILTERS( 'Date' ),
+		        'Date'[FiscalYear] = current_Fiscal_Year,
+		        'Date'[FiscalPeriodNumber]
 		            = current_Fiscal_Period_Number
 		    )
 		RETURN
@@ -279,24 +279,24 @@ function TimeIntellignece__MonthToDate_Table_Function =
 
 function TimeIntellignece__QuarterToDate_Table_Function =
 		(
-		    t: TABLE EXPR,
+		    t:  anyref EXPR,
 		    offset_scalear_val: SCALAR VAL
 		) =>
 		VAR current_Fiscal_Year =
-		    SELECTEDVALUE( 'Effective Date'[Fiscal Year] )
+		    SELECTEDVALUE( 'Date'[FiscalYear] )
 		        - offset_scalear_val
 		VAR current_Fiscal_Quarter_Sort =
-		    SELECTEDVALUE( 'Effective Date'[Fiscal Quarter Sort] )
+		    SELECTEDVALUE( 'Date'[FiscalQuarterSort] )
 		VAR current_Fiscal_Period_Number =
-		    SELECTEDVALUE( 'Effective Date'[Fiscal Period Number] )
+		    SELECTEDVALUE( 'Date'[FiscalPeriodNumber] )
 		VAR result =
 		    CALCULATETABLE(
 		        t,
-		        REMOVEFILTERS( 'Effective Date' ),
-		        'Effective Date'[Fiscal Year] = current_Fiscal_Year,
-		        'Effective Date'[Fiscal Quarter Sort]
+		        REMOVEFILTERS( 'Date' ),
+		        'Date'[FiscalYear] = current_Fiscal_Year,
+		        'Date'[FiscalQuarterSort]
 		            = current_Fiscal_Quarter_Sort,
-		        'Effective Date'[Fiscal Period Number]
+		        'Date'[FiscalPeriodNumber]
 		            <= current_Fiscal_Period_Number
 		    )
 		RETURN
@@ -305,24 +305,24 @@ function TimeIntellignece__QuarterToDate_Table_Function =
 
 function TimeIntellignece__QuarterToGo_Table_Function =
 		(
-		    t: TABLE EXPR,
+		    t:  anyref EXPR,
 		    offset_scalear_val: SCALAR VAL
 		) =>
 		VAR current_Fiscal_Year =
-		    SELECTEDVALUE( 'Effective Date'[Fiscal Year] )
+		    SELECTEDVALUE( 'Date'[FiscalYear] )
 		        - offset_scalear_val
 		VAR current_Fiscal_Quarter_Sort =
-		    SELECTEDVALUE( 'Effective Date'[Fiscal Quarter Sort] )
+		    SELECTEDVALUE( 'Date'[FiscalQuarterSort] )
 		VAR current_Fiscal_Period_Number =
-		    SELECTEDVALUE( 'Effective Date'[Fiscal Period Number] )
+		    SELECTEDVALUE( 'Date'[FiscalPeriodNumber] )
 		VAR result =
 		    CALCULATETABLE(
 		        t,
-		        REMOVEFILTERS( 'Effective Date' ),
-		        'Effective Date'[Fiscal Year] = current_Fiscal_Year,
-		        'Effective Date'[Fiscal Quarter Sort]
+		        REMOVEFILTERS( 'Date' ),
+		        'Date'[FiscalYear] = current_Fiscal_Year,
+		        'Date'[FiscalQuarterSort]
 		            = current_Fiscal_Quarter_Sort,
-		        'Effective Date'[Fiscal Period Number]
+		        'Date'[FiscalPeriodNumber]
 		            > current_Fiscal_Period_Number
 		    )
 		RETURN
@@ -331,20 +331,20 @@ function TimeIntellignece__QuarterToGo_Table_Function =
 
 function TimeIntellignece__YearToDate_Table_Function =
 		(
-		    t: TABLE EXPR,
+		    t:  anyref EXPR,
 		    offset_scalear_val: SCALAR VAL
 		) =>
 		VAR current_Fiscal_Year =
-		    SELECTEDVALUE( 'Effective Date'[Fiscal Year] )
+		    SELECTEDVALUE( 'Date'[FiscalYear] )
 		        - offset_scalear_val
 		VAR current_Fiscal_Period_Number =
-		    SELECTEDVALUE( 'Effective Date'[Fiscal Period Number] )
+		    SELECTEDVALUE( 'Date'[FiscalPeriodNumber] )
 		VAR result =
 		    CALCULATETABLE(
 		        t,
-		        REMOVEFILTERS( 'Effective Date' ),
-		        'Effective Date'[Fiscal Year] = current_Fiscal_Year,
-		        'Effective Date'[Fiscal Period Number]
+		        REMOVEFILTERS( 'Date' ),
+		        'Date'[FiscalYear] = current_Fiscal_Year,
+		        'Date'[FiscalPeriodNumber]
 		            <= current_Fiscal_Period_Number
 		    )
 		RETURN
@@ -353,20 +353,20 @@ function TimeIntellignece__YearToDate_Table_Function =
 
 function TimeIntellignece__YearToGo_Table_Function =
 		(
-		    t: TABLE EXPR,
+		    t:  anyref EXPR,
 		    offset_scalear_val: SCALAR VAL
 		) =>
 		VAR current_Fiscal_Year =
-		    SELECTEDVALUE( 'Effective Date'[Fiscal Year] )
+		    SELECTEDVALUE( 'Date'[FiscalYear] )
 		        - offset_scalear_val
 		VAR current_Fiscal_Period_Number =
-		    SELECTEDVALUE( 'Effective Date'[Fiscal Period Number] )
+		    SELECTEDVALUE( 'Date'[FiscalPeriodNumber] )
 		VAR result =
 		    CALCULATETABLE(
 		        t,
-		        REMOVEFILTERS( 'Effective Date' ),
-		        'Effective Date'[Fiscal Year] = current_Fiscal_Year,
-		        'Effective Date'[Fiscal Period Number]
+		        REMOVEFILTERS( 'Date' ),
+		        'Date'[FiscalYear] = current_Fiscal_Year,
+		        'Date'[FiscalPeriodNumber]
 		            > current_Fiscal_Period_Number
 		    )
 		RETURN

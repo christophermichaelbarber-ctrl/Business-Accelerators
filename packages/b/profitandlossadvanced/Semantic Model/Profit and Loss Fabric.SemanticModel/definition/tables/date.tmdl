@@ -18,7 +18,7 @@ table date
 		formatString: 0
 		lineageTag: 1e9384dc-1ecf-4034-8324-1981fc8f1ac9
 		sourceLineageTag: FiscalYear
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: FiscalYear
 
 		annotation SummarizationSetBy = Automatic
@@ -69,7 +69,7 @@ table date
 		formatString: 0
 		lineageTag: b4be52a4-e897-406d-b321-54891939be60
 		sourceLineageTag: FiscalPeriodCPSort
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: FiscalPeriodCPSort
 
 		annotation SummarizationSetBy = Automatic
@@ -91,7 +91,7 @@ table date
 		formatString: 0
 		lineageTag: b6dfb738-c26f-40cb-94a2-37e39b8f5168
 		sourceLineageTag: FiscalYearPeriodNumber
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: FiscalYearPeriodNumber
 
 		annotation SummarizationSetBy = Automatic
@@ -102,7 +102,7 @@ table date
 		formatString: 0
 		lineageTag: 1d2b6426-c63b-4bee-a692-3e926d895a94
 		sourceLineageTag: FiscalPeriodNumber
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: FiscalPeriodNumber
 
 		annotation SummarizationSetBy = Automatic
@@ -113,7 +113,7 @@ table date
 		formatString: 0
 		lineageTag: 6130e9ba-70f9-464d-abc7-8b81e0c1f676
 		sourceLineageTag: FiscalYearSort
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: FiscalYearSort
 
 		annotation SummarizationSetBy = Automatic
@@ -124,7 +124,7 @@ table date
 		formatString: 0
 		lineageTag: 15fc3d05-a4ee-4fb7-827d-ac67441dbbe0
 		sourceLineageTag: FiscalQuarterSort
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: FiscalQuarterSort
 
 		annotation SummarizationSetBy = Automatic
@@ -135,7 +135,7 @@ table date
 		formatString: 0
 		lineageTag: 6bf6f0f5-e629-482c-b5bc-2f8da7ac5efc
 		sourceLineageTag: FiscalPeriodSort
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: FiscalPeriodSort
 
 		annotation SummarizationSetBy = Automatic
@@ -146,7 +146,7 @@ table date
 		formatString: 0
 		lineageTag: bff0e441-6a62-44de-9e3a-434e272389a2
 		sourceLineageTag: FiscalYearQuarterSort
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: FiscalYearQuarterSort
 
 		annotation SummarizationSetBy = Automatic
@@ -157,7 +157,7 @@ table date
 		formatString: 0
 		lineageTag: 54a5f58c-7d37-43da-aa2b-e31baa773c8e
 		sourceLineageTag: FiscalYearPeriodSort
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: FiscalYearPeriodSort
 
 		annotation SummarizationSetBy = Automatic
@@ -177,4 +177,6 @@ table date
 		source
 			entityName: date
 			expressionSource: 'DirectLake - profitandlossadvanced_lakehouse'
+
+	annotation TabularEditor_TableGroup = Dimensions
 

@@ -60,3 +60,5 @@ table accounts
 			entityName: accounts
 			expressionSource: 'DirectLake - profitandlossadvanced_lakehouse'
 
+	annotation TabularEditor_TableGroup = Dimensions
+

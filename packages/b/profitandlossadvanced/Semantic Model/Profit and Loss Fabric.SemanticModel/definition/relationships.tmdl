@@ -10,3 +10,31 @@ relationship 915b7cb2-5bcf-7618-cfd4-100c70a7f196
 	fromColumn: ledger.Date
 	toColumn: date.FiscalDate
 
+relationship 43ffd3de-5d1a-10f1-a9ed-31b85d9117f7
+	fromColumn: ledger.CurrencyKey
+	toColumn: currency.Currency_Key
+
+relationship f40d6959-b2f9-6a90-36f9-f094237afe83
+	fromColumn: ledger.LegalEntityKey
+	toColumn: legalentity.Legal_Entity_Key
+
+relationship 120e471a-f13e-49d0-83f8-26c1fd6a27b7
+	fromColumn: '__Field Paramater Self-Service Table Measures'.Selected_Measures_Key
+	toColumn: 'Fx Assumptions'.'Fx Assumption Sort Order'
+
+relationship dfed255b-2a0a-7b92-7794-bb43d17ddc71
+	fromColumn: scenario.Date
+	toColumn: date.FiscalDate
+
+relationship 37448dc5-a538-af64-f5fc-0454f4306ff9
+	fromColumn: scenario.Account_Key
+	toColumn: accounts.Account_Key
+
+relationship 6575a50b-bd8b-6dd6-daaf-dfd9f73e4cdb
+	fromColumn: scenario.legal_entity_key
+	toColumn: legalentity.Legal_Entity_Key
+
+relationship 57bd91d2-1ff9-4e4c-8d80-f19075b04786
+	fromColumn: legalentity.Legal_Entity_Key
+	toColumn: legalentitysecurity.Legal_Entity_Key
+

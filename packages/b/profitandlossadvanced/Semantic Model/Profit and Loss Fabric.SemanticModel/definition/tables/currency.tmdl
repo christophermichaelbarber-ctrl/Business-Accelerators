@@ -1,0 +1,60 @@
+table currency
+	lineageTag: dfddde17-b22d-4566-ae4b-95538c54b002
+	sourceLineageTag: [dbo].[currency]
+
+	column Currency_Key
+		dataType: int64
+		formatString: 0
+		lineageTag: a5690fa5-708c-48bb-8a64-d60057bd1148
+		sourceLineageTag: Currency_Key
+		summarizeBy: none
+		sourceColumn: Currency_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency
+		dataType: string
+		lineageTag: 886d9e36-63c2-4bb7-b9fc-e52681bbc302
+		sourceLineageTag: Currency
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency_Group
+		dataType: string
+		lineageTag: 2981ba33-f453-4848-a13f-3f6cc0c3c7c4
+		sourceLineageTag: Currency_Group
+		summarizeBy: none
+		sourceColumn: Currency_Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency_Group_Sort_Order
+		dataType: int64
+		formatString: 0
+		lineageTag: 1ef9529b-817e-453d-a0a8-e24565b399cc
+		sourceLineageTag: Currency_Group_Sort_Order
+		summarizeBy: none
+		sourceColumn: Currency_Group_Sort_Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Underlying_Currency
+		dataType: int64
+		formatString: 0
+		lineageTag: 9844ce37-0ed5-4ef8-aac7-08c8ebc2308d
+		sourceLineageTag: Underlying_Currency
+		summarizeBy: none
+		sourceColumn: Underlying_Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	partition currency = entity
+		mode: directLake
+		source
+			entityName: currency
+			expressionSource: 'DirectLake - profitandlossadvanced_lakehouse'
+
+	annotation TabularEditor_TableGroup = Dimensions
+

@@ -2,6 +2,9 @@ table ledger
 	lineageTag: c289844d-a5b8-4c8a-83c8-0387735763ca
 	sourceLineageTag: [dbo].[ledger]
 
+	measure 'Sum of Credit Less Debit at Global Fx' = SUM(ledger[CreditlessdebitatGlobalFx])
+		lineageTag: 976b4f0c-096e-4a48-a676-e8b5abb7bf21
+
 	column DocumentID
 		dataType: int64
 		formatString: 0
@@ -88,7 +91,7 @@ table ledger
 		formatString: 0
 		lineageTag: 52141faf-4628-4b4e-89d8-bcde18743ff8
 		sourceLineageTag: CurrencyKey
-		summarizeBy: count
+		summarizeBy: none
 		sourceColumn: CurrencyKey
 
 		annotation SummarizationSetBy = Automatic
@@ -99,7 +102,7 @@ table ledger
 		formatString: 0
 		lineageTag: 490108d1-f1f0-4c54-8832-55e89a014334
 		sourceLineageTag: LegalEntityKey
-		summarizeBy: count
+		summarizeBy: none
 		sourceColumn: LegalEntityKey
 
 		annotation SummarizationSetBy = Automatic
@@ -109,4 +112,6 @@ table ledger
 		source
 			entityName: ledger
 			expressionSource: 'DirectLake - profitandlossadvanced_lakehouse'
+
+	annotation TabularEditor_TableGroup = Fact
 

@@ -19,6 +19,7 @@ table layout
 		sourceLineageTag: Line_name
 		summarizeBy: none
 		sourceColumn: Line_name
+		sortByColumn: Income_Statement_Key
 
 		annotation SummarizationSetBy = Automatic
 
@@ -153,4 +154,6 @@ table layout
 		source
 			entityName: layout
 			expressionSource: 'DirectLake - profitandlossadvanced_lakehouse'
+
+	annotation TabularEditor_TableGroup = Dimensions
 
