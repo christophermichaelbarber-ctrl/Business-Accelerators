@@ -1,182 +1,240 @@
 table legalentity
+	isHidden
 	lineageTag: 1222a725-7c00-49d0-86cb-0b74128e6058
 	sourceLineageTag: [dbo].[legalentity]
 
 	column Legal_Entity_Key
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 8b2de69a-568b-4d0f-9039-51f24d8cde44
 		sourceLineageTag: Legal_Entity_Key
 		summarizeBy: none
 		sourceColumn: Legal_Entity_Key
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column Legal_entity_name
 		dataType: string
+		isHidden
 		lineageTag: 4812c4a5-46b7-46b0-83b1-4bbf48b552f7
 		sourceLineageTag: Legal_entity_name
 		summarizeBy: none
 		sourceColumn: Legal_entity_name
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column Legal_Entity_Sort_Order
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: e13eb574-74fb-4904-9f07-a3628a3f106f
 		sourceLineageTag: Legal_Entity_Sort_Order
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: Legal_Entity_Sort_Order
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column Group
 		dataType: string
+		isHidden
 		lineageTag: 09f8f952-29c7-42d2-9378-384657b13447
 		sourceLineageTag: Group
 		summarizeBy: none
 		sourceColumn: Group
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column Country
 		dataType: string
+		isHidden
 		lineageTag: 11fc1154-c6a4-4f5d-b7e1-497517300a49
 		sourceLineageTag: Country
 		summarizeBy: none
 		sourceColumn: Country
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column Region
 		dataType: string
+		isHidden
 		lineageTag: 346bcfe2-8b6d-4520-9dd2-20f651687c7c
 		sourceLineageTag: Region
 		summarizeBy: none
 		sourceColumn: Region
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column Legal_entity_level_5_name
 		dataType: string
+		isHidden
 		lineageTag: 15e1d2a8-bdae-40a5-8c8d-555ecd6d3b1e
 		sourceLineageTag: Legal_entity_level_5_name
 		summarizeBy: none
 		sourceColumn: Legal_entity_level_5_name
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column Legal_entity_level_1_name
 		dataType: string
+		isHidden
 		lineageTag: 1dfe9723-88a6-48c2-9cd1-9ff73409f005
 		sourceLineageTag: Legal_entity_level_1_name
 		summarizeBy: none
 		sourceColumn: Legal_entity_level_1_name
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column Legal_entity_level_2_name
 		dataType: string
+		isHidden
 		lineageTag: cd67d704-569f-426b-a95c-858a6ee49536
 		sourceLineageTag: Legal_entity_level_2_name
 		summarizeBy: none
 		sourceColumn: Legal_entity_level_2_name
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column Legal_entity_level_3_name
 		dataType: string
+		isHidden
 		lineageTag: e7ec9b8f-e25d-44b7-9c7e-b2f8e059c9b3
 		sourceLineageTag: Legal_entity_level_3_name
 		summarizeBy: none
 		sourceColumn: Legal_entity_level_3_name
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column Legal_entity_level_4_name
 		dataType: string
+		isHidden
 		lineageTag: 5db9aba1-b0cd-4d36-8535-c21371634e89
 		sourceLineageTag: Legal_entity_level_4_name
 		summarizeBy: none
 		sourceColumn: Legal_entity_level_4_name
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column Child
 		dataType: string
+		isHidden
 		lineageTag: 734b8e72-9396-4799-b2f6-309836fe6ec7
 		sourceLineageTag: Child
 		summarizeBy: none
 		sourceColumn: Child
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column Parent
 		dataType: string
+		isHidden
 		lineageTag: 9d5a8991-cb95-46f9-9fff-1e095f0e9d3e
 		sourceLineageTag: Parent
 		summarizeBy: none
 		sourceColumn: Parent
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column Path
 		dataType: string
+		isHidden
 		lineageTag: 155a4a8f-3f90-41b7-b520-359197226b72
 		sourceLineageTag: Path
 		summarizeBy: none
 		sourceColumn: Path
 
+		changedProperty = IsHidden
+
 		annotation SummarizationSetBy = Automatic
 
 	column Legal_entity_level_4
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 4e16214e-8227-4e5d-9ec6-c5fe77d67171
 		sourceLineageTag: Legal_entity_level_4
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: Legal_entity_level_4
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column Legal_entity_level_5
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 8c54a430-3ad1-4cb7-ace3-a17d83f3e9a2
 		sourceLineageTag: Legal_entity_level_5
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: Legal_entity_level_5
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column Legal_entity_level_1
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: b26e2278-103a-4dd6-8325-cf4898a4ee12
 		sourceLineageTag: Legal_entity_level_1
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: Legal_entity_level_1
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column Legal_entity_level_2
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: b07de9c9-f52e-4535-b887-ff162e7f938b
 		sourceLineageTag: Legal_entity_level_2
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: Legal_entity_level_2
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column Legal_entity_level_3
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: ca70da13-3e39-4f18-8315-406f46bf8cb8
 		sourceLineageTag: Legal_entity_level_3
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: Legal_entity_level_3
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -185,6 +243,8 @@ table legalentity
 		source
 			entityName: legalentity
 			expressionSource: 'DirectLake - profitandlossadvanced_lakehouse'
+
+	changedProperty = IsHidden
 
 	annotation TabularEditor_TableGroup = Dimensions
 

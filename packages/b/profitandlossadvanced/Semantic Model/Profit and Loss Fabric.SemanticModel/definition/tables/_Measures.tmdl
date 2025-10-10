@@ -1,4 +1,4 @@
-table measuretable
+table _Measures
 	lineageTag: aeb5aaef-712a-48dd-b80e-30eaa39d66a2
 	sourceLineageTag: [dbo].[measuretable]
 
@@ -11,7 +11,7 @@ table measuretable
 
 		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["INTEGER_FORMATTING"]}
 
-	measure 'Basic Plan' = __Fn_PnL_ShowScenario( SUM( Scenario[Credit less debit] ) )
+	measure 'Basic Plan' = __Fn_PnL_ShowScenario( SUM( Scenario[Creditlessdebit] ) )
 		formatString: " #,##0,;(#,##0,);"
 		displayFolder: Metrics
 		lineageTag: 4b8f1293-fdd2-428b-967e-40cacfd650e7
@@ -64,7 +64,7 @@ table measuretable
 
 		annotation SummarizationSetBy = Automatic
 
-	partition measuretable = entity
+	partition _Measures = entity
 		mode: directLake
 		source
 			entityName: measuretable

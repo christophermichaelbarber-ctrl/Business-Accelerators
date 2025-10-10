@@ -455,3 +455,255 @@ print(f"✅ Wrote Delta table: {TABLE_NAME}  (rows: {sdf.count()})")
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# CELL ********************
+
+# Base64 SelectTimeFrame table -> Delta (Fabric)
+import base64
+import pandas as pd
+from io import StringIO
+from datetime import datetime
+from pyspark.sql import functions as F, types as T
+
+# ==== CONFIG ====
+BASE64_STR = """VGltZV9Ib3Jpem9uLFRpbWVfSG9yaXpvbl9Tb3J0X09yZGVyCk1vbnRoLXRvLWRhdGUsMQpRdWFydGVyLXRvLWRhdGUsMgpGdWxsIFF1YXJ0ZXIsMwpZZWFyLXRvLWRhdGUsNApGdWxsIHllYXIsNQo="""
+TABLE_NAME = "SelectTimeFrame"   # target Delta table name
+
+# ==== Helpers: light dtype inference ====
+def _looks_bool_col(name: str) -> bool:
+    n = name.lower()
+    return n.startswith("is_") or n.endswith("_flag") or n.endswith("_bool")
+
+def _looks_int_col(name: str) -> bool:
+    n = name.lower()
+    return n.endswith("_key") or n.endswith("_id") or n.endswith("_sort_order") or n.endswith("_order") or n.endswith("_code")
+
+def _looks_date_col(name: str) -> bool:
+    n = name.lower()
+    return "date" in n or n.endswith("_dt")
+
+def _coerce_booleans(series: pd.Series) -> pd.Series:
+    true_vals  = {"true","t","yes","y","1","on"}
+    false_vals = {"false","f","no","n","0","off"}
+    return series.astype(str).str.strip().str.lower().map(
+        lambda x: True if x in true_vals else (False if x in false_vals else pd.NA)
+    )
+
+def _detect_numeric(series: pd.Series) -> bool:
+    # quick check: if removing commas makes it all numeric
+    s = series.astype(str).str.replace(",", "", regex=False).str.strip()
+    return pd.to_numeric(s, errors="coerce").notna().mean() > 0.95
+
+# ==== 1) Decode Base64 safely ====
+b64 = BASE64_STR.strip()
+if not b64:
+    raise ValueError("Base64 string is empty. Paste a valid Base64 CSV.")
+csv_text = base64.b64decode(b64).decode("utf-8")
+if not csv_text.strip():
+    raise ValueError("Decoded CSV is empty.")
+
+# ==== 2) Read CSV with pandas ====
+pdf = pd.read_csv(StringIO(csv_text))
+
+if pdf.empty:
+    raise ValueError("CSV has no rows.")
+
+# Trim whitespace in all object columns
+for c in pdf.columns:
+    if pdf[c].dtype == object:
+        pdf[c] = pdf[c].astype(str).str.strip()
+
+# ==== 3) Column-wise coercion rules ====
+for c in pdf.columns:
+    cl = c.lower()
+
+    # Date-like columns
+    if _looks_date_col(c):
+        # let pandas try multiple common formats
+        pdf[c] = pd.to_datetime(pdf[c], errors="coerce", infer_datetime_format=True).dt.date
+        continue
+
+    # Boolean-like columns
+    if _looks_bool_col(c):
+        pdf[c] = _coerce_booleans(pdf[c])
+        continue
+
+    # Integer-like columns (keys, sort orders)
+    if _looks_int_col(c) or _detect_numeric(pdf[c]):
+        # Remove thousand separators then coerce
+        s = pdf[c].astype(str).str.replace(",", "", regex=False).str.strip()
+        # Use Int64 (nullable) so we don't lose nulls before Spark
+        pdf[c] = pd.to_numeric(s, errors="coerce").astype("Int64")
+        continue
+
+# ==== 4) Build a Spark schema from the inferred pandas dtypes ====
+spark_fields = []
+for c in pdf.columns:
+    # Map pandas dtype / sample value to Spark types
+    dtype = str(pdf[c].dtype)
+    if _looks_date_col(c):
+        spark_type = T.DateType()
+    elif _looks_bool_col(c):
+        spark_type = T.BooleanType()
+    elif dtype.startswith("Int") or dtype == "int64":
+        spark_type = T.IntegerType()
+    elif dtype.startswith("Float") or dtype == "float64":
+        spark_type = T.DoubleType()
+    else:
+        spark_type = T.StringType()
+    spark_fields.append(T.StructField(c, spark_type, True))
+spark_schema = T.StructType(spark_fields)
+
+# ==== 5) Create Spark DF and enforce the schema ====
+sdf = spark.createDataFrame(pdf)  # initial inference
+
+# Cast to our explicit schema (idempotent if already correct)
+for f in spark_schema:
+    if f.name in sdf.columns:
+        if isinstance(f.dataType, T.DateType):
+            # handle common incoming string/ts formats
+            sdf = sdf.withColumn(f.name, F.to_date(F.col(f.name)))
+        else:
+            sdf = sdf.withColumn(f.name, F.col(f.name).cast(f.dataType))
+
+# Optional: de-duplicate by any key-like column(s)
+key_cols = [c for c in sdf.columns if c.lower().endswith("_key") or c.lower().endswith("_id")]
+if key_cols:
+    sdf = sdf.dropDuplicates(key_cols)
+
+# ==== 6) Write managed Delta table in the attached Lakehouse ====
+(sdf.write
+    .mode("overwrite")          # change to "append" if you want to accumulate
+    .format("delta")
+    .saveAsTable(TABLE_NAME))
+
+print(f"✅ Wrote Delta table: {TABLE_NAME}  (rows: {sdf.count()}, cols: {len(sdf.columns)})")
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# Base64 Legal Entity Security -> Delta (Fabric)
+import base64
+import pandas as pd
+from io import StringIO
+from pyspark.sql import functions as F, types as T
+
+# ==== CONFIG ====
+BASE64_STR = """
+RnVsbF9OYW1lLExldmVsLEVtcGxveWVlX0lELFVzZXJfTmFtZSxMZWdhbF9FbnRpdHlfS2V5LFNlY3VyaXR5X0tleQpBbG1lZGEgTGFubWFuIMKgLENGTywzMjUyLEFsbWVkYS5MYW5tYW5AQ29tcGFueS5jb20sMSwxCkNsYXl0b24gTml2ZW4gwqAsQW1lcmljYXMgRmluYW5jZSBEaXJlY3RvciwzMjc3LENsYXl0b24uTml2ZW5AQ29tcGFueS5jb20sMiwyCk1hcmNlbGx1cyBNYWdyYXRoIMKgLEV1cm9wZSBGaW5hbmNlIERpcmVjdG9yLDMyNjEsTWFyY2VsbHVzLk1hZ3JhdGhAQ29tcGFueS5jb20sNiwzCkRhcmVuIEJ1c3NhcmQgwqAsQXNpYSBGaW5hbmNlIERpcmVjdG9yLDMyMzMsRGFyZW4uQnVzc2FyZEBDb21wYW55LmNvbSwxMiw0CkxvbmEgU3RhciDCoCxVSyBGaW5hbmNlIE1hbmFnZXIsMzIxNixMb25hLlN0YXJAQ29tcGFueS5jb20sNyw1ClRhbWVzaGEgS29sb2R6aWVqIMKgLEdlcm1hbnkgRmluYW5jZSBNYW5hZ2VyLDMyNTcsVGFtZXNoYS5Lb2xvZHppZWpAQ29tcGFueS5jb20sMTAsNgpFYm9uaSBTYWF0aG9mZiDCoCxGcmFuY2UgRmluYW5jZSBNYW5hZ2VyLDMyMzAsRWJvbmkuU2FhdGhvZmZAQ29tcGFueS5jb20sMTEsNwpUYXVueWEgTmFnYW8gwqAsU2luZ2Fwb3JlIEZpbmFuY2UgTWFuYWdlciwzMjMxLFRhdW55YS5OYWdhb0BDb21wYW55LmNvbSwxMiw4CkxveWNlIEh1Z2hsZXkgwqAsSW5kaWEgRmluYW5jZSBNYW5hZ2VyLDMyODIsTG95Y2UuSHVnaGxleUBDb21wYW55LmNvbSwxMyw5CkhlcnRoYSBaYW5rIMKgLENhbmFkYSBGaW5hbmNlIE1hbmFnZXIsMzIzOCxIZXJ0aGEuWmFua0BDb21wYW55LmNvbSw0LDEwCg==
+"""
+
+
+TABLE_NAME = "LegalEntitySecurity"   # change if you prefer another table name
+
+# ==== Helpers: light dtype inference ====
+def _looks_bool_col(name: str) -> bool:
+    n = name.lower()
+    return n.startswith("is_") or n.endswith("_flag") or n.endswith("_bool")
+
+def _looks_int_col(name: str) -> bool:
+    n = name.lower()
+    return (
+        n.endswith("_key") or n.endswith("_id") or n.endswith("_sort_order")
+        or n.endswith("_order") or n.endswith("_code")
+    )
+
+def _looks_date_col(name: str) -> bool:
+    n = name.lower()
+    return "date" in n or n.endswith("_dt")
+
+def _coerce_booleans(series: pd.Series) -> pd.Series:
+    true_vals  = {"true","t","yes","y","1","on"}
+    false_vals = {"false","f","no","n","0","off"}
+    return series.astype(str).str.strip().str.lower().map(
+        lambda x: True if x in true_vals else (False if x in false_vals else pd.NA)
+    )
+
+def _detect_numeric(series: pd.Series) -> bool:
+    s = series.astype(str).str.replace(",", "", regex=False).str.strip()
+    return pd.to_numeric(s, errors="coerce").notna().mean() > 0.95
+
+# ==== 1) Decode Base64 safely ====
+b64 = BASE64_STR.strip()
+if not b64:
+    raise ValueError("Base64 string is empty. Paste a valid Base64 CSV.")
+csv_text = base64.b64decode(b64).decode("utf-8")
+if not csv_text.strip():
+    raise ValueError("Decoded CSV is empty.")
+
+# ==== 2) Read CSV with pandas ====
+pdf = pd.read_csv(StringIO(csv_text))
+if pdf.empty:
+    raise ValueError("CSV has no rows.")
+
+# Trim whitespace in all object columns
+for c in pdf.columns:
+    if pdf[c].dtype == object:
+        pdf[c] = pdf[c].astype(str).str.strip()
+
+# ==== 3) Column-wise coercion rules ====
+for c in pdf.columns:
+    if _looks_date_col(c):
+        pdf[c] = pd.to_datetime(pdf[c], errors="coerce", infer_datetime_format=True).dt.date
+        continue
+    if _looks_bool_col(c):
+        pdf[c] = _coerce_booleans(pdf[c])
+        continue
+    if _looks_int_col(c) or _detect_numeric(pdf[c]):
+        s = pdf[c].astype(str).str.replace(",", "", regex=False).str.strip()
+        pdf[c] = pd.to_numeric(s, errors="coerce").astype("Int64")
+        continue
+
+# ==== 4) Build a Spark schema from pandas dtypes ====
+spark_fields = []
+for c in pdf.columns:
+    dtype = str(pdf[c].dtype)
+    if _looks_date_col(c):
+        st = T.DateType()
+    elif _looks_bool_col(c):
+        st = T.BooleanType()
+    elif dtype.startswith("Int") or dtype == "int64":
+        st = T.IntegerType()
+    elif dtype.startswith("Float") or dtype == "float64":
+        st = T.DoubleType()
+    else:
+        st = T.StringType()
+    spark_fields.append(T.StructField(c, st, True))
+spark_schema = T.StructType(spark_fields)
+
+# ==== 5) Create Spark DF and enforce the schema ====
+sdf = spark.createDataFrame(pdf)
+for f in spark_schema:
+    if f.name in sdf.columns:
+        if isinstance(f.dataType, T.DateType):
+            sdf = sdf.withColumn(f.name, F.to_date(F.col(f.name)))
+        else:
+            sdf = sdf.withColumn(f.name, F.col(f.name).cast(f.dataType))
+
+# Optional: de-duplicate by key-like columns
+key_cols = [c for c in sdf.columns if c.lower().endswith("_key") or c.lower().endswith("_id")]
+if key_cols:
+    sdf = sdf.dropDuplicates(key_cols)
+
+# ==== 6) Write managed Delta table ====
+(sdf.write
+    .mode("overwrite")          # use "append" if you want to accumulate
+    .format("delta")
+    .saveAsTable(TABLE_NAME))
+
+print(f"✅ Wrote Delta table: {TABLE_NAME}  (rows: {sdf.count()}, cols: {len(sdf.columns)})")
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }

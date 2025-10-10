@@ -1,0 +1,62 @@
+table scenario
+	lineageTag: f5a2e1b9-4957-4118-9f6a-6882075c0803
+	sourceLineageTag: [dbo].[scenario]
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: afa3d566-92ec-49f3-b7db-beefb44a9a5d
+		sourceLineageTag: Date
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Account_Key
+		dataType: int64
+		formatString: 0
+		lineageTag: 20e3c50f-9afc-4103-9742-eb588ef5e638
+		sourceLineageTag: Account_Key
+		summarizeBy: none
+		sourceColumn: Account_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Scenario_Key
+		dataType: int64
+		formatString: 0
+		lineageTag: 2f1d84fd-c581-490f-b3e6-992db02cba17
+		sourceLineageTag: Scenario_Key
+		summarizeBy: count
+		sourceColumn: Scenario_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column legal_entity_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 682ecb12-a0ed-41d2-9aaa-fc6c6961e5ea
+		sourceLineageTag: legal_entity_key
+		summarizeBy: none
+		sourceColumn: legal_entity_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Creditlessdebit
+		dataType: int64
+		formatString: 0
+		lineageTag: 34f8026a-f3fd-4ee7-90b8-53e03578ca0e
+		sourceLineageTag: Creditlessdebit
+		summarizeBy: sum
+		sourceColumn: Creditlessdebit
+
+		annotation SummarizationSetBy = Automatic
+
+	partition scenario = entity
+		mode: directLake
+		source
+			entityName: scenario
+			expressionSource: 'DirectLake - profitandlossadvanced_lakehouse'
+
+	annotation TabularEditor_TableGroup = Fact
+
