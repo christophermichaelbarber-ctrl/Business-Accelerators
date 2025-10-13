@@ -38,12 +38,12 @@
                       "Entity": "_Measures_Hidden"
                     }
                   },
-                  "Property": "View A2 A Act @PY"
+                  "Property": "View A1 A Act"
                 }
               },
-              "queryRef": "_Measures_Hidden.View A2 A Act @PY",
-              "nativeQueryRef": "Act @py fx",
-              "displayName": "Act @py fx"
+              "queryRef": "_Measures_Hidden.View A1 A Act",
+              "nativeQueryRef": "Act",
+              "displayName": "Act"
             },
             {
               "field": {
@@ -53,40 +53,10 @@
                       "Entity": "_Measures_Hidden"
                     }
                   },
-                  "Property": "View A2 B Act @Fcst"
+                  "Property": "View A1 B PY"
                 }
               },
-              "queryRef": "_Measures_Hidden.View A2 B Act @Fcst",
-              "nativeQueryRef": "Act @fcst fx",
-              "displayName": "Act @fcst fx"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures_Hidden"
-                    }
-                  },
-                  "Property": "View A2 C Act @Plan"
-                }
-              },
-              "queryRef": "_Measures_Hidden.View A2 C Act @Plan",
-              "nativeQueryRef": "Act @plan fx",
-              "displayName": "Act @plan fx"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures_Hidden"
-                    }
-                  },
-                  "Property": "View A2 D PY"
-                }
-              },
-              "queryRef": "_Measures_Hidden.View A2 D PY",
+              "queryRef": "_Measures_Hidden.View A1 B PY",
               "nativeQueryRef": "PY",
               "displayName": "PY"
             },
@@ -98,10 +68,10 @@
                       "Entity": "_Measures_Hidden"
                     }
                   },
-                  "Property": "View A2 E Fcst TD"
+                  "Property": "View A1 C Fcst TD"
                 }
               },
-              "queryRef": "_Measures_Hidden.View A2 E Fcst TD",
+              "queryRef": "_Measures_Hidden.View A1 C Fcst TD",
               "nativeQueryRef": "Fcst TD",
               "displayName": "Fcst TD"
             },
@@ -113,10 +83,10 @@
                       "Entity": "_Measures_Hidden"
                     }
                   },
-                  "Property": "View A2 F Fcts BU"
+                  "Property": "View A1 D Fcts BU"
                 }
               },
-              "queryRef": "_Measures_Hidden.View A2 F Fcts BU",
+              "queryRef": "_Measures_Hidden.View A1 D Fcts BU",
               "nativeQueryRef": "Fcst BU",
               "displayName": "Fcst BU"
             },
@@ -128,10 +98,10 @@
                       "Entity": "_Measures_Hidden"
                     }
                   },
-                  "Property": "View A2 G Pln"
+                  "Property": "View A1 E Pln"
                 }
               },
-              "queryRef": "_Measures_Hidden.View A2 G Pln",
+              "queryRef": "_Measures_Hidden.View A1 E Pln",
               "nativeQueryRef": "Pln",
               "displayName": "Pln"
             },
@@ -143,10 +113,10 @@
                       "Entity": "_Measures_Hidden"
                     }
                   },
-                  "Property": "View A2 H"
+                  "Property": "View A1 F"
                 }
               },
-              "queryRef": "_Measures_Hidden.View A2 H",
+              "queryRef": "_Measures_Hidden.View A1 F",
               "nativeQueryRef": "        ",
               "displayName": "        "
             },
@@ -158,10 +128,10 @@
                       "Entity": "_Measures_Hidden"
                     }
                   },
-                  "Property": "View A2 I vs PY"
+                  "Property": "View A1 G vs PY"
                 }
               },
-              "queryRef": "_Measures_Hidden.View A2 I vs PY",
+              "queryRef": "_Measures_Hidden.View A1 G vs PY",
               "nativeQueryRef": "vs PY",
               "displayName": "vs PY"
             },
@@ -173,10 +143,10 @@
                       "Entity": "_Measures_Hidden"
                     }
                   },
-                  "Property": "View A2 J vs Fcst TD"
+                  "Property": "View A1 H vs Fcst TD"
                 }
               },
-              "queryRef": "_Measures_Hidden.View A2 J vs Fcst TD",
+              "queryRef": "_Measures_Hidden.View A1 H vs Fcst TD",
               "nativeQueryRef": "vs Fcst TD",
               "displayName": "vs Fcst TD"
             },
@@ -188,10 +158,10 @@
                       "Entity": "_Measures_Hidden"
                     }
                   },
-                  "Property": "View A2 K vs Fcst BU"
+                  "Property": "View A1 I vs Fcst BU"
                 }
               },
-              "queryRef": "_Measures_Hidden.View A2 K vs Fcst BU",
+              "queryRef": "_Measures_Hidden.View A1 I vs Fcst BU",
               "nativeQueryRef": "vs Fcst BU",
               "displayName": "vs Fcst BU"
             },
@@ -203,10 +173,10 @@
                       "Entity": "_Measures_Hidden"
                     }
                   },
-                  "Property": "View A2 L vs Pln"
+                  "Property": "View A1 J vs Pln"
                 }
               },
-              "queryRef": "_Measures_Hidden.View A2 L vs Pln",
+              "queryRef": "_Measures_Hidden.View A1 J vs Pln",
               "nativeQueryRef": "vs Pln",
               "displayName": "vs Pln"
             },
@@ -218,10 +188,10 @@
                       "Entity": "_Measures_Hidden"
                     }
                   },
-                  "Property": "View A2 M"
+                  "Property": "View A1 K"
                 }
               },
-              "queryRef": "_Measures_Hidden.View A2 M",
+              "queryRef": "_Measures_Hidden.View A1 K",
               "nativeQueryRef": "        1",
               "displayName": "        "
             },
@@ -233,10 +203,10 @@
                       "Entity": "_Measures_Hidden"
                     }
                   },
-                  "Property": "View A2 N vs PY, %"
+                  "Property": "View A1 L vs PY, %"
                 }
               },
-              "queryRef": "_Measures_Hidden.View A2 N vs PY, %",
+              "queryRef": "_Measures_Hidden.View A1 L vs PY, %",
               "nativeQueryRef": "vs PY, %",
               "displayName": "vs PY, %"
             },
@@ -248,10 +218,10 @@
                       "Entity": "_Measures_Hidden"
                     }
                   },
-                  "Property": "View A2 O vs Fcst TD, %"
+                  "Property": "View A1 M vs Fcst TD, %"
                 }
               },
-              "queryRef": "_Measures_Hidden.View A2 O vs Fcst TD, %",
+              "queryRef": "_Measures_Hidden.View A1 M vs Fcst TD, %",
               "nativeQueryRef": "vs Fcst TD, %",
               "displayName": "vs Fcst TD, %"
             },
@@ -263,10 +233,10 @@
                       "Entity": "_Measures_Hidden"
                     }
                   },
-                  "Property": "View A2 P vs Fcst BU, %"
+                  "Property": "View A1 N vs Fcst BU, %"
                 }
               },
-              "queryRef": "_Measures_Hidden.View A2 P vs Fcst BU, %",
+              "queryRef": "_Measures_Hidden.View A1 N vs Fcst BU, %",
               "nativeQueryRef": "vs Fcst BU, %",
               "displayName": "vs Fcst BU, %"
             },
@@ -278,10 +248,10 @@
                       "Entity": "_Measures_Hidden"
                     }
                   },
-                  "Property": "View A2 Q vs Pln, %"
+                  "Property": "View A1 O vs Pln, %"
                 }
               },
-              "queryRef": "_Measures_Hidden.View A2 Q vs Pln, %",
+              "queryRef": "_Measures_Hidden.View A1 O vs Pln, %",
               "nativeQueryRef": "vs Pln, %",
               "displayName": "vs Pln, %"
             }
@@ -299,7 +269,7 @@
                 }
               },
               "index": 1,
-              "length": 17
+              "length": 15
             }
           ]
         }
@@ -759,244 +729,6 @@
           }
         },
         "type": "Categorical"
-      },
-      {
-        "name": "4e786d37880db8a616b4",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures_Hidden"
-              }
-            },
-            "Property": "View A2 A Act @PY"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "b9b11cf44603c867d93e",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures_Hidden"
-              }
-            },
-            "Property": "View A2 B Act @Fcst"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "c422b52b5876a11eb082",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures_Hidden"
-              }
-            },
-            "Property": "View A2 C Act @Plan"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "cd51ca3000aac607a54e",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures_Hidden"
-              }
-            },
-            "Property": "View A2 D PY"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "50bcdb80e80b001d4aea",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures_Hidden"
-              }
-            },
-            "Property": "View A2 E Fcst TD"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "6c50513010b0a016e1a0",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures_Hidden"
-              }
-            },
-            "Property": "View A2 F Fcts BU"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "c05e4eb5c790c21bdc03",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures_Hidden"
-              }
-            },
-            "Property": "View A2 G Pln"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "2a5f4674948b87b388ca",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures_Hidden"
-              }
-            },
-            "Property": "View A2 H"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "00be2028e99c978d8507",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures_Hidden"
-              }
-            },
-            "Property": "View A2 I vs PY"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "b91c34404a0add1b8d28",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures_Hidden"
-              }
-            },
-            "Property": "View A2 J vs Fcst TD"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "c422dc60dd1bce292ace",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures_Hidden"
-              }
-            },
-            "Property": "View A2 K vs Fcst BU"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "f7b993020b2b03b1b6ce",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures_Hidden"
-              }
-            },
-            "Property": "View A2 L vs Pln"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "6975785b1a051d9ae85e",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures_Hidden"
-              }
-            },
-            "Property": "View A2 M"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "a9c9a92467d02679e205",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures_Hidden"
-              }
-            },
-            "Property": "View A2 N vs PY, %"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "bacc2f020cb9c0b3249d",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures_Hidden"
-              }
-            },
-            "Property": "View A2 O vs Fcst TD, %"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "83a5ac7e13ea042e2ed6",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures_Hidden"
-              }
-            },
-            "Property": "View A2 P vs Fcst BU, %"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "ab7b6db2d338b02bb089",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures_Hidden"
-              }
-            },
-            "Property": "View A2 Q vs Pln, %"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

@@ -81,7 +81,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Current Period'"
+                                "Value": "'Prior Period'"
                               }
                             }
                           ]

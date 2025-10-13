@@ -43,7 +43,7 @@
               },
               "queryRef": "legalentity.Region",
               "nativeQueryRef": "Region",
-              "active": true
+              "active": false
             },
             {
               "field": {
@@ -58,7 +58,7 @@
               },
               "queryRef": "legalentity.Country",
               "nativeQueryRef": "Country",
-              "active": true
+              "active": false
             },
             {
               "field": {
@@ -160,7 +160,6 @@
                   }
                 }
               ],
-              "isToggled": true,
               "children": [
                 {
                   "identityValues": [
