@@ -51,7 +51,9 @@ function __Fn_PnL_Step2_CY_TimeHorizon =
 			prioryearoffset: INT64
 		) =>
 		VAR yearoffset = prioryearoffset
-		VAR MonthtoDate_var = __Fn_PnL_Step1_Sum_and_Subtotal( amount )
+		
+		
+		VAR MonthtoDate_var =  CALCULATE( __Fn_PnL_Step1_Sum_and_Subtotal( amount ), TimeIntellignece__MonthToDate_Table_Function( 'Date', yearoffset ) )
 		VAR YeartoDate_var =
 		    CALCULATE( __Fn_PnL_Step1_Sum_and_Subtotal( amount ), TimeIntellignece__YearToDate_Table_Function( 'Date', yearoffset ) )
 		VAR QuartertoDate_var =
@@ -91,6 +93,7 @@ function __Fn_PnL_Step2_CY_TimeHorizon =
 		    )
 		RETURN
 		    result
+		    //prioryearoffset
 	lineageTag: b6c844d0-a312-443f-946b-12934c716c28
 
 function __Fn_PnL_Step3_CY_AddDivide = ```
@@ -117,21 +120,23 @@ function __Fn_PnL_Step3_CY_AddDivide = ```
 		        Layout,
 		        REMOVEFILTERS( Layout ),
 		        Layout[Income_Statement_Key]
-		            = MAX( Layout[Divide_Denominator] )
+		            = MAX( 'layout'[Divide_Denominator] )
 		    )
 		VAR denominator =
 		    CALCULATE(
 		        __Fn_PnL_Step2_CY_TimeHorizon( amount, amounttype, 	prioryearoffset ),
-		        calculationfincialstatementstabledenominator,
-		        REMOVEFILTERS( Accounts )
+		        calculationfincialstatementstabledenominator
+		        ,REMOVEFILTERS( Accounts )
 		    )
+		
 		//Check if account table is filtered
-		//VAR accountinscope = ISFILTERED( Account )
+		VAR accountinscope = ISFILTERED( Accounts )
 		//Check if selected calculation type equals blank
-		//VAR selectedcalculationtype =
-		  //  SELECTEDVALUE( Layout[Calculation_type] ) = "Blank"
+		VAR selectedcalculationtype =
+		    SELECTEDVALUE( Layout[Calculation_type] ) = "Blank"
+		
 		//If account table is filtered, don't show blanks else return 0 if the calculation type if blank
-		/*
+		
 		VAR blankrows =
 		    SWITCH(
 		        TRUE( ),
@@ -139,16 +144,16 @@ function __Fn_PnL_Step3_CY_AddDivide = ```
 		        selectedcalculationtype, 0
 		    )
 			
-			*/
-			
+		    	
 			
 		VAR result =
 		    COALESCE(
 		        DIVIDE( numerator, denominator ),
-		        __Fn_PnL_Step2_CY_TimeHorizon( amount, amounttype, 	prioryearoffset )
+		        __Fn_PnL_Step2_CY_TimeHorizon( amount, amounttype, 	prioryearoffset ),
+		        blankrows
 		    )
 		RETURN
-		    result
+		  result
 		```
 	lineageTag: 1c0a0c99-7ac6-4c16-b183-bfdfc35cd1bb
 
@@ -185,7 +190,7 @@ function __Fn_PnL_Sum_Subtotal_and_Blanks =
 	lineageTag: e620daae-7c8f-4489-b17a-162819aca823
 
 /// Creates the P&L Lines
-function __Fn_PnL_Variance_Highlights =
+function __Fn_PnL_Variance_Highlights = ```
 		(
 		    amount: EXPR
 		) =>
@@ -198,21 +203,23 @@ function __Fn_PnL_Variance_Highlights =
 		        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
 		        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
 		    )
+		    
 		VAR step1_lineitem = MAX( Accounts[Account_Type_Indicator] )
+		
 		VAR step2_subtotal =
 		    CALCULATE(
 		        MAX( Accounts[Account_Type_Indicator] ),
 		        NCLD_filter_context_calculated_table
 		    )
-		VAR indicator = COALESCE( step1_lineitem, step2_subtotal )
-		VAR result =
-		    SWITCH(
-		        TRUE( ),
-		        amount * indicator > 0, green,
-		        amount * indicator < 0, red
-		    )
+		    
+		VAR indicator = COALESCE( step1_lineitem, step2_subtotal  )
+		   
+		
+		VAR result = IF( amount * indicator < 0, red, green )
+		    
 		RETURN
 		    result
+		```
 	lineageTag: b4a1ca36-3856-48f4-b7b1-e56e37b13b75
 
 function TimeIntellignece__FullQuarter_Table_Function =

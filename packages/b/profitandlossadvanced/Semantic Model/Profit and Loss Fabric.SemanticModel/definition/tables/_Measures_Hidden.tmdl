@@ -83,7 +83,7 @@ table _Measures_Hidden
 
 		changedProperty = IsHidden
 
-	measure 'View A1 E Pln' = [Basic Plan]
+	measure 'View A1 E Pln' = [Plan]
 		isHidden
 		displayFolder: Field Paramaters\View A1: Overall
 		lineageTag: 61ee1aea-d5c7-4127-b783-504657ce9f5e
@@ -218,70 +218,7 @@ table _Measures_Hidden
 
 		changedProperty = IsHidden
 
-	measure 'View A1 Format Fcst BU' =
-			// subtotal
-			VAR NCLD_filter_context_calculated_table =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
-			        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
-			    )
-			VAR indicatorsubtotal =
-			    CALCULATE(
-			        [Net Credit Less Debit Indicator],
-			        NCLD_filter_context_calculated_table
-			    )
-			//percentage
-			VAR numeratormax = MAX( Layout[Divide_Numerator] )
-			VAR Pct_Table =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= numeratormax,
-			        Layout[Income_Statement_Key] <= numeratormax
-			    )
-			VAR subtotalfrom =
-			    CALCULATE(
-			        MAX( Layout[Subtotal_From] ),
-			        REMOVEFILTERS( Layout ),
-			        Pct_Table
-			    )
-			VAR subtotalto =
-			    CALCULATE(
-			        MAX( Layout[Subtotal_To] ),
-			        REMOVEFILTERS( Layout ),
-			        Pct_Table
-			    )
-			VAR NCLD_filter_context_calculated_table_Pct =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= subtotalfrom,
-			        Layout[Income_Statement_Key] <= subtotalto
-			    )
-			VAR indicatorpct =
-			    CALCULATE(
-			        [Net Credit Less Debit Indicator],
-			        NCLD_filter_context_calculated_table_Pct
-			    )
-			// indicatpr
-			VAR indicator =
-			    COALESCE(
-			        [Net Credit Less Debit Indicator],
-			        indicatorsubtotal,
-			        indicatorpct
-			    )
-			VAR varianceadj = [View A1 I vs Fcst BU] * indicator
-			VAR result =
-			    SWITCH(
-			        TRUE( ),
-			        varianceadj > 0, [Green],
-			        varianceadj < 0, [Red],
-			        [Gray]
-			    )
-			RETURN
-			    result
+	measure 'View A1 Format Fcst BU' = __Fn_PnL_Variance_Highlights( [View A1 I vs Fcst BU] )
 		isHidden
 		displayFolder: Field Paramaters\View A1: Overall\Formatting
 		lineageTag: 5c2487c3-7064-4ec9-9512-2df886e42414
@@ -294,70 +231,7 @@ table _Measures_Hidden
 
 		changedProperty = IsHidden
 
-	measure 'View A1 Format Fcst TD' =
-			// subtotal
-			VAR NCLD_filter_context_calculated_table =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
-			        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
-			    )
-			VAR indicatorsubtotal =
-			    CALCULATE(
-			        [Net Credit Less Debit Indicator],
-			        NCLD_filter_context_calculated_table
-			    )
-			//percentage
-			VAR numeratormax = MAX( Layout[Divide_Numerator] )
-			VAR Pct_Table =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= numeratormax,
-			        Layout[Income_Statement_Key] <= numeratormax
-			    )
-			VAR subtotalfrom =
-			    CALCULATE(
-			        MAX( Layout[Subtotal_From] ),
-			        REMOVEFILTERS( Layout ),
-			        Pct_Table
-			    )
-			VAR subtotalto =
-			    CALCULATE(
-			        MAX( Layout[Subtotal_To] ),
-			        REMOVEFILTERS( Layout ),
-			        Pct_Table
-			    )
-			VAR NCLD_filter_context_calculated_table_Pct =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= subtotalfrom,
-			        Layout[Income_Statement_Key] <= subtotalto
-			    )
-			VAR indicatorpct =
-			    CALCULATE(
-			        [Net Credit Less Debit Indicator],
-			        NCLD_filter_context_calculated_table_Pct
-			    )
-			// indicatpr
-			VAR indicator =
-			    COALESCE(
-			        [Net Credit Less Debit Indicator],
-			        indicatorsubtotal,
-			        indicatorpct
-			    )
-			VAR varianceadj = [View A1 H vs Fcst TD] * indicator
-			VAR result =
-			    SWITCH(
-			        TRUE( ),
-			        varianceadj > 0, [Green],
-			        varianceadj < 0, [Red],
-			        [Gray]
-			    )
-			RETURN
-			    result
+	measure 'View A1 Format Fcst TD' = __Fn_PnL_Variance_Highlights( [View A1 H vs Fcst TD] )
 		isHidden
 		displayFolder: Field Paramaters\View A1: Overall\Formatting
 		lineageTag: d3404722-3559-4c9e-911a-f313b0833964
@@ -370,70 +244,7 @@ table _Measures_Hidden
 
 		changedProperty = IsHidden
 
-	measure 'View A1 Format Pln' =
-			// subtotal
-			VAR NCLD_filter_context_calculated_table =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
-			        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
-			    )
-			VAR indicatorsubtotal =
-			    CALCULATE(
-			        [Net Credit Less Debit Indicator],
-			        NCLD_filter_context_calculated_table
-			    )
-			//percentage
-			VAR numeratormax = MAX( Layout[Divide_Numerator] )
-			VAR Pct_Table =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= numeratormax,
-			        Layout[Income_Statement_Key] <= numeratormax
-			    )
-			VAR subtotalfrom =
-			    CALCULATE(
-			        MAX( Layout[Subtotal_From] ),
-			        REMOVEFILTERS( Layout ),
-			        Pct_Table
-			    )
-			VAR subtotalto =
-			    CALCULATE(
-			        MAX( Layout[Subtotal_To] ),
-			        REMOVEFILTERS( Layout ),
-			        Pct_Table
-			    )
-			VAR NCLD_filter_context_calculated_table_Pct =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= subtotalfrom,
-			        Layout[Income_Statement_Key] <= subtotalto
-			    )
-			VAR indicatorpct =
-			    CALCULATE(
-			        [Net Credit Less Debit Indicator],
-			        NCLD_filter_context_calculated_table_Pct
-			    )
-			// indicatpr
-			VAR indicator =
-			    COALESCE(
-			        [Net Credit Less Debit Indicator],
-			        indicatorsubtotal,
-			        indicatorpct
-			    )
-			VAR varianceadj = [View A1 J vs Pln] * indicator
-			VAR result =
-			    SWITCH(
-			        TRUE( ),
-			        varianceadj > 0, [Green],
-			        varianceadj < 0, [Red],
-			        [Gray]
-			    )
-			RETURN
-			    result
+	measure 'View A1 Format Pln' = __Fn_PnL_Variance_Highlights([View A1 J vs Pln] )
 		isHidden
 		displayFolder: Field Paramaters\View A1: Overall\Formatting
 		lineageTag: 24a3b8c4-0761-4a95-b274-119162d0c32d
@@ -446,70 +257,7 @@ table _Measures_Hidden
 
 		changedProperty = IsHidden
 
-	measure 'View A1 Format PY' =
-			// subtotal
-			VAR NCLD_filter_context_calculated_table =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
-			        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
-			    )
-			VAR indicatorsubtotal =
-			    CALCULATE(
-			        [Net Credit Less Debit Indicator],
-			        NCLD_filter_context_calculated_table
-			    )
-			//percentage
-			VAR numeratormax = MAX( Layout[Divide_Numerator] )
-			VAR Pct_Table =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= numeratormax,
-			        Layout[Income_Statement_Key] <= numeratormax
-			    )
-			VAR subtotalfrom =
-			    CALCULATE(
-			        MAX( Layout[Subtotal_From] ),
-			        REMOVEFILTERS( Layout ),
-			        Pct_Table
-			    )
-			VAR subtotalto =
-			    CALCULATE(
-			        MAX( Layout[Subtotal_To] ),
-			        REMOVEFILTERS( Layout ),
-			        Pct_Table
-			    )
-			VAR NCLD_filter_context_calculated_table_Pct =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= subtotalfrom,
-			        Layout[Income_Statement_Key] <= subtotalto
-			    )
-			VAR indicatorpct =
-			    CALCULATE(
-			        [Net Credit Less Debit Indicator],
-			        NCLD_filter_context_calculated_table_Pct
-			    )
-			// indicatpr
-			VAR indicator =
-			    COALESCE(
-			        [Net Credit Less Debit Indicator],
-			        indicatorsubtotal,
-			        indicatorpct
-			    )
-			VAR varianceadj = [View A1 G vs PY] * indicator
-			VAR result =
-			    SWITCH(
-			        TRUE( ),
-			        varianceadj > 0, [Green],
-			        varianceadj < 0, [Red],
-			        [Gray]
-			    )
-			RETURN
-			    result
+	measure 'View A1 Format PY' = __Fn_PnL_Variance_Highlights( [View A1 G vs PY])
 		isHidden
 		displayFolder: Field Paramaters\View A1: Overall\Formatting
 		lineageTag: 8c33c81b-0ada-45c8-892f-2b3cdde0f6d1
@@ -576,7 +324,7 @@ table _Measures_Hidden
 
 		changedProperty = IsHidden
 
-	measure 'View A2 G Pln' = [Basic Plan]
+	measure 'View A2 G Pln' = [Plan]
 		isHidden
 		displayFolder: Field Paramaters\View A2: Underlying
 		lineageTag: 8cae50e0-d177-40c9-a845-01e5f0e341ad
@@ -715,70 +463,7 @@ table _Measures_Hidden
 
 		changedProperty = IsHidden
 
-	measure 'View A2 Format PY' =
-			// subtotal
-			VAR NCLD_filter_context_calculated_table =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
-			        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
-			    )
-			VAR indicatorsubtotal =
-			    CALCULATE(
-			        [Net Credit Less Debit Indicator],
-			        NCLD_filter_context_calculated_table
-			    )
-			//percentage
-			VAR numeratormax = MAX( Layout[Divide_Numerator] )
-			VAR Pct_Table =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= numeratormax,
-			        Layout[Income_Statement_Key] <= numeratormax
-			    )
-			VAR subtotalfrom =
-			    CALCULATE(
-			        MAX( Layout[Subtotal_From] ),
-			        REMOVEFILTERS( Layout ),
-			        Pct_Table
-			    )
-			VAR subtotalto =
-			    CALCULATE(
-			        MAX( Layout[Subtotal_To] ),
-			        REMOVEFILTERS( Layout ),
-			        Pct_Table
-			    )
-			VAR NCLD_filter_context_calculated_table_Pct =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= subtotalfrom,
-			        Layout[Income_Statement_Key] <= subtotalto
-			    )
-			VAR indicatorpct =
-			    CALCULATE(
-			        [Net Credit Less Debit Indicator],
-			        NCLD_filter_context_calculated_table_Pct
-			    )
-			// indicatpr
-			VAR indicator =
-			    COALESCE(
-			        [Net Credit Less Debit Indicator],
-			        indicatorsubtotal,
-			        indicatorpct
-			    )
-			VAR varianceadj = [View A2 I vs PY] * indicator
-			VAR result =
-			    SWITCH(
-			        TRUE( ),
-			        varianceadj > 0, [Green],
-			        varianceadj < 0, [Red],
-			        [Gray]
-			    )
-			RETURN
-			    result
+	measure 'View A2 Format PY' = __Fn_PnL_Variance_Highlights( [View A2 I vs PY] )
 		isHidden
 		displayFolder: Field Paramaters\View A2: Underlying\Formatting
 		lineageTag: 910069f6-66e8-4ea1-a047-5fb20aa7dc44
@@ -791,70 +476,7 @@ table _Measures_Hidden
 
 		changedProperty = IsHidden
 
-	measure 'View A2 Format Pln' =
-			// subtotal
-			VAR NCLD_filter_context_calculated_table =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
-			        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
-			    )
-			VAR indicatorsubtotal =
-			    CALCULATE(
-			        [Net Credit Less Debit Indicator],
-			        NCLD_filter_context_calculated_table
-			    )
-			//percentage
-			VAR numeratormax = MAX( Layout[Divide_Numerator] )
-			VAR Pct_Table =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= numeratormax,
-			        Layout[Income_Statement_Key] <= numeratormax
-			    )
-			VAR subtotalfrom =
-			    CALCULATE(
-			        MAX( Layout[Subtotal_From] ),
-			        REMOVEFILTERS( Layout ),
-			        Pct_Table
-			    )
-			VAR subtotalto =
-			    CALCULATE(
-			        MAX( Layout[Subtotal_To] ),
-			        REMOVEFILTERS( Layout ),
-			        Pct_Table
-			    )
-			VAR NCLD_filter_context_calculated_table_Pct =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= subtotalfrom,
-			        Layout[Income_Statement_Key] <= subtotalto
-			    )
-			VAR indicatorpct =
-			    CALCULATE(
-			        [Net Credit Less Debit Indicator],
-			        NCLD_filter_context_calculated_table_Pct
-			    )
-			// indicatpr
-			VAR indicator =
-			    COALESCE(
-			        [Net Credit Less Debit Indicator],
-			        indicatorsubtotal,
-			        indicatorpct
-			    )
-			VAR varianceadj = [View A2 L vs Pln] * indicator
-			VAR result =
-			    SWITCH(
-			        TRUE( ),
-			        varianceadj > 0, [Green],
-			        varianceadj < 0, [Red],
-			        [Gray]
-			    )
-			RETURN
-			    result
+	measure 'View A2 Format Pln' = __Fn_PnL_Variance_Highlights( [View A2 L vs Pln] )
 		isHidden
 		displayFolder: Field Paramaters\View A2: Underlying\Formatting
 		lineageTag: 0419e407-1498-4a0d-af9f-21663281acc7
@@ -867,70 +489,7 @@ table _Measures_Hidden
 
 		changedProperty = IsHidden
 
-	measure 'View A2 Format Fcst TD' =
-			// subtotal
-			VAR NCLD_filter_context_calculated_table =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
-			        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
-			    )
-			VAR indicatorsubtotal =
-			    CALCULATE(
-			        [Net Credit Less Debit Indicator],
-			        NCLD_filter_context_calculated_table
-			    )
-			//percentage
-			VAR numeratormax = MAX( Layout[Divide_Numerator] )
-			VAR Pct_Table =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= numeratormax,
-			        Layout[Income_Statement_Key] <= numeratormax
-			    )
-			VAR subtotalfrom =
-			    CALCULATE(
-			        MAX( Layout[Subtotal_From] ),
-			        REMOVEFILTERS( Layout ),
-			        Pct_Table
-			    )
-			VAR subtotalto =
-			    CALCULATE(
-			        MAX( Layout[Subtotal_To] ),
-			        REMOVEFILTERS( Layout ),
-			        Pct_Table
-			    )
-			VAR NCLD_filter_context_calculated_table_Pct =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= subtotalfrom,
-			        Layout[Income_Statement_Key] <= subtotalto
-			    )
-			VAR indicatorpct =
-			    CALCULATE(
-			        [Net Credit Less Debit Indicator],
-			        NCLD_filter_context_calculated_table_Pct
-			    )
-			// indicatpr
-			VAR indicator =
-			    COALESCE(
-			        [Net Credit Less Debit Indicator],
-			        indicatorsubtotal,
-			        indicatorpct
-			    )
-			VAR varianceadj = [View A2 J vs Fcst TD] * indicator
-			VAR result =
-			    SWITCH(
-			        TRUE( ),
-			        varianceadj > 0, [Green],
-			        varianceadj < 0, [Red],
-			        [Gray]
-			    )
-			RETURN
-			    result
+	measure 'View A2 Format Fcst TD' = __Fn_PnL_Variance_Highlights( [View A2 J vs Fcst TD] )
 		isHidden
 		displayFolder: Field Paramaters\View A2: Underlying\Formatting
 		lineageTag: 47ea7b8b-8d7c-4e01-b547-cc63f4a8ab3c
@@ -943,70 +502,7 @@ table _Measures_Hidden
 
 		changedProperty = IsHidden
 
-	measure 'View A2 Format Fcst BU' =
-			// subtotal
-			VAR NCLD_filter_context_calculated_table =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
-			        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
-			    )
-			VAR indicatorsubtotal =
-			    CALCULATE(
-			        [Net Credit Less Debit Indicator],
-			        NCLD_filter_context_calculated_table
-			    )
-			//percentage
-			VAR numeratormax = MAX( Layout[Divide_Numerator] )
-			VAR Pct_Table =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= numeratormax,
-			        Layout[Income_Statement_Key] <= numeratormax
-			    )
-			VAR subtotalfrom =
-			    CALCULATE(
-			        MAX( Layout[Subtotal_From] ),
-			        REMOVEFILTERS( Layout ),
-			        Pct_Table
-			    )
-			VAR subtotalto =
-			    CALCULATE(
-			        MAX( Layout[Subtotal_To] ),
-			        REMOVEFILTERS( Layout ),
-			        Pct_Table
-			    )
-			VAR NCLD_filter_context_calculated_table_Pct =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= subtotalfrom,
-			        Layout[Income_Statement_Key] <= subtotalto
-			    )
-			VAR indicatorpct =
-			    CALCULATE(
-			        [Net Credit Less Debit Indicator],
-			        NCLD_filter_context_calculated_table_Pct
-			    )
-			// indicatpr
-			VAR indicator =
-			    COALESCE(
-			        [Net Credit Less Debit Indicator],
-			        indicatorsubtotal,
-			        indicatorpct
-			    )
-			VAR varianceadj = [View A2 K vs Fcst BU] * indicator
-			VAR result =
-			    SWITCH(
-			        TRUE( ),
-			        varianceadj > 0, [Green],
-			        varianceadj < 0, [Red],
-			        [Gray]
-			    )
-			RETURN
-			    result
+	measure 'View A2 Format Fcst BU' = __Fn_PnL_Variance_Highlights( [View A2 K vs Fcst BU] )
 		isHidden
 		displayFolder: Field Paramaters\View A2: Underlying\Formatting
 		lineageTag: d116a06e-341b-47d3-a1bc-168cf345b57c
@@ -1157,70 +653,7 @@ table _Measures_Hidden
 
 		changedProperty = IsHidden
 
-	measure 'View A3 Format PY' =
-			// subtotal
-			VAR NCLD_filter_context_calculated_table =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
-			        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
-			    )
-			VAR indicatorsubtotal =
-			    CALCULATE(
-			        [Net Credit Less Debit Indicator],
-			        NCLD_filter_context_calculated_table
-			    )
-			//percentage
-			VAR numeratormax = MAX( Layout[Divide_Numerator] )
-			VAR Pct_Table =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= numeratormax,
-			        Layout[Income_Statement_Key] <= numeratormax
-			    )
-			VAR subtotalfrom =
-			    CALCULATE(
-			        MAX( Layout[Subtotal_From] ),
-			        REMOVEFILTERS( Layout ),
-			        Pct_Table
-			    )
-			VAR subtotalto =
-			    CALCULATE(
-			        MAX( Layout[Subtotal_To] ),
-			        REMOVEFILTERS( Layout ),
-			        Pct_Table
-			    )
-			VAR NCLD_filter_context_calculated_table_Pct =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= subtotalfrom,
-			        Layout[Income_Statement_Key] <= subtotalto
-			    )
-			VAR indicatorpct =
-			    CALCULATE(
-			        [Net Credit Less Debit Indicator],
-			        NCLD_filter_context_calculated_table_Pct
-			    )
-			// indicatpr
-			VAR indicator =
-			    COALESCE(
-			        [Net Credit Less Debit Indicator],
-			        indicatorsubtotal,
-			        indicatorpct
-			    )
-			VAR varianceadj = [View A3 F vs PY] * indicator
-			VAR result =
-			    SWITCH(
-			        TRUE( ),
-			        varianceadj > 0, [Green],
-			        varianceadj < 0, [Red],
-			        [Gray]
-			    )
-			RETURN
-			    result
+	measure 'View A3 Format PY' = __Fn_PnL_Variance_Highlights( [View A3 F vs PY] )
 		isHidden
 		displayFolder: Field Paramaters\View A3: Fx\Formatting
 		lineageTag: 073c8056-2b0e-403e-81d8-ce28d5e7a3a9
@@ -1233,70 +666,7 @@ table _Measures_Hidden
 
 		changedProperty = IsHidden
 
-	measure 'View A3 Format Fcst' =
-			// subtotal
-			VAR NCLD_filter_context_calculated_table =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
-			        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
-			    )
-			VAR indicatorsubtotal =
-			    CALCULATE(
-			        [Net Credit Less Debit Indicator],
-			        NCLD_filter_context_calculated_table
-			    )
-			//percentage
-			VAR numeratormax = MAX( Layout[Divide_Numerator] )
-			VAR Pct_Table =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= numeratormax,
-			        Layout[Income_Statement_Key] <= numeratormax
-			    )
-			VAR subtotalfrom =
-			    CALCULATE(
-			        MAX( Layout[Subtotal_From] ),
-			        REMOVEFILTERS( Layout ),
-			        Pct_Table
-			    )
-			VAR subtotalto =
-			    CALCULATE(
-			        MAX( Layout[Subtotal_To] ),
-			        REMOVEFILTERS( Layout ),
-			        Pct_Table
-			    )
-			VAR NCLD_filter_context_calculated_table_Pct =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= subtotalfrom,
-			        Layout[Income_Statement_Key] <= subtotalto
-			    )
-			VAR indicatorpct =
-			    CALCULATE(
-			        [Net Credit Less Debit Indicator],
-			        NCLD_filter_context_calculated_table_Pct
-			    )
-			// indicatpr
-			VAR indicator =
-			    COALESCE(
-			        [Net Credit Less Debit Indicator],
-			        indicatorsubtotal,
-			        indicatorpct
-			    )
-			VAR varianceadj = [View A3 G vs Fcst] * indicator
-			VAR result =
-			    SWITCH(
-			        TRUE( ),
-			        varianceadj > 0, [Green],
-			        varianceadj < 0, [Red],
-			        [Gray]
-			    )
-			RETURN
-			    result
+	measure 'View A3 Format Fcst' = __Fn_PnL_Variance_Highlights( [View A3 G vs Fcst] )
 		isHidden
 		displayFolder: Field Paramaters\View A3: Fx\Formatting
 		lineageTag: 99058d4d-9866-47f3-9d21-df3504c6d4a3
@@ -1309,70 +679,7 @@ table _Measures_Hidden
 
 		changedProperty = IsHidden
 
-	measure 'View A3 Format Pln' =
-			// subtotal
-			VAR NCLD_filter_context_calculated_table =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= MIN( Layout[Subtotal_From] ),
-			        Layout[Income_Statement_Key] <= MIN( Layout[Subtotal_To] )
-			    )
-			VAR indicatorsubtotal =
-			    CALCULATE(
-			        [Net Credit Less Debit Indicator],
-			        NCLD_filter_context_calculated_table
-			    )
-			//percentage
-			VAR numeratormax = MAX( Layout[Divide_Numerator] )
-			VAR Pct_Table =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= numeratormax,
-			        Layout[Income_Statement_Key] <= numeratormax
-			    )
-			VAR subtotalfrom =
-			    CALCULATE(
-			        MAX( Layout[Subtotal_From] ),
-			        REMOVEFILTERS( Layout ),
-			        Pct_Table
-			    )
-			VAR subtotalto =
-			    CALCULATE(
-			        MAX( Layout[Subtotal_To] ),
-			        REMOVEFILTERS( Layout ),
-			        Pct_Table
-			    )
-			VAR NCLD_filter_context_calculated_table_Pct =
-			    CALCULATETABLE(
-			        Layout,
-			        REMOVEFILTERS( Layout ),
-			        Layout[Income_Statement_Key] >= subtotalfrom,
-			        Layout[Income_Statement_Key] <= subtotalto
-			    )
-			VAR indicatorpct =
-			    CALCULATE(
-			        [Net Credit Less Debit Indicator],
-			        NCLD_filter_context_calculated_table_Pct
-			    )
-			// indicatpr
-			VAR indicator =
-			    COALESCE(
-			        [Net Credit Less Debit Indicator],
-			        indicatorsubtotal,
-			        indicatorpct
-			    )
-			VAR varianceadj = [View A3 H vs Pln] * indicator
-			VAR result =
-			    SWITCH(
-			        TRUE( ),
-			        varianceadj > 0, [Green],
-			        varianceadj < 0, [Red],
-			        [Gray]
-			    )
-			RETURN
-			    result
+	measure 'View A3 Format Pln' = __Fn_PnL_Variance_Highlights( [View A3 H vs Pln] )
 		isHidden
 		displayFolder: Field Paramaters\View A3: Fx\Formatting
 		lineageTag: 2388d452-4bdc-4908-be2e-46da50f33254
@@ -1404,18 +711,14 @@ table _Measures_Hidden
 
 		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
 
-	measure 'Line Name Background' =
-			VAR CalcType = SELECTEDVALUE( Layout[Calculation_type] )
-			VAR Subtotals = CalcType = "Subtotal"
-			VAR Divides = CalcType = "Divide"
-			VAR result =
-			    SWITCH(
-			        TRUE( ),
-			        Subtotals, [Gray],
-			        Divides, [Gray]
+	measure 'Line Name Background' = ```
+			CALCULATE(
+			    SELECTEDVALUE(
+			        'layout'[Formatting_P_L_Hex_Background]
+			        
 			    )
-			RETURN
-			    result
+			)
+			```
 		isHidden
 		lineageTag: 621a10f9-0788-4634-8b7f-23243d73355d
 
@@ -1423,19 +726,14 @@ table _Measures_Hidden
 
 		changedProperty = IsHidden
 
-	measure 'Line Name Font' =
-			VAR CalcType = SELECTEDVALUE( Layout[Calculation_type] )
-			VAR Subtotals = CalcType = "Subtotal"
-			VAR Divides = CalcType = "Divide"
-			VAR result =
-			    SWITCH(
-			        TRUE( ),
-			        Subtotals, [Blue],
-			        Divides, [Blue],
-			        [Medium Gray]
+	measure 'Line Name Font' = ```
+			CALCULATE(
+			    SELECTEDVALUE(
+			        'layout'[Formatting_P_L_Hex_Text]
+			        
 			    )
-			RETURN
-			    result
+			)
+			```
 		isHidden
 		lineageTag: c58643e4-b3fa-45da-9495-75ae96aa6f66
 
@@ -1544,7 +842,7 @@ table _Measures_Hidden
 				    "#,##0,;(#,##0,);-"
 				)
 
-	measure 'var Overall Actuals @actual fx vs Forecast Bottom Up 1' = [Actuals @actual fx] - [Forecast Bottom Up]
+	measure 'var Overall Actuals @actual fx vs Forecast Bottom Up' = [Actuals @actual fx] - [Forecast Bottom Up]
 		displayFolder: 1_BaseMeasures\3_Varaince\a_overall
 		lineageTag: 34ebf40c-c679-408b-9e83-b04f580d0ea3
 
@@ -1554,7 +852,7 @@ table _Measures_Hidden
 				    "#,##0,;(#,##0,);-"
 				)
 
-	measure 'var Overall Actuals @actual fx vs Forecast Top Down 1' = [Actuals @actual fx] - [Forecast Top Down]
+	measure 'var Overall Actuals @actual fx vs Forecast Top Down' = [Actuals @actual fx] - [Forecast Top Down]
 		displayFolder: 1_BaseMeasures\3_Varaince\a_overall
 		lineageTag: 7e48ceea-28ed-4df0-926f-5d399300a664
 
@@ -1564,7 +862,7 @@ table _Measures_Hidden
 				    "#,##0,;(#,##0,);-"
 				)
 
-	measure 'var Overall Actuals @actual fx vs Plan 1' = [Actuals @actual fx] - [Basic Plan]
+	measure 'var Overall Actuals @actual fx vs Plan' = [Actuals @actual fx] - [Basic Plan]
 		displayFolder: 1_BaseMeasures\3_Varaince\a_overall
 		lineageTag: 30fb2085-97f3-465c-9ed0-cfe6741cf235
 
@@ -1574,7 +872,7 @@ table _Measures_Hidden
 				    "#,##0,;(#,##0,);-"
 				)
 
-	measure 'var Overall Actuals @actual fx vs PY 1' = [Actuals @actual fx] - [Prior Year Actuals]
+	measure 'var Overall Actuals @actual fx vs PY' = [Actuals @actual fx] - [Prior Year Actuals]
 		displayFolder: 1_BaseMeasures\3_Varaince\a_overall
 		lineageTag: c4150e4f-0506-4139-85cc-c9838d0862ce
 
@@ -1584,7 +882,7 @@ table _Measures_Hidden
 				    "#,##0,;(#,##0,);-"
 				)
 
-	measure 'Actuals @actual fx test' = __Fn_PnL_Step2_CY_TimeHorizon( SUM('ledger'[CreditlessdebitatGlobalFx] ), 1,0  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
+	measure 'Actuals @actual fx test' = __Fn_PnL_Step2_CY_TimeHorizon( SUM('ledger'[CreditlessdebitatGlobalFx] ), 1,1  ) //1 = actuals 2 = Scenario ,0 = CY, 1 = PY)
 		displayFolder: 1_BaseMeasures\1_Actuals
 		lineageTag: 6e68e2b6-4427-45b3-b139-1fb1dd49cf1b
 
