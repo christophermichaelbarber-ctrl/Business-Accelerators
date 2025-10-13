@@ -8,6 +8,7 @@ table selecttimeframe
 		sourceLineageTag: Time_Horizon
 		summarizeBy: none
 		sourceColumn: Time_Horizon
+		sortByColumn: Time_Horizon_Sort_Order
 
 		annotation SummarizationSetBy = Automatic
 
