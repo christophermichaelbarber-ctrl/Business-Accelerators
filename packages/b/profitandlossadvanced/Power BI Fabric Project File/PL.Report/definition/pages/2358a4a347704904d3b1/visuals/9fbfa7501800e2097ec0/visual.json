@@ -1,12 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
-  "name": "d6347f905704242e580a",
+  "name": "9fbfa7501800e2097ec0",
   "position": {
-    "x": 1099.5703516941521,
-    "y": 54.533947361650668,
+    "x": 1042.9516208964917,
+    "y": 152.59292171505717,
     "z": 2000,
-    "height": 273.85525740307185,
-    "width": 180.19913041241091
+    "height": 79.096330980740646,
+    "width": 219.78980467214657,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "slicer",
@@ -19,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "date"
+                      "Entity": "selecttimeframe"
                     }
                   },
-                  "Property": "FiscalPeriodCP"
+                  "Property": "Time_Horizon"
                 }
               },
-              "queryRef": "date.FiscalPeriodCP",
-              "nativeQueryRef": "FiscalPeriodCP",
+              "queryRef": "selecttimeframe.Time_Horizon",
+              "nativeQueryRef": "Time_Horizon",
               "active": true
             }
           ]
@@ -40,7 +41,7 @@
             "mode": {
               "expr": {
                 "Literal": {
-                  "Value": "'Basic'"
+                  "Value": "'Dropdown'"
                 }
               }
             }
@@ -55,8 +56,8 @@
                 "Version": 2,
                 "From": [
                   {
-                    "Name": "d",
-                    "Entity": "date",
+                    "Name": "s",
+                    "Entity": "selecttimeframe",
                     "Type": 0
                   }
                 ],
@@ -69,10 +70,10 @@
                             "Column": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Source": "d"
+                                  "Source": "s"
                                 }
                               },
-                              "Property": "FiscalPeriodCP"
+                              "Property": "Time_Horizon"
                             }
                           }
                         ],
@@ -80,7 +81,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'CY  P6'"
+                                "Value": "'Month-to-date'"
                               }
                             }
                           ]
@@ -89,6 +90,52 @@
                     }
                   }
                 ]
+              }
+            }
+          }
+        }
+      ],
+      "header": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Select Time Horizon'"
+                }
+              }
+            },
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "selection": [
+        {
+          "properties": {
+            "strictSingleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "items": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'wf_standard-font_light, helvetica, arial, sans-serif'"
+                }
               }
             }
           }
@@ -112,7 +159,8 @@
             "Property": "FiscalPeriodCP"
           }
         },
-        "type": "Categorical"
+        "type": "Categorical",
+        "howCreated": "User"
       },
       {
         "name": "1a8ba2d004035036752c",
