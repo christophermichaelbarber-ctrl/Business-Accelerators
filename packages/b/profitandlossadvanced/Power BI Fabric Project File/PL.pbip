@@ -4,7 +4,7 @@
   "artifacts": [
     {
       "report": {
-        "path": "Profit and Loss.Report"
+        "path": "PL.Report"
       }
     }
   ],
