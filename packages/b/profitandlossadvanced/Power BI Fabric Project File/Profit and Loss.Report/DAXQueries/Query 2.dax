@@ -1,0 +1,33 @@
+DEFINE
+	VAR __DS0FilterTable = 
+		TREATAS({"Month-to-date"}, 'selecttimeframe'[Time_Horizon])
+
+	VAR __DS0FilterTable2 = 
+		TREATAS({"Prior Period"}, 'date'[FiscalPeriodCP])
+
+	VAR __DS0FilterTable3 = 
+		TREATAS({2024}, 'date'[FiscalYear])
+
+	VAR __DS0Core = 
+		SUMMARIZECOLUMNS(
+			'layout'[Line_name],
+			'layout'[Income_Statement_Key],
+			__DS0FilterTable,
+			__DS0FilterTable2,
+			__DS0FilterTable3,
+			"Actuals__actual_fx", '_Measures_Hidden'[Actuals @actual fx],
+			"v_Actuals__actual_fx_FormatString", IGNORE('_Measures_Hidden'[_Actuals @actual fx FormatString]),
+			"Prior_Year_Actuals", '_Measures_Hidden'[Prior Year Actuals],
+			"v_Prior_Year_Actuals_FormatString", IGNORE('_Measures_Hidden'[_Prior Year Actuals FormatString]),
+			"Actuals__actual_fx_test", '_Measures_Hidden'[Actuals @actual fx test],
+			"v_Actuals__actual_fx_test_FormatString", IGNORE('_Measures_Hidden'[_Actuals @actual fx test FormatString])
+		)
+
+	VAR __DS0PrimaryWindowed = 
+		TOPN(501, __DS0Core, 'layout'[Income_Statement_Key], 1, 'layout'[Line_name], 1)
+
+EVALUATE
+	__DS0PrimaryWindowed
+
+ORDER BY
+	'layout'[Income_Statement_Key], 'layout'[Line_name]

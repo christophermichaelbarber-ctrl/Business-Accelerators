@@ -1,0 +1,322 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "a79b6318d0391079da78",
+  "position": {
+    "x": 0,
+    "y": 117.36653888703079,
+    "z": 0,
+    "height": 576.75576937919675,
+    "width": 1037.3305204661813,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "layout"
+                    }
+                  },
+                  "Property": "Line_name"
+                }
+              },
+              "queryRef": "layout.Line_name",
+              "nativeQueryRef": "Line_name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures_Hidden"
+                    }
+                  },
+                  "Property": "View A1 A Act"
+                }
+              },
+              "queryRef": "_Measures_Hidden.View A1 A Act",
+              "nativeQueryRef": "Act",
+              "displayName": "Act"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures_Hidden"
+                    }
+                  },
+                  "Property": "View A1 B PY"
+                }
+              },
+              "queryRef": "_Measures_Hidden.View A1 B PY",
+              "nativeQueryRef": "PY",
+              "displayName": "PY"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures_Hidden"
+                    }
+                  },
+                  "Property": "View A1 C Fcst TD"
+                }
+              },
+              "queryRef": "_Measures_Hidden.View A1 C Fcst TD",
+              "nativeQueryRef": "Fcst TD",
+              "displayName": "Fcst TD"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures_Hidden"
+                    }
+                  },
+                  "Property": "View A1 D Fcts BU"
+                }
+              },
+              "queryRef": "_Measures_Hidden.View A1 D Fcts BU",
+              "nativeQueryRef": "Fcst BU",
+              "displayName": "Fcst BU"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures_Hidden"
+                    }
+                  },
+                  "Property": "View A1 E Pln"
+                }
+              },
+              "queryRef": "_Measures_Hidden.View A1 E Pln",
+              "nativeQueryRef": "Pln",
+              "displayName": "Pln"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures_Hidden"
+                    }
+                  },
+                  "Property": "View A1 F"
+                }
+              },
+              "queryRef": "_Measures_Hidden.View A1 F",
+              "nativeQueryRef": "        ",
+              "displayName": "        "
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures_Hidden"
+                    }
+                  },
+                  "Property": "View A1 G vs PY"
+                }
+              },
+              "queryRef": "_Measures_Hidden.View A1 G vs PY",
+              "nativeQueryRef": "vs PY",
+              "displayName": "vs PY"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures_Hidden"
+                    }
+                  },
+                  "Property": "View A1 H vs Fcst TD"
+                }
+              },
+              "queryRef": "_Measures_Hidden.View A1 H vs Fcst TD",
+              "nativeQueryRef": "vs Fcst TD",
+              "displayName": "vs Fcst TD"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures_Hidden"
+                    }
+                  },
+                  "Property": "View A1 I vs Fcst BU"
+                }
+              },
+              "queryRef": "_Measures_Hidden.View A1 I vs Fcst BU",
+              "nativeQueryRef": "vs Fcst BU",
+              "displayName": "vs Fcst BU"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures_Hidden"
+                    }
+                  },
+                  "Property": "View A1 J vs Pln"
+                }
+              },
+              "queryRef": "_Measures_Hidden.View A1 J vs Pln",
+              "nativeQueryRef": "vs Pln",
+              "displayName": "vs Pln"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures_Hidden"
+                    }
+                  },
+                  "Property": "View A1 K"
+                }
+              },
+              "queryRef": "_Measures_Hidden.View A1 K",
+              "nativeQueryRef": "        1",
+              "displayName": "        "
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures_Hidden"
+                    }
+                  },
+                  "Property": "View A1 L vs PY, %"
+                }
+              },
+              "queryRef": "_Measures_Hidden.View A1 L vs PY, %",
+              "nativeQueryRef": "vs PY, %",
+              "displayName": "vs PY, %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures_Hidden"
+                    }
+                  },
+                  "Property": "View A1 M vs Fcst TD, %"
+                }
+              },
+              "queryRef": "_Measures_Hidden.View A1 M vs Fcst TD, %",
+              "nativeQueryRef": "vs Fcst TD, %",
+              "displayName": "vs Fcst TD, %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures_Hidden"
+                    }
+                  },
+                  "Property": "View A1 N vs Fcst BU, %"
+                }
+              },
+              "queryRef": "_Measures_Hidden.View A1 N vs Fcst BU, %",
+              "nativeQueryRef": "vs Fcst BU, %",
+              "displayName": "vs Fcst BU, %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures_Hidden"
+                    }
+                  },
+                  "Property": "View A1 O vs Pln, %"
+                }
+              },
+              "queryRef": "_Measures_Hidden.View A1 O vs Pln, %",
+              "nativeQueryRef": "vs Pln, %",
+              "displayName": "vs Pln, %"
+            }
+          ],
+          "fieldParameters": [
+            {
+              "parameterExpr": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "__Field Paramater Self-Service Table Measures"
+                    }
+                  },
+                  "Property": "Selected_Measures_Fields"
+                }
+              },
+              "index": 1,
+              "length": 15
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'None'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
