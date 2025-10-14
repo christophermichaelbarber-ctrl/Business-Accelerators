@@ -1,4 +1,5 @@
 table legalentitysecurity
+	isHidden
 	lineageTag: fbdeea40-59e9-40ee-ab83-eefe957fca62
 	sourceLineageTag: [dbo].[legalentitysecurity]
 

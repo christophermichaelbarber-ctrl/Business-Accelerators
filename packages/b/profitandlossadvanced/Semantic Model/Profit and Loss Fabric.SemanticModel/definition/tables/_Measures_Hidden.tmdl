@@ -720,6 +720,7 @@ table _Measures_Hidden
 			)
 			```
 		isHidden
+		displayFolder: Show Values and Blanks
 		lineageTag: 621a10f9-0788-4634-8b7f-23243d73355d
 
 		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
@@ -735,6 +736,7 @@ table _Measures_Hidden
 			)
 			```
 		isHidden
+		displayFolder: Show Values and Blanks
 		lineageTag: c58643e4-b3fa-45da-9495-75ae96aa6f66
 
 		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
@@ -891,6 +893,30 @@ table _Measures_Hidden
 				    Layout[Format_String_Default],
 				    "#,##0,;(#,##0,);-"
 				)
+
+	measure 'Show Commentary' = ```
+			VAR isfiltered_group = ISFILTERED(legalentity[Group])
+			VAR isfiltered_region = ISFILTERED(legalentity[Region])
+			VAR isfiltered_country = ISFILTERED(legalentity[Country])
+			VAR isfiltered_le = ISFILTERED(legalentity[Legal entity name])
+			
+			
+			VAR result = 
+			    SWITCH(
+			        TRUE(),
+			        isfiltered_le, SELECTEDVALUE(legalentity[Legal entity name]),
+			        isfiltered_country, SELECTEDVALUE(legalentity[Country]),
+			        isfiltered_region, SELECTEDVALUE(legalentity[Region]),
+			        "Group"       
+			        
+			            )
+			
+			
+			RETURN result
+			```
+		isHidden
+		displayFolder: Show Commentary
+		lineageTag: 947016db-893f-4b2c-b5f3-9be2abd89eee
 
 	column ID
 		dataType: int64

@@ -1,11 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "Lakehouse",
-    "displayName": "profitandloss_lakehouseschema"
+    "type": "Notebook",
+    "displayName": "Insert Commentary"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "89b3b44f-96c4-b0b6-40a5-277563f4465c"
+    "logicalId": "91415fee-599f-aa96-45fe-300cd607a0d4"
   }
 }

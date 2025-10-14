@@ -16,7 +16,7 @@ table legalentity
 
 		annotation SummarizationSetBy = Automatic
 
-	column Legal_entity_name
+	column 'Legal entity name'
 		dataType: string
 		isHidden
 		lineageTag: 4812c4a5-46b7-46b0-83b1-4bbf48b552f7
@@ -237,6 +237,25 @@ table legalentity
 		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Legal Entity Hierarchy'
+		lineageTag: 8c7c0d7a-29bb-4e66-8e8f-13b228dffcaf
+
+		level Group
+			lineageTag: 940a2825-6b71-4f09-9a0c-3caba208907f
+			column: Group
+
+		level Region
+			lineageTag: 75f30445-bf28-41e9-880a-e63c61bf2a46
+			column: Region
+
+		level Country
+			lineageTag: 49113781-cd1a-4734-a4dc-bd945b7c712e
+			column: Country
+
+		level 'Legal entity name'
+			lineageTag: 274e490a-d9c0-49e1-8a65-28b86c9423dc
+			column: 'Legal entity name'
 
 	partition legalentity = entity
 		mode: directLake

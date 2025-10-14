@@ -22,6 +22,54 @@
 
 # CELL ********************
 
+##Blankcommentarytable
+
+import base64
+import pandas as pd
+from io import StringIO
+from pyspark.sql import functions as F
+from pyspark.sql import types as T
+
+TABLE_NAME = "Commentary"                   # target Delta table name
+
+# Optional: define a schema to control column types in Spark (recommended)
+# Comment this block out if you want automatic inference.
+spark_schema = T.StructType([
+   T.StructField("FiscalDate", T.DateType(), True),
+    T.StructField("Level", T.StringType(), True),
+       T.StructField("Commentary", T.StringType(), True)
+])
+
+
+
+# ==== 3) Convert pandas -> Spark ====
+if 'spark_schema' in locals() and spark_schema is not None:
+    sdf = spark.createDataFrame(spark_schema, schema=spark_schema)
+else:
+    sdf = spark.createDataFrame(spark_schema)  # infer schema
+
+# (Optional) Final type tweaks in Spark (example)
+# sdf = sdf.withColumn("Income_Statement_Key", F.col("Income_Statement_Key").cast("int"))
+
+# ==== 4) Write as managed Delta table (in attached Lakehouse) ====
+(sdf.write
+    .mode("overwrite")
+    .format("delta")
+    .saveAsTable(TABLE_NAME))
+
+print(f"✅ Wrote Delta table: {TABLE_NAME}")
+
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
 ##VERIFIED Layout Table
 import base64
 import pandas as pd
