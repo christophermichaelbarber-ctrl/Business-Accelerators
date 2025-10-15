@@ -27,6 +27,6 @@ ref table '__Field Paramater Self-Service Table Measures'
 ref table 'Fx Assumptions'
 ref table scenario
 ref table selecttimeframe
-ref table legalentitysecurity
 ref table _Measures_Hidden
+ref table commentary
 

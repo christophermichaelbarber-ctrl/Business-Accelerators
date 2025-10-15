@@ -31,12 +31,12 @@ from datetime import date
 spark = SparkSession.builder.getOrCreate()
 
 # Create a small DataFrame for the new row
-data = [("2024-01-01", "Group", "Test Commentary")]
+data = [(date(2024,1,1), "Group", "Test Commentary")]
 columns = ["FiscalDate", "Level", "Commentary"]
 df = spark.createDataFrame(data, columns)
 
 # Append to the Delta table in the Lakehouse
-df.write.format("delta").mode("append").saveAsTable("profitandlossadvanced_lakehouse.dbo.commentary")
+df.write.format("delta").mode("append").saveAsTable("profitandlossadvanced_lakehouse.commentary")
 
 
 # METADATA ********************

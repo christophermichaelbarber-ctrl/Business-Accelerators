@@ -895,7 +895,6 @@ table _Measures_Hidden
 				)
 
 	measure 'Show Commentary' = ```
-			VAR isfiltered_group = ISFILTERED(legalentity[Group])
 			VAR isfiltered_region = ISFILTERED(legalentity[Region])
 			VAR isfiltered_country = ISFILTERED(legalentity[Country])
 			VAR isfiltered_le = ISFILTERED(legalentity[Legal entity name])
@@ -907,7 +906,7 @@ table _Measures_Hidden
 			        isfiltered_le, SELECTEDVALUE(legalentity[Legal entity name]),
 			        isfiltered_country, SELECTEDVALUE(legalentity[Country]),
 			        isfiltered_region, SELECTEDVALUE(legalentity[Region]),
-			        "Group"       
+			        CALCULATE(SELECTEDVALUE(commentary[Commentary]), TREATAS(VALUES(legalentity[Group]), commentary[Level]))      
 			        
 			            )
 			

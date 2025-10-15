@@ -1,4 +1,5 @@
 table scenario
+	isHidden
 	lineageTag: f5a2e1b9-4957-4118-9f6a-6882075c0803
 	sourceLineageTag: [dbo].[scenario]
 
