@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "From Lakehouse to Warehouse"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "22d8f27f-787b-bb38-409b-c331f48ab8a1"
+  }
+}

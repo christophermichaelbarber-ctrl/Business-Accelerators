@@ -1,0 +1,1306 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "items": {
+            "value": "@pipeline().parameters.cw_items_55i",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "Copy",
+              "typeProperties": {
+                "source": {
+                  "type": "LakehouseTableSource",
+                  "datasetSettings": {
+                    "type": "LakehouseTable",
+                    "typeProperties": {
+                      "table": {
+                        "value": "@item().source.table",
+                        "type": "Expression"
+                      }
+                    },
+                    "schema": [],
+                    "connectionSettings": {
+                      "name": "profitandlossadvanced_lakehouse",
+                      "properties": {
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                          "artifactId": "8b7103d9-4149-9e89-46e8-2d753c875536",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000",
+                          "rootFolder": "Tables"
+                        },
+                        "externalReferences": {
+                          "connection": "bd900f21-c2be-4a33-9c62-e93bb1f6d655"
+                        },
+                        "annotations": []
+                      }
+                    },
+                    "annotations": []
+                  }
+                },
+                "sink": {
+                  "type": "FabricSqlDatabaseSink",
+                  "tableOption": "autoCreate",
+                  "datasetSettings": {
+                    "type": "FabricSqlDatabaseTable",
+                    "typeProperties": {
+                      "schema": "dbo",
+                      "table": {
+                        "value": "@item().destination.table",
+                        "type": "Expression"
+                      }
+                    },
+                    "schema": [],
+                    "connectionSettings": {
+                      "name": "profitandlossadvanced_sqldatabase",
+                      "properties": {
+                        "type": "FabricSqlDatabase",
+                        "typeProperties": {
+                          "artifactId": "7985e2af-6b11-9696-4080-c81387a7d764",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000"
+                        },
+                        "externalReferences": {
+                          "connection": "cbd93c8e-9e24-4c99-8f21-05f857e056e3"
+                        },
+                        "annotations": []
+                      }
+                    },
+                    "annotations": []
+                  }
+                },
+                "translator": {
+                  "value": "@item().copyActivity.translator",
+                  "type": "Expression"
+                },
+                "enableStaging": false
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Copy_55i",
+              "dependsOn": []
+            }
+          ]
+        },
+        "name": "ForEach_55i",
+        "dependsOn": []
+      }
+    ],
+    "parameters": {
+      "cw_items_55i": {
+        "type": "Array",
+        "defaultValue": [
+          {
+            "source": {
+              "table": "accounts"
+            },
+            "destination": {
+              "table": "accounts"
+            },
+            "copyActivity": {
+              "translator": {
+                "type": "TabularTranslator",
+                "mappings": [
+                  {
+                    "source": {
+                      "name": "Account_Key",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Account_Key",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Account_Number_and_Name",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Account_Number_and_Name",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Account_Type",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Account_Type",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Account_Type_Indicator",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Account_Type_Indicator",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Income_Statement_Key",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Income_Statement_Key",
+                      "physicalType": "int"
+                    }
+                  }
+                ],
+                "typeConversion": true,
+                "typeConversionSettings": {
+                  "allowDataTruncation": true,
+                  "treatBooleanAsNumber": false
+                }
+              }
+            }
+          },
+          {
+            "source": {
+              "table": "commentary"
+            },
+            "destination": {
+              "table": "commentary"
+            },
+            "copyActivity": {
+              "translator": {
+                "type": "TabularTranslator",
+                "mappings": [
+                  {
+                    "source": {
+                      "name": "FiscalDate",
+                      "type": "Date",
+                      "physicalType": "date"
+                    },
+                    "sink": {
+                      "name": "FiscalDate",
+                      "physicalType": "date"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Level",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Level",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Commentary",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Commentary",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  }
+                ],
+                "typeConversion": true,
+                "typeConversionSettings": {
+                  "allowDataTruncation": true,
+                  "treatBooleanAsNumber": false
+                }
+              }
+            }
+          },
+          {
+            "source": {
+              "table": "currency"
+            },
+            "destination": {
+              "table": "currency"
+            },
+            "copyActivity": {
+              "translator": {
+                "type": "TabularTranslator",
+                "mappings": [
+                  {
+                    "source": {
+                      "name": "Currency_Key",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Currency_Key",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Currency",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Currency",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Currency_Group",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Currency_Group",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Currency_Group_Sort_Order",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Currency_Group_Sort_Order",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Underlying_Currency",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Underlying_Currency",
+                      "physicalType": "int"
+                    }
+                  }
+                ],
+                "typeConversion": true,
+                "typeConversionSettings": {
+                  "allowDataTruncation": true,
+                  "treatBooleanAsNumber": false
+                }
+              }
+            }
+          },
+          {
+            "source": {
+              "table": "date"
+            },
+            "destination": {
+              "table": "date"
+            },
+            "copyActivity": {
+              "translator": {
+                "type": "TabularTranslator",
+                "mappings": [
+                  {
+                    "source": {
+                      "name": "FiscalDate",
+                      "type": "Date",
+                      "physicalType": "date"
+                    },
+                    "sink": {
+                      "name": "FiscalDate",
+                      "physicalType": "date"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "FiscalYear",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "FiscalYear",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "FiscalQuarter",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "FiscalQuarter",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "FiscalPeriod",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "FiscalPeriod",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "FiscalYearQuarter",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "FiscalYearQuarter",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "FiscalYearPeriod",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "FiscalYearPeriod",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "FiscalYearSort",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "FiscalYearSort",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "FiscalQuarterSort",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "FiscalQuarterSort",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "FiscalPeriodSort",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "FiscalPeriodSort",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "FiscalYearQuarterSort",
+                      "type": "Int64",
+                      "physicalType": "long"
+                    },
+                    "sink": {
+                      "name": "FiscalYearQuarterSort",
+                      "physicalType": "bigint"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "FiscalYearPeriodSort",
+                      "type": "Int64",
+                      "physicalType": "long"
+                    },
+                    "sink": {
+                      "name": "FiscalYearPeriodSort",
+                      "physicalType": "bigint"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "FiscalPeriodCP",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "FiscalPeriodCP",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "FiscalPeriodCPSort",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "FiscalPeriodCPSort",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "FutureDate",
+                      "type": "Boolean",
+                      "physicalType": "boolean"
+                    },
+                    "sink": {
+                      "name": "FutureDate",
+                      "physicalType": "bit"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "FiscalYearPeriodNumber",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "FiscalYearPeriodNumber",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "FiscalPeriodNumber",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "FiscalPeriodNumber",
+                      "physicalType": "int"
+                    }
+                  }
+                ],
+                "typeConversion": true,
+                "typeConversionSettings": {
+                  "allowDataTruncation": true,
+                  "treatBooleanAsNumber": false
+                }
+              }
+            }
+          },
+          {
+            "source": {
+              "table": "layout"
+            },
+            "destination": {
+              "table": "layout"
+            },
+            "copyActivity": {
+              "translator": {
+                "type": "TabularTranslator",
+                "mappings": [
+                  {
+                    "source": {
+                      "name": "Income_Statement_Key",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Income_Statement_Key",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Line_name",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Line_name",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Subtotal_From",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Subtotal_From",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Subtotal_To",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Subtotal_To",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Divide_Numerator",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Divide_Numerator",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Divide_Denominator",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Divide_Denominator",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Show_Perc",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Show_Perc",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Format_String_Default",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Format_String_Default",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Format_String_Variance_Abs",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Format_String_Variance_Abs",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Format_String_Variance_Per",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Format_String_Variance_Per",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Formatting_P_L_Hex_Text",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Formatting_P_L_Hex_Text",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Formatting_P_L_Hex_Background",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Formatting_P_L_Hex_Background",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Show_Values",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Show_Values",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Calculation_type",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Calculation_type",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  }
+                ],
+                "typeConversion": true,
+                "typeConversionSettings": {
+                  "allowDataTruncation": true,
+                  "treatBooleanAsNumber": false
+                }
+              }
+            }
+          },
+          {
+            "source": {
+              "table": "ledger"
+            },
+            "destination": {
+              "table": "ledger"
+            },
+            "copyActivity": {
+              "translator": {
+                "type": "TabularTranslator",
+                "mappings": [
+                  {
+                    "source": {
+                      "name": "Date",
+                      "type": "DateTime",
+                      "physicalType": "timestamp"
+                    },
+                    "sink": {
+                      "name": "Date",
+                      "physicalType": "datetime2",
+                      "precision": 6
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "AccountKey",
+                      "type": "Int64",
+                      "physicalType": "long"
+                    },
+                    "sink": {
+                      "name": "AccountKey",
+                      "physicalType": "bigint"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "CreditlessdebitatGlobalFx",
+                      "type": "Double",
+                      "physicalType": "double"
+                    },
+                    "sink": {
+                      "name": "CreditlessdebitatGlobalFx",
+                      "physicalType": "float"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "CreditlessdebitatPYFx",
+                      "type": "Double",
+                      "physicalType": "double"
+                    },
+                    "sink": {
+                      "name": "CreditlessdebitatPYFx",
+                      "physicalType": "float"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "CreditlessdebitatFcstFx",
+                      "type": "Double",
+                      "physicalType": "double"
+                    },
+                    "sink": {
+                      "name": "CreditlessdebitatFcstFx",
+                      "physicalType": "float"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "CreditlessdebitatPlanFx",
+                      "type": "Double",
+                      "physicalType": "double"
+                    },
+                    "sink": {
+                      "name": "CreditlessdebitatPlanFx",
+                      "physicalType": "float"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "DocumentID",
+                      "type": "Int64",
+                      "physicalType": "long"
+                    },
+                    "sink": {
+                      "name": "DocumentID",
+                      "physicalType": "bigint"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "CurrencyKey",
+                      "type": "Int64",
+                      "physicalType": "long"
+                    },
+                    "sink": {
+                      "name": "CurrencyKey",
+                      "physicalType": "bigint"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "LegalEntityKey",
+                      "type": "Int64",
+                      "physicalType": "long"
+                    },
+                    "sink": {
+                      "name": "LegalEntityKey",
+                      "physicalType": "bigint"
+                    }
+                  }
+                ],
+                "typeConversion": true,
+                "typeConversionSettings": {
+                  "allowDataTruncation": true,
+                  "treatBooleanAsNumber": false
+                }
+              }
+            }
+          },
+          {
+            "source": {
+              "table": "legalentity"
+            },
+            "destination": {
+              "table": "legalentity"
+            },
+            "copyActivity": {
+              "translator": {
+                "type": "TabularTranslator",
+                "mappings": [
+                  {
+                    "source": {
+                      "name": "Legal_Entity_Key",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Legal_Entity_Key",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Legal_entity_name",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Legal_entity_name",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Legal_Entity_Sort_Order",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Legal_Entity_Sort_Order",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Group",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Group",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Country",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Country",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Region",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Region",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Child",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Child",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Parent",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Parent",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Path",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Path",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Legal_entity_level_1",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Legal_entity_level_1",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Legal_entity_level_2",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Legal_entity_level_2",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Legal_entity_level_3",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Legal_entity_level_3",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Legal_entity_level_4",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Legal_entity_level_4",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Legal_entity_level_5",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Legal_entity_level_5",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Legal_entity_level_1_name",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Legal_entity_level_1_name",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Legal_entity_level_2_name",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Legal_entity_level_2_name",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Legal_entity_level_3_name",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Legal_entity_level_3_name",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Legal_entity_level_4_name",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Legal_entity_level_4_name",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Legal_entity_level_5_name",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Legal_entity_level_5_name",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  }
+                ],
+                "typeConversion": true,
+                "typeConversionSettings": {
+                  "allowDataTruncation": true,
+                  "treatBooleanAsNumber": false
+                }
+              }
+            }
+          },
+          {
+            "source": {
+              "table": "legalentitysecurity"
+            },
+            "destination": {
+              "table": "legalentitysecurity"
+            },
+            "copyActivity": {
+              "translator": {
+                "type": "TabularTranslator",
+                "mappings": [
+                  {
+                    "source": {
+                      "name": "Full_Name",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Full_Name",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Level",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Level",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Employee_ID",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Employee_ID",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "User_Name",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "User_Name",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Legal_Entity_Key",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Legal_Entity_Key",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Security_Key",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Security_Key",
+                      "physicalType": "int"
+                    }
+                  }
+                ],
+                "typeConversion": true,
+                "typeConversionSettings": {
+                  "allowDataTruncation": true,
+                  "treatBooleanAsNumber": false
+                }
+              }
+            }
+          },
+          {
+            "source": {
+              "table": "measuretable"
+            },
+            "destination": {
+              "table": "measuretable"
+            },
+            "copyActivity": {
+              "translator": {
+                "type": "TabularTranslator",
+                "mappings": [
+                  {
+                    "source": {
+                      "name": "ID",
+                      "type": "Int64",
+                      "physicalType": "long"
+                    },
+                    "sink": {
+                      "name": "ID",
+                      "physicalType": "bigint"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Col1",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Col1",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  }
+                ],
+                "typeConversion": true,
+                "typeConversionSettings": {
+                  "allowDataTruncation": true,
+                  "treatBooleanAsNumber": false
+                }
+              }
+            }
+          },
+          {
+            "source": {
+              "table": "scenario"
+            },
+            "destination": {
+              "table": "scenario"
+            },
+            "copyActivity": {
+              "translator": {
+                "type": "TabularTranslator",
+                "mappings": [
+                  {
+                    "source": {
+                      "name": "Date",
+                      "type": "Date",
+                      "physicalType": "date"
+                    },
+                    "sink": {
+                      "name": "Date",
+                      "physicalType": "date"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Account_Key",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Account_Key",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Scenario_Key",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Scenario_Key",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "legal_entity_key",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "legal_entity_key",
+                      "physicalType": "int"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Creditlessdebit",
+                      "type": "Int64",
+                      "physicalType": "long"
+                    },
+                    "sink": {
+                      "name": "Creditlessdebit",
+                      "physicalType": "bigint"
+                    }
+                  }
+                ],
+                "typeConversion": true,
+                "typeConversionSettings": {
+                  "allowDataTruncation": true,
+                  "treatBooleanAsNumber": false
+                }
+              }
+            }
+          },
+          {
+            "source": {
+              "table": "selecttimeframe"
+            },
+            "destination": {
+              "table": "selecttimeframe"
+            },
+            "copyActivity": {
+              "translator": {
+                "type": "TabularTranslator",
+                "mappings": [
+                  {
+                    "source": {
+                      "name": "Time_Horizon",
+                      "type": "String",
+                      "physicalType": "string"
+                    },
+                    "sink": {
+                      "name": "Time_Horizon",
+                      "physicalType": "nvarchar",
+                      "length": "MAX"
+                    }
+                  },
+                  {
+                    "source": {
+                      "name": "Time_Horizon_Sort_Order",
+                      "type": "Int32",
+                      "physicalType": "integer"
+                    },
+                    "sink": {
+                      "name": "Time_Horizon_Sort_Order",
+                      "physicalType": "int"
+                    }
+                  }
+                ],
+                "typeConversion": true,
+                "typeConversionSettings": {
+                  "allowDataTruncation": true,
+                  "treatBooleanAsNumber": false
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

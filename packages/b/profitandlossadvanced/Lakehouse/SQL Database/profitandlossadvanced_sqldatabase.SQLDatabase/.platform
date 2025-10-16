@@ -1,11 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "SemanticModel",
-    "displayName": "test"
+    "type": "SQLDatabase",
+    "displayName": "profitandlossadvanced_sqldatabase"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "ba8775b2-52dc-9a7e-494e-83d3f3d76686"
+    "logicalId": "7985e2af-6b11-9696-4080-c81387a7d764"
   }
 }
