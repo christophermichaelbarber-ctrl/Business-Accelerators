@@ -24,19 +24,6 @@
           }
         }
       }
-    ],
-    "outspacePane": [
-      {
-        "properties": {
-          "expanded": {
-            "expr": {
-              "Literal": {
-                "Value": "true"
-              }
-            }
-          }
-        }
-      }
     ]
   },
   "resourcePackages": [
@@ -48,17 +35,6 @@
           "name": "CY24SU10",
           "path": "BaseThemes/CY24SU10.json",
           "type": "BaseTheme"
-        }
-      ]
-    },
-    {
-      "name": "RegisteredResources",
-      "type": "RegisteredResources",
-      "items": [
-        {
-          "name": "Scenario_(13)578598207272407.png",
-          "path": "Scenario_(13)578598207272407.png",
-          "type": "Image"
         }
       ]
     }

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "AdventureWorksWriteBackReport"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "20cc6fbf-d52f-4233-9e25-51eb22cf5aa4"
+  }
+}

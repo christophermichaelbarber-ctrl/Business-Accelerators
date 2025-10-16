@@ -1,0 +1,83 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "02d2c6bf4a2ac760bdb4",
+  "position": {
+    "x": 39.54233409610984,
+    "y": 0,
+    "z": 0,
+    "height": 326.59038901601826,
+    "width": 503.7986270022883
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ProductModel"
+                    }
+                  },
+                  "Property": "Name"
+                }
+              },
+              "queryRef": "ProductModel.Name",
+              "nativeQueryRef": "Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ProductModelProductDescription"
+                    }
+                  },
+                  "Property": "ProductModelID"
+                }
+              },
+              "queryRef": "ProductModelProductDescription.ProductModelID",
+              "nativeQueryRef": "ProductModelID"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "9b6a060200e39a7e195a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ProductModel"
+              }
+            },
+            "Property": "Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "3f3c70755d64896120ee",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ProductModelProductDescription"
+              }
+            },
+            "Property": "ProductModelID"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

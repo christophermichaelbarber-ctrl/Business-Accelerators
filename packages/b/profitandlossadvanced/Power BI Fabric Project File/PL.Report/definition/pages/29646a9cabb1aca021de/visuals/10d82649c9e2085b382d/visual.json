@@ -1,13 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
-  "name": "ea503666d8e906b0c400",
+  "name": "10d82649c9e2085b382d",
   "position": {
-    "x": 1043.6515884272947,
-    "y": 310.78558367653847,
-    "z": 4000,
-    "height": 78.396363449937624,
-    "width": 219.08983714134354,
-    "tabOrder": 4000
+    "x": 55.900790654086563,
+    "y": 67.080948784903882,
+    "z": 0,
+    "height": 145.34205570062505,
+    "width": 556.77187491470215
   },
   "visual": {
     "visualType": "slicer",
@@ -17,63 +16,83 @@
           "projections": [
             {
               "field": {
-                "Column": {
+                "HierarchyLevel": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "legalentity"
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "legalentity"
+                        }
+                      },
+                      "Hierarchy": "Legal Entity Hierarchy"
                     }
                   },
-                  "Property": "Group"
+                  "Level": "Group"
                 }
               },
-              "queryRef": "legalentity.Group",
-              "nativeQueryRef": "Group",
+              "queryRef": "legalentity.Legal Entity Hierarchy.Group",
+              "nativeQueryRef": "Legal Entity Hierarchy Group",
               "active": true
             },
             {
               "field": {
-                "Column": {
+                "HierarchyLevel": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "legalentity"
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "legalentity"
+                        }
+                      },
+                      "Hierarchy": "Legal Entity Hierarchy"
                     }
                   },
-                  "Property": "Region"
+                  "Level": "Region"
                 }
               },
-              "queryRef": "legalentity.Region",
-              "nativeQueryRef": "Region",
+              "queryRef": "legalentity.Legal Entity Hierarchy.Region",
+              "nativeQueryRef": "Legal Entity Hierarchy Region",
               "active": true
             },
             {
               "field": {
-                "Column": {
+                "HierarchyLevel": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "legalentity"
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "legalentity"
+                        }
+                      },
+                      "Hierarchy": "Legal Entity Hierarchy"
                     }
                   },
-                  "Property": "Country"
+                  "Level": "Country"
                 }
               },
-              "queryRef": "legalentity.Country",
-              "nativeQueryRef": "Country",
+              "queryRef": "legalentity.Legal Entity Hierarchy.Country",
+              "nativeQueryRef": "Legal Entity Hierarchy Country",
               "active": true
             },
             {
               "field": {
-                "Column": {
+                "HierarchyLevel": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "legalentity"
+                    "Hierarchy": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "legalentity"
+                        }
+                      },
+                      "Hierarchy": "Legal Entity Hierarchy"
                     }
                   },
-                  "Property": "Legal_entity_name"
+                  "Level": "Legal entity name"
                 }
               },
-              "queryRef": "legalentity.Legal_entity_name",
-              "nativeQueryRef": "Legal_entity_name",
-              "active": false
+              "queryRef": "legalentity.Legal Entity Hierarchy.Legal entity name",
+              "nativeQueryRef": "Legal Entity Hierarchy Legal entity name",
+              "active": true
             }
           ]
         }
@@ -87,7 +106,7 @@
         "levels": [
           {
             "queryRefs": [
-              "legalentity.Group"
+              "legalentity.Legal Entity Hierarchy.Group"
             ],
             "isCollapsed": true,
             "identityKeys": [
@@ -106,7 +125,7 @@
           },
           {
             "queryRefs": [
-              "legalentity.Region"
+              "legalentity.Legal Entity Hierarchy.Region"
             ],
             "isCollapsed": true,
             "identityKeys": [
@@ -125,7 +144,7 @@
           },
           {
             "queryRefs": [
-              "legalentity.Country"
+              "legalentity.Legal Entity Hierarchy.Country"
             ],
             "isCollapsed": true,
             "identityKeys": [
@@ -144,7 +163,7 @@
           },
           {
             "queryRefs": [
-              "legalentity.Legal_entity_name"
+              "legalentity.Legal Entity Hierarchy.Legal entity name"
             ],
             "isCollapsed": true,
             "isPinned": true
@@ -166,11 +185,45 @@
                   "identityValues": [
                     {
                       "Literal": {
-                        "Value": "'Europe'"
+                        "Value": "'Americas'"
                       }
                     }
                   ],
-                  "isToggled": true
+                  "isToggled": true,
+                  "children": [
+                    {
+                      "identityValues": [
+                        {
+                          "Literal": {
+                            "Value": "'USA'"
+                          }
+                        }
+                      ],
+                      "isToggled": true
+                    }
+                  ]
+                },
+                {
+                  "identityValues": [
+                    {
+                      "Literal": {
+                        "Value": "'Asia'"
+                      }
+                    }
+                  ],
+                  "isToggled": true,
+                  "children": [
+                    {
+                      "identityValues": [
+                        {
+                          "Literal": {
+                            "Value": "'Hong Kong'"
+                          }
+                        }
+                      ],
+                      "isToggled": true
+                    }
+                  ]
                 }
               ]
             }
@@ -236,13 +289,18 @@
                       "filterExpressionMetadata": {
                         "expressions": [
                           {
-                            "Column": {
+                            "HierarchyLevel": {
                               "Expression": {
-                                "SourceRef": {
-                                  "Entity": "legalentity"
+                                "Hierarchy": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "legalentity"
+                                    }
+                                  },
+                                  "Hierarchy": "Legal Entity Hierarchy"
                                 }
                               },
-                              "Property": "Group"
+                              "Level": "Group"
                             }
                           }
                         ],
@@ -342,6 +400,11 @@
           }
         }
       ]
+    },
+    "syncGroup": {
+      "groupName": "Group",
+      "fieldChanges": true,
+      "filterChanges": true
     },
     "drillFilterOtherVisuals": true
   },
@@ -529,6 +592,7 @@
             }
           ]
         },
+        "howCreated": "User",
         "objects": {
           "general": [
             {
@@ -544,6 +608,82 @@
             }
           ]
         }
+      },
+      {
+        "name": "3a8a56e9e59a480cce79",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "legalentity"
+                  }
+                },
+                "Hierarchy": "Legal Entity Hierarchy"
+              }
+            },
+            "Level": "Group"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ef1a2f2d52a10d1c7557",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "legalentity"
+                  }
+                },
+                "Hierarchy": "Legal Entity Hierarchy"
+              }
+            },
+            "Level": "Region"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e3f395d0eba40b04726d",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "legalentity"
+                  }
+                },
+                "Hierarchy": "Legal Entity Hierarchy"
+              }
+            },
+            "Level": "Country"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d5e3d68c820a8e60060c",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "legalentity"
+                  }
+                },
+                "Hierarchy": "Legal Entity Hierarchy"
+              }
+            },
+            "Level": "Legal entity name"
+          }
+        },
+        "type": "Categorical"
       }
     ],
     "filterSortOrder": "Custom"
