@@ -17,7 +17,7 @@ table ProductModelProductDescription
 		formatString: 0
 		lineageTag: e32ec7ba-7da8-4be5-93f4-4189aeef4f6f
 		sourceLineageTag: ProductDescriptionID
-		summarizeBy: count
+		summarizeBy: none
 		sourceColumn: ProductDescriptionID
 
 		annotation SummarizationSetBy = Automatic

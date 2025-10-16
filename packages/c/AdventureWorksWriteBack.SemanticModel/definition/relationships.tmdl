@@ -2,3 +2,7 @@ relationship 532c9084-ea23-a483-c6b0-406644344c9d
 	fromColumn: ProductModelProductDescription.ProductModelID
 	toColumn: ProductModel.ProductModelID
 
+relationship dc7b3c8e-709a-024e-04b7-b883273965ea
+	fromColumn: ProductDescription.ProductDescriptionID
+	toColumn: ProductModelProductDescription.ProductDescriptionID
+
