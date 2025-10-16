@@ -1,0 +1,49 @@
+table ProductModel
+	lineageTag: a067c7e1-d204-4640-ad92-0fe60dc3faea
+	sourceLineageTag: [SalesLT].[ProductModel]
+
+	column ProductModelID
+		dataType: int64
+		formatString: 0
+		lineageTag: 04be0594-6c51-414b-9681-f1b0b95d22df
+		sourceLineageTag: ProductModelID
+		summarizeBy: none
+		sourceColumn: ProductModelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: 18f1d7cf-6682-413c-ab7f-a48d7047adf1
+		sourceLineageTag: Name
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column rowguid
+		dataType: string
+		lineageTag: 41a34f9e-f86e-4b7f-92de-6c701d000185
+		sourceLineageTag: rowguid
+		summarizeBy: none
+		sourceColumn: rowguid
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModifiedDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 90f4e6d5-07f3-4c20-a79d-dd8f66f8985d
+		sourceLineageTag: ModifiedDate
+		summarizeBy: none
+		sourceColumn: ModifiedDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ProductModel = entity
+		mode: directLake
+		source
+			entityName: ProductModel
+			schemaName: SalesLT
+			expressionSource: 'DirectLake - AdventureWorksLT'
+

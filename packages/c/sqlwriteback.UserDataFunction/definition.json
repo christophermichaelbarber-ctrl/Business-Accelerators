@@ -3,15 +3,15 @@
   "runtime": "PYTHON",
   "connectedDataSources": [
     {
-      "alias": "UDFConnection",
-      "artifactId": "8b7103d9-4149-9e89-46e8-2d753c875536",
-      "artifactType": "Lakehouse",
+      "alias": "AdventureWorksL",
+      "artifactId": "2558fd76-3b0f-9ffe-420e-cc037d5ecb94",
+      "artifactType": "SqlDbNative",
       "workspaceId": "00000000-0000-0000-0000-000000000000"
     }
   ],
   "functions": [
     {
-      "name": "hello_fabric",
+      "name": "write_one_to_sql_db",
       "description": "",
       "isPublicEndpointEnabled": true
     }

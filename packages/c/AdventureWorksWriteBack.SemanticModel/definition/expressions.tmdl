@@ -1,0 +1,11 @@
+expression 'DirectLake - AdventureWorksLT' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/f4f0fd69-066c-47fa-9b3e-b287bdf1dde2/7d5ecb94-cc03-420e-9ffe-3b0f2558fd76", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: 5d310ebe-fbcf-440d-b476-baeffdafdc0d
+
+	annotation PBI_IncludeFutureArtifacts = False
+
+	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[SalesLT].[Address]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[SalesLT].[SalesOrderDetail]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[SalesLT].[ProductCategory]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[SalesLT].[Customer]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[SalesLT].[SalesOrderHeader]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[ErrorLog]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[SalesLT].[Product]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[BuildVersion]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[SalesLT].[CustomerAddress]"}},"objectType":"Table"}]
+

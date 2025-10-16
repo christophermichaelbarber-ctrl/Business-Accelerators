@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "AdventureWorksWriteBack"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2fe684ce-e3b7-b0ba-40a2-b02770ba622b"
+  }
+}
