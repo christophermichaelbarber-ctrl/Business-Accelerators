@@ -19,6 +19,11 @@
       "name": "write_one_to_sql_db_commentary",
       "description": "",
       "isPublicEndpointEnabled": true
+    },
+    {
+      "name": "write_one_to_sql_db_commentary_multiple",
+      "description": "",
+      "isPublicEndpointEnabled": true
     }
   ],
   "libraries": {

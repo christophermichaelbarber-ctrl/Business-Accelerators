@@ -1,0 +1,79 @@
+table _Measures
+	lineageTag: 4657f864-e593-4d38-8f2e-1eccec2e9c60
+	sourceLineageTag: [dbo].[measuretable]
+
+	measure 'Basic Actuals' = __Fn_PnL_Sum_Subtotal_and_Blanks( SUM( 'ledger'[CreditlessdebitatGlobalFx]) )
+		formatString: #,##0,;(#,##0,);
+		displayFolder: Metrics
+		lineageTag: cc97d495-cf47-4e49-a9fa-e65c267e3762
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["INTEGER_FORMATTING"]}
+
+	measure 'Basic Plan' = __Fn_PnL_ShowScenario( SUM( Scenario[Creditlessdebit] ) )
+		formatString: " #,##0,;(#,##0,);"
+		displayFolder: Metrics
+		lineageTag: 29bbf813-69ab-4437-aa36-3ab23ef4ce92
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["INTEGER_FORMATTING"]}
+
+	measure 'Var, #' = __Fn_PnL_HideVariances( [Basic Actuals], [Basic Plan] )
+		formatString: " +#,##0,;-#,##0,;"
+		displayFolder: Variance
+		lineageTag: 17d6ddc5-c454-4e30-87f8-1b9aa25ae3c8
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["INTEGER_FORMATTING"]}
+
+	measure 'Var, %' = DIVIDE( [Var, #], [Basic Actuals] )
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: Variance
+		lineageTag: a2043ecc-66ff-448f-975e-53ae0eb6d9a2
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Var, Text Highlight' = __Fn_PnL_Variance_Highlights( [Var, #] )
+		formatString: 0
+		displayFolder: Variance\Highlight
+		lineageTag: 28fa2646-2df5-43b2-a757-db19800c44d6
+
+		annotation BestPracticeAnalyzer_IgnoreRules = {"RuleIDs":["INTEGER_FORMATTING"]}
+
+	column ID
+		dataType: int64
+		isHidden
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: a6706145-9ac9-4a88-b97f-799c6795230d
+		sourceLineageTag: ID
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Col1
+		dataType: string
+		isHidden
+		sourceProviderType: varchar(8000)
+		lineageTag: f70f7eca-5342-4709-a796-d8813de62e03
+		sourceLineageTag: Col1
+		summarizeBy: none
+		sourceColumn: Col1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = entity
+		mode: directLake
+		source
+			entityName: measuretable
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+
+	annotation TabularEditor_TableGroup = Disconnected
+

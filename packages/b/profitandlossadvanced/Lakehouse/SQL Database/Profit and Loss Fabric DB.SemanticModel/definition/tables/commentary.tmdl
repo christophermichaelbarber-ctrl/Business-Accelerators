@@ -1,0 +1,57 @@
+table commentary
+	lineageTag: b03f08db-1286-49fd-84db-084b5836d3d1
+	sourceLineageTag: [dbo].[commentary]
+
+	column FiscalDate
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: bbe34bc5-a751-4c49-8d9d-d613b4566635
+		sourceLineageTag: FiscalDate
+		summarizeBy: none
+		sourceColumn: FiscalDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f64d9163-fca5-4113-b989-1454792aff43
+		sourceLineageTag: Level
+		summarizeBy: none
+		sourceColumn: Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column Commentary
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: e47086e9-6a01-423a-99bd-3c6fe7fabef1
+		sourceLineageTag: Commentary
+		summarizeBy: none
+		sourceColumn: Commentary
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSSQL_System_Uniquifier_1941581955
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 64481ad5-675a-4f0f-ad16-f145898da2be
+		sourceLineageTag: MSSQL_System_Uniquifier_1941581955
+		summarizeBy: sum
+		sourceColumn: MSSQL_System_Uniquifier_1941581955
+
+		annotation SummarizationSetBy = Automatic
+
+	partition commentary = entity
+		mode: directLake
+		source
+			entityName: commentary
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+
+	annotation TabularEditor_TableGroup = Fact
+

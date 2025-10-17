@@ -1,0 +1,31 @@
+model Model
+	culture: en-US
+	collation: Latin1_General_100_BIN2_UTF8
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["DatabaseQuery"]
+
+annotation __TEdtr = 1
+
+annotation PBI_ProTooling = ["RemoteModeling"]
+
+ref table accounts
+ref table scenario
+ref table commentary
+ref table ledger
+ref table selecttimeframe
+ref table layout
+ref table date
+ref table legalentity
+ref table _Measures
+ref table currency
+ref table _Measures_Hidden
+ref table '__Field Paramater Self-Service Table Measures'
+ref table 'Fx Assumptions'
+

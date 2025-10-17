@@ -1,0 +1,30 @@
+table 'Fx Assumptions'
+	lineageTag: ed49881b-5adf-4b90-9aff-5ea88ff505b8
+
+	column 'Fx Assumption'
+		lineageTag: dd61b1f4-6b62-45fe-a27b-9e452119d458
+		isNameInferred
+		sourceColumn: [Fx Assumption]
+
+	column 'Fx Assumption Sort Order'
+		lineageTag: 747f240f-2547-4ab5-b07e-7734011957bb
+		isNameInferred
+		sourceColumn: [Fx Assumption Sort Order]
+
+	partition 'Fx Assumptions' = calculated
+		mode: import
+		source =
+				DATATABLE(
+				    "Fx Assumption", STRING,
+				    "Fx Assumption Sort Order", INTEGER,
+				    {
+				        { "Overall", 1 },
+				        { "Underlying", 2 },
+				        { "Fx", 3 }
+				    }
+				)
+
+	annotation PBI_Id = dfb4ad3944b145cdaf46f622d1dad66b
+
+	annotation TabularEditor_TableGroup = Import Field Paramaters
+

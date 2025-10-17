@@ -1,0 +1,79 @@
+table accounts
+	lineageTag: 08b206b6-3e09-4b98-a7ce-1c4cfbca31dc
+	sourceLineageTag: [dbo].[accounts]
+
+	column Account_Key
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 0d2d1d8a-82c0-4691-bce4-c0495883815d
+		sourceLineageTag: Account_Key
+		summarizeBy: count
+		sourceColumn: Account_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Account_Number_and_Name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: fcc5d28f-c545-4f3f-9d0e-0611965f1062
+		sourceLineageTag: Account_Number_and_Name
+		summarizeBy: none
+		sourceColumn: Account_Number_and_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Account_Type
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: a5ecb65e-432a-4118-a020-2e16a22850c9
+		sourceLineageTag: Account_Type
+		summarizeBy: none
+		sourceColumn: Account_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Account_Type_Indicator
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 2de6d393-5d45-4c10-8345-98c869779820
+		sourceLineageTag: Account_Type_Indicator
+		summarizeBy: sum
+		sourceColumn: Account_Type_Indicator
+
+		annotation SummarizationSetBy = Automatic
+
+	column Income_Statement_Key
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: df33977a-e075-4191-8c20-78053d134991
+		sourceLineageTag: Income_Statement_Key
+		summarizeBy: count
+		sourceColumn: Income_Statement_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSSQL_System_Uniquifier_2005582183
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 1b6cf405-47e5-4a68-a3a0-e0c68fefb0f5
+		sourceLineageTag: MSSQL_System_Uniquifier_2005582183
+		summarizeBy: sum
+		sourceColumn: MSSQL_System_Uniquifier_2005582183
+
+		annotation SummarizationSetBy = Automatic
+
+	partition accounts = entity
+		mode: directLake
+		source
+			entityName: accounts
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+
+	annotation TabularEditor_TableGroup = Dimension
+
