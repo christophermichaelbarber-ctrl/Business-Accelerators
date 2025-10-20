@@ -1,0 +1,221 @@
+table legalentity
+	lineageTag: 5ebc1b3f-1374-43cd-9a11-6493026294e9
+	sourceLineageTag: [dbo].[legalentity]
+
+	column Legal_Entity_Key
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 05fecae9-898f-4049-80ec-f36e46cc343f
+		sourceLineageTag: Legal_Entity_Key
+		summarizeBy: count
+		sourceColumn: Legal_Entity_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Legal_entity_name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f2a2fd29-63ff-47ff-aa8f-a06e0c3eab8e
+		sourceLineageTag: Legal_entity_name
+		summarizeBy: none
+		sourceColumn: Legal_entity_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Legal_Entity_Sort_Order
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 3c130d90-94f1-44d0-a992-80d0c499bd2f
+		sourceLineageTag: Legal_Entity_Sort_Order
+		summarizeBy: sum
+		sourceColumn: Legal_Entity_Sort_Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Group
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 8e6fb7b3-fb8f-4573-a5ed-4de4eb5d66e5
+		sourceLineageTag: Group
+		summarizeBy: none
+		sourceColumn: Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: ac39c8c4-b7b3-4d4b-90d6-1757d1c2f79f
+		sourceLineageTag: Country
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 051b2aaa-594d-4692-af3d-9dd82c28efdb
+		sourceLineageTag: Region
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Legal_entity_level_5_name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 91084327-b55d-4a22-ba56-f66e4086b77d
+		sourceLineageTag: Legal_entity_level_5_name
+		summarizeBy: none
+		sourceColumn: Legal_entity_level_5_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSSQL_System_Uniquifier_1973582069
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 0d9e9ede-b469-451e-be92-afb54c3a33bb
+		sourceLineageTag: MSSQL_System_Uniquifier_1973582069
+		summarizeBy: sum
+		sourceColumn: MSSQL_System_Uniquifier_1973582069
+
+		annotation SummarizationSetBy = Automatic
+
+	column Legal_entity_level_4
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: fe473561-2e59-4887-8d71-32049c26f275
+		sourceLineageTag: Legal_entity_level_4
+		summarizeBy: sum
+		sourceColumn: Legal_entity_level_4
+
+		annotation SummarizationSetBy = Automatic
+
+	column Legal_entity_level_5
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 2e8ef55b-6830-4c12-92b7-ac5ce7c10ea9
+		sourceLineageTag: Legal_entity_level_5
+		summarizeBy: sum
+		sourceColumn: Legal_entity_level_5
+
+		annotation SummarizationSetBy = Automatic
+
+	column Legal_entity_level_1_name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c924409c-4777-4c80-adf3-936abbf8ed64
+		sourceLineageTag: Legal_entity_level_1_name
+		summarizeBy: none
+		sourceColumn: Legal_entity_level_1_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Legal_entity_level_2_name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 00a62fcd-d440-4b00-8184-3a2243a16d11
+		sourceLineageTag: Legal_entity_level_2_name
+		summarizeBy: none
+		sourceColumn: Legal_entity_level_2_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Legal_entity_level_3_name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c6ee358f-bb62-4b16-8caa-dbcceda12d38
+		sourceLineageTag: Legal_entity_level_3_name
+		summarizeBy: none
+		sourceColumn: Legal_entity_level_3_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Legal_entity_level_4_name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 215ffc76-5a26-4f48-bfd0-711ae4e3f6ed
+		sourceLineageTag: Legal_entity_level_4_name
+		summarizeBy: none
+		sourceColumn: Legal_entity_level_4_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Child
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 3b059d01-7750-4320-acb0-bcc6f614bfef
+		sourceLineageTag: Child
+		summarizeBy: none
+		sourceColumn: Child
+
+		annotation SummarizationSetBy = Automatic
+
+	column Parent
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: da5780e3-9613-4712-b3a7-73638bed5ea4
+		sourceLineageTag: Parent
+		summarizeBy: none
+		sourceColumn: Parent
+
+		annotation SummarizationSetBy = Automatic
+
+	column Path
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 05a4a546-6968-4773-af02-a0aff372955d
+		sourceLineageTag: Path
+		summarizeBy: none
+		sourceColumn: Path
+
+		annotation SummarizationSetBy = Automatic
+
+	column Legal_entity_level_1
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 46afbaaa-2564-4116-b3bf-fa65578f112d
+		sourceLineageTag: Legal_entity_level_1
+		summarizeBy: sum
+		sourceColumn: Legal_entity_level_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Legal_entity_level_2
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 660faf7d-b8b0-4b0e-af13-1593c1d39a11
+		sourceLineageTag: Legal_entity_level_2
+		summarizeBy: sum
+		sourceColumn: Legal_entity_level_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column Legal_entity_level_3
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: f2720c88-1f90-4756-92c2-2dfc5b7718e1
+		sourceLineageTag: Legal_entity_level_3
+		summarizeBy: sum
+		sourceColumn: Legal_entity_level_3
+
+		annotation SummarizationSetBy = Automatic
+
+	partition legalentity = entity
+		mode: directLake
+		source
+			entityName: legalentity
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

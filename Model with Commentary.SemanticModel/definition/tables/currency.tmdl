@@ -1,0 +1,77 @@
+table currency
+	lineageTag: b222378e-5fe2-4fc3-a45e-7c9c23068c82
+	sourceLineageTag: [dbo].[currency]
+
+	column Currency_Key
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: a452d2f4-3088-489b-ae55-8b990684bbb8
+		sourceLineageTag: Currency_Key
+		summarizeBy: count
+		sourceColumn: Currency_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 367b6c41-867a-4699-87ca-b7ca83203160
+		sourceLineageTag: Currency
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency_Group
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c60a08db-60a8-4163-a6c5-6a3eced9faa6
+		sourceLineageTag: Currency_Group
+		summarizeBy: none
+		sourceColumn: Currency_Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency_Group_Sort_Order
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: f85918f2-1dd4-45b1-9bdb-94e7b8c0a258
+		sourceLineageTag: Currency_Group_Sort_Order
+		summarizeBy: sum
+		sourceColumn: Currency_Group_Sort_Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Underlying_Currency
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: ec57bec7-41b9-4fb0-94db-f1c9f5e322a9
+		sourceLineageTag: Underlying_Currency
+		summarizeBy: sum
+		sourceColumn: Underlying_Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSSQL_System_Uniquifier_2037582297
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: c55f2807-30a7-4d12-9bc3-32591d87709e
+		sourceLineageTag: MSSQL_System_Uniquifier_2037582297
+		summarizeBy: sum
+		sourceColumn: MSSQL_System_Uniquifier_2037582297
+
+		annotation SummarizationSetBy = Automatic
+
+	partition currency = entity
+		mode: directLake
+		source
+			entityName: currency
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

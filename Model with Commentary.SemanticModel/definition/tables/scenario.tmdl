@@ -1,0 +1,79 @@
+table scenario
+	lineageTag: 75d0df2f-4bd0-419c-b1a0-16329aa127d0
+	sourceLineageTag: [dbo].[scenario]
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 790cc933-d8bc-4f77-bb9f-861f1927adcf
+		sourceLineageTag: Date
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Account_Key
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 92d76f33-d0e2-4ab7-aa36-c8a1a9ff2c7b
+		sourceLineageTag: Account_Key
+		summarizeBy: count
+		sourceColumn: Account_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Scenario_Key
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: dafe8bc3-4725-4420-b747-26da9a91f524
+		sourceLineageTag: Scenario_Key
+		summarizeBy: count
+		sourceColumn: Scenario_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column legal_entity_key
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 2e7e0d68-516c-43c0-8f99-4ddda1797876
+		sourceLineageTag: legal_entity_key
+		summarizeBy: sum
+		sourceColumn: legal_entity_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Creditlessdebit
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 2f2d3442-8a1d-4df2-8205-7abfcb468490
+		sourceLineageTag: Creditlessdebit
+		summarizeBy: sum
+		sourceColumn: Creditlessdebit
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSSQL_System_Uniquifier_2021582240
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 675ca3c0-4aca-41a9-b64d-9f3e773509d6
+		sourceLineageTag: MSSQL_System_Uniquifier_2021582240
+		summarizeBy: sum
+		sourceColumn: MSSQL_System_Uniquifier_2021582240
+
+		annotation SummarizationSetBy = Automatic
+
+	partition scenario = entity
+		mode: directLake
+		source
+			entityName: scenario
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,127 @@
+table ledger
+	lineageTag: 11dbb0db-e5d3-4b4c-a452-1c06c1a23f36
+	sourceLineageTag: [dbo].[ledger]
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 97cfdf9a-0db3-4e14-889c-0034487b8d77
+		sourceLineageTag: Date
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 7d206a3e-a64f-404f-b485-7babd0748048
+		sourceLineageTag: AccountKey
+		summarizeBy: count
+		sourceColumn: AccountKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreditlessdebitatGlobalFx
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 32e82744-8a2b-4ec2-a8e7-d3bb69eed5a4
+		sourceLineageTag: CreditlessdebitatGlobalFx
+		summarizeBy: sum
+		sourceColumn: CreditlessdebitatGlobalFx
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CreditlessdebitatPYFx
+		dataType: double
+		sourceProviderType: float
+		lineageTag: e8a4db40-4a01-4e50-9a1a-b574ffa2d19f
+		sourceLineageTag: CreditlessdebitatPYFx
+		summarizeBy: sum
+		sourceColumn: CreditlessdebitatPYFx
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CreditlessdebitatFcstFx
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 3bf83a49-6a69-4a69-b3f4-ef25bf280ff7
+		sourceLineageTag: CreditlessdebitatFcstFx
+		summarizeBy: sum
+		sourceColumn: CreditlessdebitatFcstFx
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CreditlessdebitatPlanFx
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 1ba77c87-66f2-4364-a36a-a6fa8ab469a5
+		sourceLineageTag: CreditlessdebitatPlanFx
+		summarizeBy: sum
+		sourceColumn: CreditlessdebitatPlanFx
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DocumentID
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: b26aa82a-1c6a-4bb8-a754-d2662d11f93d
+		sourceLineageTag: DocumentID
+		summarizeBy: count
+		sourceColumn: DocumentID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: f5d6beaa-e08a-4ec1-b137-c1bcc58fa132
+		sourceLineageTag: CurrencyKey
+		summarizeBy: count
+		sourceColumn: CurrencyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column LegalEntityKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: e7b9a7c3-a657-47c2-b88c-cdddf2604fa8
+		sourceLineageTag: LegalEntityKey
+		summarizeBy: count
+		sourceColumn: LegalEntityKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSSQL_System_Uniquifier_1989582126
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: c1647a20-5079-44b7-b5f4-142a2526e26c
+		sourceLineageTag: MSSQL_System_Uniquifier_1989582126
+		summarizeBy: sum
+		sourceColumn: MSSQL_System_Uniquifier_1989582126
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ledger = entity
+		mode: directLake
+		source
+			entityName: ledger
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

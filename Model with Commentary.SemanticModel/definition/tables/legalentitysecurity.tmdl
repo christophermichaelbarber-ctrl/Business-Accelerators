@@ -1,0 +1,87 @@
+table legalentitysecurity
+	lineageTag: 257a514c-7b98-4369-82d6-5852fcad3703
+	sourceLineageTag: [dbo].[legalentitysecurity]
+
+	column MSSQL_System_Uniquifier_1925581898
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 40ca3822-f502-43a1-95bb-7fc95cc41170
+		sourceLineageTag: MSSQL_System_Uniquifier_1925581898
+		summarizeBy: sum
+		sourceColumn: MSSQL_System_Uniquifier_1925581898
+
+		annotation SummarizationSetBy = Automatic
+
+	column Full_Name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 8d536690-e2cc-4ed0-a7d8-2f2a0735c8c9
+		sourceLineageTag: Full_Name
+		summarizeBy: none
+		sourceColumn: Full_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: e0ef2c7c-9bd7-46b8-82f5-bacea84f869b
+		sourceLineageTag: Level
+		summarizeBy: none
+		sourceColumn: Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column Employee_ID
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: c5a16591-7d0b-442f-a441-b777535bfb32
+		sourceLineageTag: Employee_ID
+		summarizeBy: count
+		sourceColumn: Employee_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column User_Name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 9103c0e0-9ed3-4104-bb77-10344d1743ba
+		sourceLineageTag: User_Name
+		summarizeBy: none
+		sourceColumn: User_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Legal_Entity_Key
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: ffaa1e57-74b0-4529-a487-1d0d6181c30b
+		sourceLineageTag: Legal_Entity_Key
+		summarizeBy: count
+		sourceColumn: Legal_Entity_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Security_Key
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 6237c09b-5664-4656-a027-3395672aedcd
+		sourceLineageTag: Security_Key
+		summarizeBy: count
+		sourceColumn: Security_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	partition legalentitysecurity = entity
+		mode: directLake
+		source
+			entityName: legalentitysecurity
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

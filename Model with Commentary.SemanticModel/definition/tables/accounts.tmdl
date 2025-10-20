@@ -1,0 +1,77 @@
+table accounts
+	lineageTag: 816bd0e6-9403-48cf-ba0d-2e87cfbc2ec1
+	sourceLineageTag: [dbo].[accounts]
+
+	column Account_Key
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: bae69155-2cd0-419f-9af8-9c73857bc258
+		sourceLineageTag: Account_Key
+		summarizeBy: count
+		sourceColumn: Account_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Account_Number_and_Name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: e68cd55f-cd60-48bf-9aaa-9ba5a14f1d5c
+		sourceLineageTag: Account_Number_and_Name
+		summarizeBy: none
+		sourceColumn: Account_Number_and_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Account_Type
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: fce6bfcc-7126-4c01-a884-4209fe1c1e08
+		sourceLineageTag: Account_Type
+		summarizeBy: none
+		sourceColumn: Account_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Account_Type_Indicator
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: e353e90b-d4e0-4618-85e5-44cbeaddf7ff
+		sourceLineageTag: Account_Type_Indicator
+		summarizeBy: sum
+		sourceColumn: Account_Type_Indicator
+
+		annotation SummarizationSetBy = Automatic
+
+	column Income_Statement_Key
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 94c893aa-5da1-4374-a322-c53d78223516
+		sourceLineageTag: Income_Statement_Key
+		summarizeBy: count
+		sourceColumn: Income_Statement_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSSQL_System_Uniquifier_2005582183
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 7fcf1bc5-086a-4843-af05-6b98fe2582db
+		sourceLineageTag: MSSQL_System_Uniquifier_2005582183
+		summarizeBy: sum
+		sourceColumn: MSSQL_System_Uniquifier_2005582183
+
+		annotation SummarizationSetBy = Automatic
+
+	partition accounts = entity
+		mode: directLake
+		source
+			entityName: accounts
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

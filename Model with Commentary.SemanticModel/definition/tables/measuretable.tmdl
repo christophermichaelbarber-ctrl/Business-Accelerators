@@ -1,0 +1,45 @@
+table measuretable
+	lineageTag: 62f32f54-5862-4efa-9703-0f7ff82ebbdc
+	sourceLineageTag: [dbo].[measuretable]
+
+	column ID
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 8ff8cb1f-4940-4421-926d-a83f1441e377
+		sourceLineageTag: ID
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Col1
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 9fc5d223-fd93-4293-8805-7926c6f84560
+		sourceLineageTag: Col1
+		summarizeBy: none
+		sourceColumn: Col1
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSSQL_System_Uniquifier_1909581841
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: a17acee2-6ba5-48d0-ba33-3c92402ec7fb
+		sourceLineageTag: MSSQL_System_Uniquifier_1909581841
+		summarizeBy: sum
+		sourceColumn: MSSQL_System_Uniquifier_1909581841
+
+		annotation SummarizationSetBy = Automatic
+
+	partition measuretable = entity
+		mode: directLake
+		source
+			entityName: measuretable
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+
