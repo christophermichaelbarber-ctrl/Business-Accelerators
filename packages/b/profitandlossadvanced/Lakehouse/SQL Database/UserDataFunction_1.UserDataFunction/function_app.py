@@ -1,3 +1,112 @@
+
+###############################################################################################################################################################################
+
+
+import fabric.functions as fn
+import uuid
+
+udf = fn.UserDataFunctions()
+
+@udf.connection(argName="dbo",alias="profitandlossdb") 
+@udf.function() 
+
+# Users will provide these parameters in the PowerBI report
+def write_one_to_sql_db_commentary_attempt3(dbo: fn.FabricSqlConnection, commentaryDescription: str) -> str: 
+
+    # Establish a connection to the SQL database  
+    connection = dbo.connect() 
+    cursor = connection.cursor() 
+
+    # Insert data into the ProductDescription table  
+    insert_description_query = "INSERT INTO [dbo].[CommentaryDescription] (Description) OUTPUT INSERTED.CommentaryDescriptionID VALUES (?)" 
+    cursor.execute(insert_description_query, commentaryDescription) 
+
+    # Commit the transaction 
+    connection.commit() 
+    cursor.close() 
+    connection.close()  
+
+    return "Commentary was added"
+
+    ###############################################################################################################################################################################
+
+import fabric.functions as fn
+import uuid
+
+udf = fn.UserDataFunctions()
+
+@udf.connection(argName="sqlDB",alias="profitandlossdb") 
+@udf.function() 
+
+# Take a product description and product model ID as input parameters and write them back to the SQL database
+# Users will provide these parameters in the PowerBI report
+def write_one_to_sql_db_product(sqlDB: fn.FabricSqlConnection, productDescription: str) -> str: 
+
+    # Error handling to ensure product description doesn't go above 200 characters
+    if(len(productDescription) > 200):
+        raise fn.UserThrownError("Descriptions have a 200 character limit. Please shorten your description.", {"Description:": productDescription})
+
+    # Establish a connection to the SQL database  
+    connection = sqlDB.connect() 
+    cursor = connection.cursor() 
+
+    # Insert data into the ProductDescription table  
+    insert_description_query = "INSERT INTO [dbo].[ProductDescription] (Description) OUTPUT INSERTED.ProductDescriptionID VALUES (?)" 
+    cursor.execute(insert_description_query, productDescription) 
+
+
+    # Commit the transaction 
+    connection.commit() 
+    cursor.close() 
+    connection.close()  
+
+    return "Product description was added"
+
+
+
+
+
+###############################################################################################################################################################################
+
+import fabric.functions as fn
+import uuid
+
+udf = fn.UserDataFunctions()
+
+@udf.connection(argName="sqlDB",alias="profitandlossdb") 
+@udf.function() 
+
+# Take a product description and product model ID as input parameters and write them back to the SQL database
+# Users will provide these parameters in the PowerBI report
+def write_one_to_sql_db_commentary_with_modified(sqlDB: fn.FabricSqlConnection, Description: str) -> str: 
+
+    # Error handling to ensure product description doesn't go above 200 characters
+    if(len(Description) > 200):
+        raise fn.UserThrownError("Descriptions have a 200 character limit. Please shorten your description.", {"Description:": Description})
+
+    # Establish a connection to the SQL database  
+    connection = sqlDB.connect() 
+    cursor = connection.cursor() 
+
+    # Insert data into the ProductDescription table  
+    insert_description_query = "INSERT INTO [dbo].[Commentary] (Description) OUTPUT INSERTED.CommentaryID VALUES (?)" 
+    cursor.execute(insert_description_query, Description) 
+
+
+    # Commit the transaction 
+    connection.commit() 
+    cursor.close() 
+    connection.close()  
+
+    return "Product description was added"
+
+
+###############################################################################################################################################################################
+
+
+
+
+
 import fabric.functions as fn
 import uuid
 
@@ -41,6 +150,7 @@ def write_one_to_sql_db_commentary_multiple(sqlDB: fn.FabricSqlConnection, Comme
 
     return "Product description was added"
 
+###############################################################################################################################################################################
 
 import fabric.functions as fn
 import uuid
@@ -84,13 +194,14 @@ def write_one_to_sql_db_commentary(sqlDB: fn.FabricSqlConnection, Commentary: st
 
     return "Product description was added"
 
+###############################################################################################################################################################################
 
 import fabric.functions as fn
 import uuid
 
 udf = fn.UserDataFunctions()
 
-@udf.connection(argName="sqlDB",alias="profitandlossdb") 
+@udf.connection(argName="sqlDB",alias="AdventureWorksL") 
 @udf.function() 
 
 # Take a product description and product model ID as input parameters and write them back to the SQL database
