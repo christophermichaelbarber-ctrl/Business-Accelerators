@@ -1,0 +1,45 @@
+table selecttimeframe
+	lineageTag: e7d75f29-1d4f-4240-b1a5-d2bdd6c43b28
+	sourceLineageTag: [dbo].[selecttimeframe]
+
+	column Time_Horizon
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: e4d449e7-096b-4dc1-9add-8da4ba886d06
+		sourceLineageTag: Time_Horizon
+		summarizeBy: none
+		sourceColumn: Time_Horizon
+
+		annotation SummarizationSetBy = Automatic
+
+	column Time_Horizon_Sort_Order
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 9992b0e9-6485-47cf-ad98-b5664e4badaf
+		sourceLineageTag: Time_Horizon_Sort_Order
+		summarizeBy: sum
+		sourceColumn: Time_Horizon_Sort_Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSSQL_System_Uniquifier_2069582411
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 16516dee-53f4-48a8-b825-0fc3b357b776
+		sourceLineageTag: MSSQL_System_Uniquifier_2069582411
+		summarizeBy: sum
+		sourceColumn: MSSQL_System_Uniquifier_2069582411
+
+		annotation SummarizationSetBy = Automatic
+
+	partition selecttimeframe = entity
+		mode: directLake
+		source
+			entityName: selecttimeframe
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

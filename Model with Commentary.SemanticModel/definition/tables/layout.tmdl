@@ -1,0 +1,171 @@
+table layout
+	lineageTag: a5915874-2cd3-45fa-a1de-16b5054e720d
+	sourceLineageTag: [dbo].[layout]
+
+	column Show_Values
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 72d2cf36-fe9b-401f-b88b-0317c19d4f1f
+		sourceLineageTag: Show_Values
+		summarizeBy: sum
+		sourceColumn: Show_Values
+
+		annotation SummarizationSetBy = Automatic
+
+	column Calculation_type
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 4782eacc-b288-4b3c-8c7f-0cc9a43b1b79
+		sourceLineageTag: Calculation_type
+		summarizeBy: none
+		sourceColumn: Calculation_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSSQL_System_Uniquifier_2053582354
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: bade8ec7-449f-4819-bd89-31a3981c5aed
+		sourceLineageTag: MSSQL_System_Uniquifier_2053582354
+		summarizeBy: sum
+		sourceColumn: MSSQL_System_Uniquifier_2053582354
+
+		annotation SummarizationSetBy = Automatic
+
+	column Show_Perc
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: e7457c99-d313-4b15-b937-69f856ad72fe
+		sourceLineageTag: Show_Perc
+		summarizeBy: sum
+		sourceColumn: Show_Perc
+
+		annotation SummarizationSetBy = Automatic
+
+	column Format_String_Default
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: b16b8b82-92e9-44b6-8b5d-65e367aefb3e
+		sourceLineageTag: Format_String_Default
+		summarizeBy: none
+		sourceColumn: Format_String_Default
+
+		annotation SummarizationSetBy = Automatic
+
+	column Format_String_Variance_Abs
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 62d45744-497c-4657-bc02-ec9e29ab24a2
+		sourceLineageTag: Format_String_Variance_Abs
+		summarizeBy: none
+		sourceColumn: Format_String_Variance_Abs
+
+		annotation SummarizationSetBy = Automatic
+
+	column Format_String_Variance_Per
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: a8779e12-8b45-49f3-8104-e11ba3ca69a5
+		sourceLineageTag: Format_String_Variance_Per
+		summarizeBy: none
+		sourceColumn: Format_String_Variance_Per
+
+		annotation SummarizationSetBy = Automatic
+
+	column Formatting_P_L_Hex_Text
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 72162184-68fa-4499-be2d-3278a3cb3479
+		sourceLineageTag: Formatting_P_L_Hex_Text
+		summarizeBy: none
+		sourceColumn: Formatting_P_L_Hex_Text
+
+		annotation SummarizationSetBy = Automatic
+
+	column Formatting_P_L_Hex_Background
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 937b9d35-824f-46ea-9e5c-900c79b97ac9
+		sourceLineageTag: Formatting_P_L_Hex_Background
+		summarizeBy: none
+		sourceColumn: Formatting_P_L_Hex_Background
+
+		annotation SummarizationSetBy = Automatic
+
+	column Income_Statement_Key
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 10dacf9b-0f81-476f-9228-53df2485e04f
+		sourceLineageTag: Income_Statement_Key
+		summarizeBy: count
+		sourceColumn: Income_Statement_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Line_name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 3d12838d-dc4a-4bf6-a882-56c8a5d2f70c
+		sourceLineageTag: Line_name
+		summarizeBy: none
+		sourceColumn: Line_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Subtotal_From
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 875737f2-3d1e-452b-8a24-b7f1acb06740
+		sourceLineageTag: Subtotal_From
+		summarizeBy: sum
+		sourceColumn: Subtotal_From
+
+		annotation SummarizationSetBy = Automatic
+
+	column Subtotal_To
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 1c772532-834d-4019-983c-df31881a8296
+		sourceLineageTag: Subtotal_To
+		summarizeBy: sum
+		sourceColumn: Subtotal_To
+
+		annotation SummarizationSetBy = Automatic
+
+	column Divide_Numerator
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 377f1471-8c2c-435e-a877-1a9621bb1ef3
+		sourceLineageTag: Divide_Numerator
+		summarizeBy: sum
+		sourceColumn: Divide_Numerator
+
+		annotation SummarizationSetBy = Automatic
+
+	column Divide_Denominator
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: f30e9b3d-403e-4294-9450-3776a94df6df
+		sourceLineageTag: Divide_Denominator
+		summarizeBy: sum
+		sourceColumn: Divide_Denominator
+
+		annotation SummarizationSetBy = Automatic
+
+	partition layout = entity
+		mode: directLake
+		source
+			entityName: layout
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

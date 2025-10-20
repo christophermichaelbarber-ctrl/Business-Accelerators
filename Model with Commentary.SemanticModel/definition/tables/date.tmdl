@@ -1,0 +1,195 @@
+table date
+	lineageTag: 26b29025-4e9d-48aa-8ad3-f20981699a65
+	sourceLineageTag: [dbo].[date]
+
+	column FutureDate
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 90639d43-fab6-413d-8600-f3ec7702406d
+		sourceLineageTag: FutureDate
+		summarizeBy: none
+		sourceColumn: FutureDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalYearPeriodNumber
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 101d8b03-0018-46ed-b2d3-486090c49a05
+		sourceLineageTag: FiscalYearPeriodNumber
+		summarizeBy: sum
+		sourceColumn: FiscalYearPeriodNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalPeriodNumber
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 694edba7-d067-4b11-94b3-4f14f550e8e2
+		sourceLineageTag: FiscalPeriodNumber
+		summarizeBy: sum
+		sourceColumn: FiscalPeriodNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSSQL_System_Uniquifier_1957582012
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: a04ce9de-665b-4049-821a-1ee5eba28fdc
+		sourceLineageTag: MSSQL_System_Uniquifier_1957582012
+		summarizeBy: sum
+		sourceColumn: MSSQL_System_Uniquifier_1957582012
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalQuarterSort
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 8ec91e3c-2c1a-44b7-80c0-bae1dd73a536
+		sourceLineageTag: FiscalQuarterSort
+		summarizeBy: sum
+		sourceColumn: FiscalQuarterSort
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalPeriodSort
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 0ec5f68c-9a01-49be-816c-2a7b5935d3bf
+		sourceLineageTag: FiscalPeriodSort
+		summarizeBy: sum
+		sourceColumn: FiscalPeriodSort
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalYearQuarterSort
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 04aa3864-6467-44c9-b337-818fbb14e139
+		sourceLineageTag: FiscalYearQuarterSort
+		summarizeBy: sum
+		sourceColumn: FiscalYearQuarterSort
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalYearPeriodSort
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 85482a9e-77ae-46f2-a6ce-66313ef34513
+		sourceLineageTag: FiscalYearPeriodSort
+		summarizeBy: sum
+		sourceColumn: FiscalYearPeriodSort
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalPeriodCP
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: a97621cc-ddcc-40d1-bfdb-5df8f61405b8
+		sourceLineageTag: FiscalPeriodCP
+		summarizeBy: none
+		sourceColumn: FiscalPeriodCP
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalPeriodCPSort
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 2742a82b-0fd5-4cc6-a982-9ea56840c07e
+		sourceLineageTag: FiscalPeriodCPSort
+		summarizeBy: sum
+		sourceColumn: FiscalPeriodCPSort
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalYear
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: a100d622-7e4f-4722-a441-a1adb1c32f50
+		sourceLineageTag: FiscalYear
+		summarizeBy: sum
+		sourceColumn: FiscalYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalQuarter
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 6121dac8-808b-4f8c-9484-1240e143c14d
+		sourceLineageTag: FiscalQuarter
+		summarizeBy: none
+		sourceColumn: FiscalQuarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalPeriod
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 4c69e3dc-53e3-4327-a691-5a0b6912169f
+		sourceLineageTag: FiscalPeriod
+		summarizeBy: none
+		sourceColumn: FiscalPeriod
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalYearQuarter
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: ca65a49b-0a58-4d76-ba4f-1f34769d8d9c
+		sourceLineageTag: FiscalYearQuarter
+		summarizeBy: none
+		sourceColumn: FiscalYearQuarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalYearPeriod
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: fd8bf1f0-df1c-4612-9c3b-9fe831a2e063
+		sourceLineageTag: FiscalYearPeriod
+		summarizeBy: none
+		sourceColumn: FiscalYearPeriod
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalYearSort
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 66053814-9265-42ae-8f97-da3bd4ce63a4
+		sourceLineageTag: FiscalYearSort
+		summarizeBy: sum
+		sourceColumn: FiscalYearSort
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalDate
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 3ee29eb4-3770-4c6d-90b2-d6157a0159c8
+		sourceLineageTag: FiscalDate
+		summarizeBy: none
+		sourceColumn: FiscalDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition date = entity
+		mode: directLake
+		source
+			entityName: date
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

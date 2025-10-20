@@ -1,0 +1,48 @@
+{
+  "runtime": "PYTHON",
+  "functionsMetadata": [
+    {
+      "name": "write_one_to_sql_db_commentary_attempt3",
+      "scriptFile": "function_app.py",
+      "bindings": [
+        {
+          "name": "req",
+          "type": "HttpTrigger",
+          "direction": "In",
+          "authLevel": "Anonymous",
+          "methods": [
+            "POST"
+          ],
+          "route": ""
+        },
+        {
+          "name": "dbo",
+          "type": "FabricItem",
+          "direction": "In",
+          "alias": "profitandlossdb",
+          "subType": "FabricSqlConnection",
+          "itemType": null,
+          "audienceType": null
+        }
+      ],
+      "fabricProperties": {
+        "fabricMetadataSchemaVersion": "1.1.0",
+        "fabricFunctionReturnType": "str",
+        "fabricFunctionParameters": [
+          {
+            "name": "commentaryDescription",
+            "dataType": "str"
+          },
+          {
+            "name": "Level",
+            "dataType": "str"
+          },
+          {
+            "name": "Date",
+            "dataType": "str"
+          }
+        ]
+      }
+    }
+  ]
+}

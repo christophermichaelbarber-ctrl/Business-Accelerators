@@ -1,0 +1,129 @@
+table Commentary
+	lineageTag: e5c25bfe-5555-4c31-9d86-483e3d14a429
+	sourceLineageTag: [dbo].[Commentary]
+
+	column CommentaryID
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: bd1128e8-6e50-44f5-9ca7-228a19a3641d
+		sourceLineageTag: CommentaryID
+		summarizeBy: count
+		sourceColumn: CommentaryID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c1de8c42-44d4-4217-a977-105ece4c80db
+		sourceLineageTag: Description
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Level
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: fd5a5bff-0f25-4af4-b613-54bd66a57efc
+		sourceLineageTag: Level
+		summarizeBy: none
+		sourceColumn: Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 01590072-c3c7-4078-b17e-8e2d74d082b8
+		sourceLineageTag: Date
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Time_Horizon_Key
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 4f72cb59-ce46-45c7-b339-b5a660a613ac
+		sourceLineageTag: Time_Horizon_Key
+		summarizeBy: count
+		sourceColumn: Time_Horizon_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fx_Assumptions_Key
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: d299fbf0-740d-4f9c-b64f-18dd8343f054
+		sourceLineageTag: Fx_Assumptions_Key
+		summarizeBy: count
+		sourceColumn: Fx_Assumptions_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Legal_Entity_Key
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 7a745261-b232-47fc-9ee9-4c5729b23080
+		sourceLineageTag: Legal_Entity_Key
+		summarizeBy: count
+		sourceColumn: Legal_Entity_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'User Name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 373a1f44-49fc-4a92-a90c-5b76607e530b
+		sourceLineageTag: User Name
+		summarizeBy: none
+		sourceColumn: User Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'User Principle Name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 4b31ef8f-c946-4071-8fa9-4a7edb5f23d3
+		sourceLineageTag: User Principle Name
+		summarizeBy: none
+		sourceColumn: User Principle Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column rowguid
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 5a7e24a3-becf-4c3e-abfa-3d8c5a888cd2
+		sourceLineageTag: rowguid
+		summarizeBy: none
+		sourceColumn: rowguid
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModifiedDate
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 59d15e82-e3e9-4495-9a64-20d643e7bbe8
+		sourceLineageTag: ModifiedDate
+		summarizeBy: none
+		sourceColumn: ModifiedDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Commentary = entity
+		mode: directLake
+		source
+			entityName: Commentary
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

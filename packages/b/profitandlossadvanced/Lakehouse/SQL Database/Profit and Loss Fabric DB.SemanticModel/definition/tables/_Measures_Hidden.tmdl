@@ -847,6 +847,9 @@ table _Measures_Hidden
 			VAR isfiltered_region = ISFILTERED('legalentity'[Region])
 			VAR isfiltered_country = ISFILTERED('legalentity'[Country])
 			VAR isfiltered_le = ISFILTERED(legalentity[Legal entity name])
+			VAR grouprecord = CALCULATE( MAX( Commentary[CommentaryID] ), Commentary[Level] = "Group" )
+			
+			    VAR GROUPresult =  CALCULATE(SELECTEDVALUE( Commentary[Description] ), Commentary[CommentaryID] = grouprecord)
 			
 			
 			VAR result = 
@@ -855,12 +858,14 @@ table _Measures_Hidden
 			        isfiltered_le, SELECTEDVALUE(legalentity[Legal entity name]),
 			        isfiltered_country, SELECTEDVALUE('legalentity'[Country]),
 			        isfiltered_region, SELECTEDVALUE('legalentity'[Region]),
-			        CALCULATE(SELECTEDVALUE(commentary[Commentary]), TREATAS(VALUES('legalentity'[Group]), commentary[Level]))      
+			        "Group"
+			        
+			        //CALCULATE(SELECTEDVALUE(commentary[Description]), TREATAS(VALUES('legalentity'[Group]), commentary[Level]))      
 			        
 			            )
 			
 			
-			RETURN result
+			RETURN GROUPresult
 			```
 		isHidden
 		displayFolder: Show Commentary
@@ -916,6 +921,24 @@ table _Measures_Hidden
 		formatStringDefinition = SELECTEDVALUE( Layout[Format_String_Default], "0;0-0;;@" )
 
 		changedProperty = IsHidden
+
+	measure 'Commentary Date' = CONVERT( CALCULATE( MAX( 'date'[FiscalDate] ) ), STRING )
+		displayFolder: Show Commentary
+		lineageTag: d621427e-4d29-4dfc-81fb-da7ee62411e3
+
+	measure 'Commentary Level' = "Group"
+		displayFolder: Show Commentary
+		lineageTag: 57a0aaab-84dd-48a6-acc2-d82857173ffb
+
+	measure SelectionsTitle =
+			var selectedtimeperiod = SELECTEDVALUE( 'date'[FiscalPeriodCP] )
+			VAR selectedtimehorizon = SELECTEDVALUE( 'selecttimeframe'[Time_Horizon] )
+			VAR selectedfxassumptions = SELECTEDVALUE( 'Fx Assumptions'[Fx Assumption] )
+			
+			
+			RETURN selectedtimeperiod & " | " & selectedtimehorizon & " | " & selectedfxassumptions
+		isHidden
+		lineageTag: d0467160-4795-457d-b064-0cd4a26ebaec
 
 	column ID
 		dataType: int64
