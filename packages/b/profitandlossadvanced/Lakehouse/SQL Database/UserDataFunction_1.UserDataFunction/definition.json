@@ -17,6 +17,31 @@
   ],
   "functions": [
     {
+      "name": "add_commentary_logged",
+      "description": "",
+      "isPublicEndpointEnabled": true
+    },
+    {
+      "name": "db_ping",
+      "description": "",
+      "isPublicEndpointEnabled": true
+    },
+    {
+      "name": "echo_hello",
+      "description": "",
+      "isPublicEndpointEnabled": true
+    },
+    {
+      "name": "probe_env",
+      "description": "",
+      "isPublicEndpointEnabled": true
+    },
+    {
+      "name": "table_probe",
+      "description": "",
+      "isPublicEndpointEnabled": true
+    },
+    {
       "name": "write_one_to_sql_db",
       "description": "",
       "isPublicEndpointEnabled": true
