@@ -1,13 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
-  "name": "b25ad49028b33181008c",
+  "name": "84e0d0a977d52af556b1",
   "position": {
-    "x": 1163.001798426998,
-    "y": 664.66944580270342,
-    "z": 7000,
-    "height": 40.056687745004595,
-    "width": 99.80225590704535,
-    "tabOrder": 7000
+    "x": 835.52938718530686,
+    "y": 17.115127111803307,
+    "z": 4501,
+    "height": 39.675976486453116,
+    "width": 100.35688170102847
   },
   "visual": {
     "visualType": "actionButton",
@@ -67,25 +66,9 @@
               },
               "metadata": {
                 "dataFunction": {
-                  "name": "write_one_to_sql_db_commentary_multiple",
+                  "name": "echo_hello",
                   "autoRefresh": true,
-                  "parameters": [
-                    {
-                      "name": "Commentary",
-                      "dataType": "string",
-                      "isOptional": false,
-                      "type": "SlicerParameter",
-                      "slicer": "94636c13e248b5d19690",
-                      "autoClear": false
-                    },
-                    {
-                      "type": "SlicerParameter",
-                      "autoClear": false,
-                      "name": "Level",
-                      "dataType": "string",
-                      "isOptional": false
-                    }
-                  ]
+                  "parameters": []
                 }
               }
             }

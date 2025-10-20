@@ -4,10 +4,10 @@
   "position": {
     "x": 11.180158130817313,
     "y": 11.925502006205134,
-    "z": 4001,
+    "z": 0,
     "height": 50.68338352637182,
     "width": 283.97601652275972,
-    "tabOrder": 4001
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "textbox",
@@ -28,6 +28,21 @@
                 ]
               }
             ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Title'"
+                }
+              }
+            }
           }
         }
       ]

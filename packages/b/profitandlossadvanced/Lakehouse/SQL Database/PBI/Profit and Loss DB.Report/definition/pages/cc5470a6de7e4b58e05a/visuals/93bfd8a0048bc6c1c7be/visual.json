@@ -4,10 +4,9 @@
   "position": {
     "x": 11.534279215856168,
     "y": 74.529188779378316,
-    "z": 0,
+    "z": 1000,
     "height": 629.94909563522151,
-    "width": 1016.7910754900898,
-    "tabOrder": 1000
+    "width": 1016.7910754900898
   },
   "visual": {
     "visualType": "tableEx",
@@ -2181,6 +2180,19 @@
             }
           }
         }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'PL Table'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
@@ -2188,7 +2200,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "ef786b0a52e5d0979b30",
+        "name": "0721c6930d1ce95e1214",
         "field": {
           "Column": {
             "Expression": {

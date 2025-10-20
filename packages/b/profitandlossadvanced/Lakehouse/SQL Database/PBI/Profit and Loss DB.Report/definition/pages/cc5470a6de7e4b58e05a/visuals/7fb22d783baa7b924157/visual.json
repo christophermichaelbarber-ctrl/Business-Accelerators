@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
   "name": "7fb22d783baa7b924157",
   "position": {
-    "x": 1043.6515884272947,
-    "y": 231.68925269579782,
-    "z": 3000,
-    "height": 79.096330980740646,
-    "width": 219.78980467214657,
-    "tabOrder": 3000
+    "x": 15.538002854669575,
+    "y": 223.65182128060417,
+    "z": 5000,
+    "height": 79.12827595015527,
+    "width": 219.72810511778653,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "slicer",
@@ -111,6 +111,25 @@
                   "Value": "0D"
                 }
               }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -137,13 +156,95 @@
                   "Value": "'wf_standard-font_light, helvetica, arial, sans-serif'"
                 }
               }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#844DFE'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "pendingChangesIcon": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
             }
           }
         }
       ]
     },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Select Fx Assumptions'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "syncGroup": {
+      "groupName": "Fx Assumption",
+      "fieldChanges": true,
+      "filterChanges": true
+    },
     "drillFilterOtherVisuals": true
   },
+  "parentGroupName": "9d17e6e96cda558e2d2e",
   "filterConfig": {
     "filters": [
       {
@@ -273,7 +374,7 @@
         "howCreated": "User"
       },
       {
-        "name": "d403e1c76a465560d569",
+        "name": "655b89eb51a81b25105e",
         "field": {
           "Column": {
             "Expression": {

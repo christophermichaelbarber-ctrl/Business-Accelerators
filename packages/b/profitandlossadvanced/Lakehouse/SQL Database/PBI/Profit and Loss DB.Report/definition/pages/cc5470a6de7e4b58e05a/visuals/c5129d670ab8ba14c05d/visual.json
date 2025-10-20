@@ -2,12 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
   "name": "c5129d670ab8ba14c05d",
   "position": {
-    "x": 1042.9516208964917,
-    "y": 152.59292171505717,
-    "z": 2000,
-    "height": 79.096330980740646,
-    "width": 219.78980467214657,
-    "tabOrder": 2000
+    "x": 15.538002854669575,
+    "y": 164.14212614453697,
+    "z": 4000,
+    "height": 79.12827595015527,
+    "width": 219.72810511778653
   },
   "visual": {
     "visualType": "slicer",
@@ -81,7 +80,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Month-to-date'"
+                                "Value": "'Quarter-to-date'"
                               }
                             }
                           ]
@@ -111,6 +110,25 @@
                   "Value": "0D"
                 }
               }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -137,13 +155,95 @@
                   "Value": "'wf_standard-font_light, helvetica, arial, sans-serif'"
                 }
               }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#844DFE'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "pendingChangesIcon": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
             }
           }
         }
       ]
     },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Select Time Horizon'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "syncGroup": {
+      "groupName": "Time_Horizon",
+      "fieldChanges": true,
+      "filterChanges": true
+    },
     "drillFilterOtherVisuals": true
   },
+  "parentGroupName": "9d17e6e96cda558e2d2e",
   "filterConfig": {
     "filters": [
       {
@@ -271,6 +371,20 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "68625d682b078b7b8064",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "selecttimeframe"
+              }
+            },
+            "Property": "Time_Horizon"
+          }
+        },
+        "type": "Categorical"
       }
     ],
     "filterSortOrder": "Custom"
