@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Profit and Loss Commentary WB"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "4a189ff1-6f75-4ca6-b15a-89caf5bff28e"
+  }
+}
