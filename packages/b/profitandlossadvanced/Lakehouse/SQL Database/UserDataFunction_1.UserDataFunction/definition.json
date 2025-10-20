@@ -3,6 +3,12 @@
   "runtime": "PYTHON",
   "connectedDataSources": [
     {
+      "alias": "AdventureWorksL",
+      "artifactId": "2558fd76-3b0f-9ffe-420e-cc037d5ecb94",
+      "artifactType": "SqlDbNative",
+      "workspaceId": "00000000-0000-0000-0000-000000000000"
+    },
+    {
       "alias": "profitandlossdb",
       "artifactId": "7985e2af-6b11-9696-4080-c81387a7d764",
       "artifactType": "SqlDbNative",
@@ -10,6 +16,31 @@
     }
   ],
   "functions": [
+    {
+      "name": "add_commentary_logged",
+      "description": "",
+      "isPublicEndpointEnabled": true
+    },
+    {
+      "name": "db_ping",
+      "description": "",
+      "isPublicEndpointEnabled": true
+    },
+    {
+      "name": "echo_hello",
+      "description": "",
+      "isPublicEndpointEnabled": true
+    },
+    {
+      "name": "probe_env",
+      "description": "",
+      "isPublicEndpointEnabled": true
+    },
+    {
+      "name": "table_probe",
+      "description": "",
+      "isPublicEndpointEnabled": true
+    },
     {
       "name": "write_one_to_sql_db",
       "description": "",
@@ -21,7 +52,22 @@
       "isPublicEndpointEnabled": true
     },
     {
+      "name": "write_one_to_sql_db_commentary_attempt3",
+      "description": "",
+      "isPublicEndpointEnabled": true
+    },
+    {
       "name": "write_one_to_sql_db_commentary_multiple",
+      "description": "",
+      "isPublicEndpointEnabled": true
+    },
+    {
+      "name": "write_one_to_sql_db_commentary_with_modified",
+      "description": "",
+      "isPublicEndpointEnabled": true
+    },
+    {
+      "name": "write_one_to_sql_db_product",
       "description": "",
       "isPublicEndpointEnabled": true
     }

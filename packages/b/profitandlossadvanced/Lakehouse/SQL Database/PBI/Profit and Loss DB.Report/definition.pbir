@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definitionProperties/2.0.0/schema.json",
   "version": "4.0",
   "datasetReference": {
-    "byConnection": {
-      "connectionString": "Data Source=powerbi://api.powerbi.com/v1.0/myorg/GitIntegrationFabricTrial;initial catalog=\"Profit and Loss Fabric DB\";access mode=readonly;integrated security=ClaimsToken;semanticmodelid=25435d9b-ddcb-4c5b-a0b0-eaaf12b0e5f3"
+    "byPath": {
+      "path": "../../Profit and Loss Fabric DB.SemanticModel"
     }
   }
 }
