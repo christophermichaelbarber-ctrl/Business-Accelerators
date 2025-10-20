@@ -1,12 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
   "name": "86d195c32b8a1cbb97e5",
   "position": {
     "x": 12.0717348698074,
     "y": 74.844756192805875,
     "z": 1000,
     "height": 630.1445602039463,
-    "width": 1254.2532529729888
+    "width": 1254.2532529729888,
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "decompositionTreeVisual",
@@ -257,7 +258,7 @@
               "identityValues": [
                 {
                   "Literal": {
-                    "Value": "'Expenditure'"
+                    "Value": "'Revenue'"
                   }
                 }
               ],
@@ -267,7 +268,7 @@
                   "identityValues": [
                     {
                       "Literal": {
-                        "Value": "'70100 - Expenditure'"
+                        "Value": "'10710 - Other income'"
                       }
                     }
                   ],
@@ -277,7 +278,7 @@
                       "identityValues": [
                         {
                           "Literal": {
-                            "Value": "'Asia'"
+                            "Value": "'Americas'"
                           }
                         }
                       ],
@@ -287,7 +288,7 @@
                           "identityValues": [
                             {
                               "Literal": {
-                                "Value": "'India'"
+                                "Value": "'USA'"
                               }
                             }
                           ],

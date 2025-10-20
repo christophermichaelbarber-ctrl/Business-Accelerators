@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
   "name": "ea503666d8e906b0c400",
   "position": {
     "x": 15.332233761596516,
@@ -658,82 +658,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "22ae96322a20d050c90e",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "legalentity"
-                  }
-                },
-                "Hierarchy": "Legal Entity Hierarchy"
-              }
-            },
-            "Level": "Group"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "ff7fd16086b04d0ca3a7",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "legalentity"
-                  }
-                },
-                "Hierarchy": "Legal Entity Hierarchy"
-              }
-            },
-            "Level": "Region"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "35b3d94e20c0300a0558",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "legalentity"
-                  }
-                },
-                "Hierarchy": "Legal Entity Hierarchy"
-              }
-            },
-            "Level": "Country"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "68d8c06815713dd18c33",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "legalentity"
-                  }
-                },
-                "Hierarchy": "Legal Entity Hierarchy"
-              }
-            },
-            "Level": "Legal entity name"
-          }
-        },
-        "type": "Categorical"
       }
     ],
     "filterSortOrder": "Custom"

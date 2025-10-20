@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
   "name": "7fb22d783baa7b924157",
   "position": {
     "x": 15.538002854669575,
@@ -372,20 +372,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "655b89eb51a81b25105e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Fx Assumptions"
-              }
-            },
-            "Property": "Fx Assumption"
-          }
-        },
-        "type": "Categorical"
       }
     ],
     "filterSortOrder": "Custom"

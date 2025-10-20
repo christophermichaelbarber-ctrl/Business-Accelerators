@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
   "name": "c73c860945b400488007",
   "position": {
     "x": 134.61329113151044,
@@ -139,7 +139,7 @@
                 "itemId": {
                   "expr": {
                     "Literal": {
-                      "Value": "'3316a0f8-fdd1-47ec-ae4e-484134536759'"
+                      "Value": "'cbb36d77-c95f-4730-ae9a-ec5fb90b8ac4'"
                     }
                   }
                 },
@@ -153,8 +153,54 @@
               },
               "metadata": {
                 "dataFunction": {
+                  "name": "write_one_to_sql_db_commentary_attempt3",
                   "autoRefresh": true,
-                  "parameters": []
+                  "parameters": [
+                    {
+                      "name": "commentaryDescription",
+                      "dataType": "string",
+                      "isOptional": false,
+                      "type": "SlicerParameter",
+                      "slicer": "94636c13e248b5d19690",
+                      "autoClear": false
+                    },
+                    {
+                      "name": "Level",
+                      "dataType": "string",
+                      "isOptional": false,
+                      "type": "ValueParameter",
+                      "value": {
+                        "expr": {
+                          "Measure": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "_Measures_Hidden"
+                              }
+                            },
+                            "Property": "Commentary Level"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "name": "Date",
+                      "dataType": "string",
+                      "isOptional": false,
+                      "type": "ValueParameter",
+                      "value": {
+                        "expr": {
+                          "Measure": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "_Measures_Hidden"
+                              }
+                            },
+                            "Property": "Commentary Date"
+                          }
+                        }
+                      }
+                    }
+                  ]
                 }
               }
             },

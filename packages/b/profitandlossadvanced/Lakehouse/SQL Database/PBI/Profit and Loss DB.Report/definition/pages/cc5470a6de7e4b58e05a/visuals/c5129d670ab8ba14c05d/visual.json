@@ -1,12 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
   "name": "c5129d670ab8ba14c05d",
   "position": {
     "x": 15.538002854669575,
     "y": 164.14212614453697,
     "z": 4000,
     "height": 79.12827595015527,
-    "width": 219.72810511778653
+    "width": 219.72810511778653,
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "slicer",
@@ -371,20 +372,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "68625d682b078b7b8064",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "selecttimeframe"
-              }
-            },
-            "Property": "Time_Horizon"
-          }
-        },
-        "type": "Categorical"
       }
     ],
     "filterSortOrder": "Custom"

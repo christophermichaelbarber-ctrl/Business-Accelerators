@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
   "name": "94636c13e248b5d19690",
   "position": {
-    "x": 16.627897401604404,
-    "y": 432.26273060374075,
+    "x": 16.346360577776867,
+    "y": 407.69385792854121,
     "z": 1000,
-    "height": 232.80715899384526,
-    "width": 218.42019973018066,
+    "height": 257.09288104303681,
+    "width": 218.65497480866119,
     "tabOrder": 3000
   },
   "visual": {
@@ -15,6 +15,26 @@
       "general": [
         {
           "properties": {}
+        }
+      ],
+      "inputText": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'wf_standard-font_light, helvetica, arial, sans-serif'"
+                }
+              }
+            }
+          }
         }
       ]
     },
